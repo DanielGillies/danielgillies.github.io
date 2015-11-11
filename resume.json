@@ -1,0 +1,156 @@
+{
+  "basics": {
+    "name": "Daniel Gillies",
+    "label": "Software Engineer",
+    "picture": "",
+    "email": "gillies.daniel@gmail.com",
+    "phone": "(845) 825-1645",
+    "website": "",
+    "summary": "Born and raised in New York, moved to the West Coast for new experiences. Travelled the world to compete in video games and now working as a software engineer.",
+    "location": {
+      "address": "1155 4th Street",
+      "postalCode": "94158",
+      "city": "San Francisco",
+      "countryCode": "United States",
+      "region": "California"
+    },
+    "profiles": [
+      {
+        "network": "Github",
+        "username": "danielgillies",
+        "url": "https://github.com/DanielGillies"
+      }
+    ]
+  },
+  "work": [
+    {
+      "company": "Skully",
+      "position": "Software Engineer",
+      "website": "http://skully.com",
+      "startDate": "2015-07",
+      "endDate": "",
+      "summary": "Skully is an hardware company manufacturing motorcycle helmets with a heads-up display that features a 180 degree rear-view camera and gps.",
+      "highlights": [
+        "Helped design and build company website",
+        "Created app landing screens for tutorial through Skully Systems"
+      ]
+    },
+    {
+      "company": "InstaEDU",
+      "position": "Computer Science Tutor",
+      "website": "instaedu.com",
+      "startDate": "2014-10",
+      "endDate": "",
+      "summary": "InstaEDU is an online help center for students needing tutoring. It easily and quickly connects students and educators.",
+      "highlights": [
+        "Online tutor for computer science, programming, web development, Spanish, and mathematics"
+      ]
+    },
+    {
+      "company": "Kinetech Arts / Kineviz Studios",
+      "position": "Software Engineering Intern",
+      "website": "http://kineviz.com/",
+      "startDate": "2015-02",
+      "endDate": "2015-06",
+      "summary": "Kineviz is a data visualization company that uses interactive demos and art to help display data in a more meaningful way.",
+      "highlights": [
+        "Designed and built a full-stack web application to visualize twitter and audio data in a 3D virtual world",
+        "Integrated Oculus Rift, Wii Balance Board, and Microsoft Kinect",
+        "Invited to present the project for Autodesk's 3D Webfest, along with top WebGL developers",
+        "Project can be viewed here: (http://vrdatalandscape.com/)"
+      ]
+    }
+  ],
+  "volunteer": [
+    {
+      "organization": "Aptos Middle School",
+      "position": "Computer Science Teacher",
+      "website": "",
+      "startDate": "2014-02",
+      "endDate": "2014-5",
+      "summary": "Taught middle-school girls the basics of programming and computer science in an after school program",
+      "highlights": []
+    }
+  ],
+  "education": [
+    {
+      "institution": "University of San Francisco",
+      "area": "Computer Science",
+      "studyType": "Bachelor of Science",
+      "startDate": "2013-08",
+      "endDate": "2015-05",
+      "gpa": "",
+      "courses": []
+    }
+  ],
+  "awards": [
+    {
+      "title": "3D Webfest Recognized Project",
+      "date": "2015-05",
+      "awarder": "Autodesk",
+      "summary": "Built a WebGL application to visualize twitter and audio data in an artistic manner. The project was put on display at Autodesk's 3D Webfest."
+    },
+    {
+      "title": "Electronic Sports World Cup",
+      "date": "2014-10",
+      "awarder": "ESWC",
+      "summary": "Qualified to represent North America in an international LAN event in Paris, France for the title of world champion"
+    },
+    {
+      "title": "1st Place, PAX East 2014",
+      "date": "2013-03",
+      "awarder": "Ubisoft",
+      "summary": "Won the PAX East open qualifier for the IGN Pro League Season 6 championships with a prize pool of $100,000"
+    },
+    {
+      "title": "Shootmania Launch Tournament",
+      "date": "2014-04",
+      "awarder": "Ubisoft",
+      "summary": "Qualified to be flown out to San Francisco, CA to compete in a top-16 event for $100,000 and the title of world champion"
+    }
+  ],
+  "publications": [],
+  "skills": [
+    {
+      "name": "Web Development",
+      "level": "Intermediate",
+      "keywords": [
+        "html",
+        "css",
+        "node.js",
+        "MongoDB",
+        "javascript",
+        "jquery",
+        "angular.js",
+        "nginx"
+      ]
+    },
+    {
+        "name": "eCommerce",
+        "level": "Intermediate",
+        "keywords": [
+            "Shopify",
+            "FoxyCart",
+            "SnipCart",
+            "Cartloom",
+            "Americommerce/Sparkpay",
+            "3dCart",
+            "Affirm"
+        ]
+
+    },
+    {
+      "name": "Video games",
+      "level": "Master",
+      "keywords": []
+    }
+  ],
+  "languages": [],
+  "interests": [],
+  "references": [
+    {
+      "name": "",
+      "reference": "Available Upon request"
+    }
+  ]
+}
