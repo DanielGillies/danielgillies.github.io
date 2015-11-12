@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Daniel Gillies</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7COpen+Sans" />
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
+    <style type="text/css">
+    /*<!--*/
+    
+    body {
+        font-size: 62.5%;
+        font-family: "Montserrat", sans-serif;
+        background-color: #E6E6E7;
+        color: #0B10F5;
+    }
+    
+    .main-wrap {
+        max-width: 960px;
+        margin: 0 auto;
+    }
+    
+    a {
+        color: #1B85F5;
+        text-decoration: none;
+        -webkit-transition: color 0.175s ease 0.05s;
+        -moz-transition: color 0.175s ease 0.05s;
+        transition: color 0.175s ease 0.05s;
+    }
+    
+    a:visited {
+        color: #1B85F5;
+    }
+    
+    a:hover,
+    a:focus {
+        color: #0D3E72;
+        text-decoration: none;
+    }
+    
+    .header {
+        text-align: center;
+        font-size: 2em;
+        margin: 0 10%;
+    }
+    
+    .section {
+        margin-bottom: 5em;
+    }
+    
+    .section .fa.left {
+        margin-right: 0.25em;
+    }
+    
+    h1 {
+        color: #424144;
+        font-size: 3em;
+        margin: 1em 0 0;
+        text-transform: uppercase;
+    }
+    
+    h2 {
+        font-size: 3.5em;
+        margin: 0.35em 0;
+        text-transform: uppercase;
+    }
+    
+    h3 {
+        color: #424144;
+        font-size: 2.3em;
+        margin: 1em 0 0;
+    }
+    
+    h4 {
+        color: #424144;
+        font-size: 1.6em;
+        margin: 0 0 1em;
+    }
+    
+    .profile {
+        font-family: "Montserrat";
+        font-size: 1em;
+        margin: 0;
+    }
+    
+    .profile-name {
+        display: none;
+    }
+    
+    .contact-header {
+        font-weight: bold;
+    }
+    
+    .contact-list li,
+    .contact-list a {
+        color: #424144;
+    }
+    
+    .label {
+        margin-top: 0;
+        margin-bottom: 1em;
+    }
+    
+    .fa {
+        font-size: 2em;
+    }
+    
+    .left {
+        font-size: 1em;
+    }
+    
+    .main {
+        margin: 0 10%;
+    }
+    
+    .skills {
+        margin-bottom: 0.5em;
+    }
+    
+    p {
+        color: #535356;
+        font-family: "Open Sans";
+        font-size: 1.5em;
+        font-weight: bold;
+    }
+    
+    li {
+        color: #535356;
+        font-family: "Open Sans";
+        font-size: 1.5em;
+        font-weight: bold;
+    }
+    
+    .list-lines,
+    .list-lines li {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    
+    .list-lines li {
+        font-family: "Montserrat";
+        font-size: 1em;
+    }
+    
+    .list-set,
+    .list-set li {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    
+    .list-set li {
+        font-family: "Montserrat";
+        display: inline-block;
+    }
+    
+    .list-set li a {
+        display: inline-block;
+    }
+    
+    .list-set li .fa {
+        min-width: 1em;
+        min-height: 1em;
+    }
+    /*Minor adjustment to icons.*/
+    
+    .list-set li .fa-stack-overflow:before {
+        font-size: 0.9em;
+        position: relative;
+        top: -0.05em;
+    }
+    
+    .list-set.keywords li {
+        background-color: #444444;
+        color: #eeeeee;
+        padding: 0.5em;
+        font-size: 1.2em;
+        display: inline-block;
+        margin: 0.1em 0;
+    }
+    
+    .profiles-list {
+        margin-top: 1em;
+    }
+    
+    blockquote {
+        margin: 2em 1em;
+        padding: 1em;
+        border-left: 0.75em solid #666666;
+        font-family: "Open Sans";
+        font-size: 1.5em;
+    }
+    
+    blockquote .name {
+        font-weight: bold;
+        font-family: "Montserrat";
+        margin-top: 1em;
+    }
+    
+    ::-moz-selection {
+        background: #666666;
+    }
+    
+    ::selection {
+        background: #666666;
+    }
+    
+    @media (max-width: 768px) {
+        body {
+            font-size: 50%;
+        }
+        .header {
+            margin: 0 5%;
+        }
+        .main {
+            margin: 0 5%;
+        }
+    }
+    
+    @media print {
+        body {
+            background: #FFFFFF;
+            color: #171717;
+        }
+        .main-wrap {
+            width: 100%;
+        }
+        .main {
+            margin: 0;
+        }
+        .section {
+            /*page-break-inside: avoid;*/
+        }
+        .main .section:last-child {
+            margin-bottom: 0;
+        }
+        a {
+            color: #555555;
+        }
+        a:visited {
+            color: #555555;
+        }
+        a:hover,
+        a:focus {
+            color: #555555;
+        }
+        h1 {
+            color: #111111;
+            margin-top: 0.5em;
+        }
+        h2 {
+            margin: 0.25em 0;
+        }
+        h3 {
+            color: #555555;
+        }
+        h4 {
+            color: #bbbbbb;
+        }
+        .contact-list li,
+        .contact-list a {
+            color: #111111;
+        }
+        p {
+            color: #555555;
+        }
+        li {
+            color: #555555;
+        }
+        .list-set.keywords li {
+            background-color: transparent;
+            color: #555555;
+            border: 1px solid #aaaaaa;
+        }
+        blockquote {
+            border-color: #999999;
+        }
+        * {
+            /*Avoid printing the color at the start of the transition (Chrome issue).*/
+            -webkit-transition: none !important;
+            -moz-transition: none !important;
+            transition: none !important;
+        }
+    }
+    /*-->*/
+    </style>
+    <!--[if lt IE 9]>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv-printshiv.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+</head>
+
+<body>
+    <div class="main-wrap">
+        <header class="header">
+            <h1>Daniel Gillies</h1>
+            <h3 class="label">Software Engineer</h3>
+            <ul id="contact" class="contact-list list-lines">
+                <li class="contact-header">(845) 825-1645</li>
+                <li class="contact-header"><a href="/cdn-cgi/l/email-protection#d1b6b8bdbdb8b4a2ffb5b0bfb8b4bd91b6bcb0b8bdffb2bebc"><span class="__cf_email__" data-cfemail="0c6b65606065697f22686d626569604c6b616d6560226f6361">[email&#160;protected]</span><script cf-hash='f9e31' type="text/javascript">
+/* <![CDATA[ */!function(){try{var t="currentScript"in document?document.currentScript:function(){for(var t=document.getElementsByTagName("script"),e=t.length;e--;)if(t[e].getAttribute("cf-hash"))return t[e]}();if(t&&t.previousSibling){var e,r,n,i,c=t.previousSibling,a=c.getAttribute("data-cfemail");if(a){for(e="",r=parseInt(a.substr(0,2),16),n=2;a.length-n;n+=2)i=parseInt(a.substr(n,2),16)^r,e+=String.fromCharCode(i);e=document.createTextNode(e),c.parentNode.replaceChild(e,c)}}}catch(u){}}();/* ]]> */</script></a></li>
+            </ul>
+            <ul id="profiles" class="profiles-list list-set">
+                <li><a href="https:&#x2F;&#x2F;github.com&#x2F;DanielGillies" target="_blank" class="profile" title="Github"><i class="fa fa-github"></i><span class="profile-name">Github</span></a></li>
+                <li><a href="https:&#x2F;&#x2F;linkedin.com&#x2F;in&#x2F;danielgillies1" target="_blank" class="profile" title="Linkedin"><i class="fa fa-linkedin"></i><span class="profile-name">Linked In</span></a></li>
+            </ul>
+        </header>
+        <main role="main" class="main">
+            <section id="about" class="section">
+                <h2><i class="fa fa-user left"></i>About</h2>
+                <p>Born and raised in New York, moved to the West Coast for new experiences. Travelled the world to compete in video games and now working as a software engineer.</p>
+            </section>
+            <section id="work" class="section">
+                <h2><i class="fa fa-suitcase left"></i>Work Experience</h2>
+                <section class="section-sub section-sub-job">
+                    <h3>Software Engineer, Skully</h3>
+                    <h4>July 2015 - Present</h4>
+                    <p>Skully is a hardware company manufacturing motorcycle helmets with a heads-up display that features a 180 degree rear-view camera and gps.</p>
+                    <h4>Highlights</h4>
+                    <ul>
+                        <li>Dove into semi-built website and turned it into an Angular site.</li>
+                        <li>Removed Angular and implemented handlebars.</li>
+                        <li>Used gulp to improve work flow.</li>
+                        <li>Heavily changed website functionality and mobile-first priorities</li>
+                        <li>Developed animations using Greensock</li>
+                        <li>Implemented 5+ different eCommerce solutions.</li>
+                        <li>Developed a back-end using AWS, Docker, Elastic Beanstalk, and Nginx.</li>
+                        <li>Contributed to python application for flashing hardware on Mac and Windows through USB.</li>
+                    </ul>
+                </section>
+                <section class="section-sub section-sub-job">
+                    <h3>Computer Science Tutor, InstaEDU</h3>
+                    <h4>October 2014 - Present</h4>
+                    <p>InstaEDU is an online help center for students needing tutoring. It easily and quickly connects students and educators.</p>
+                    <h4>Highlights</h4>
+                    <ul>
+                        <li>Online tutor for computer science, programming, web development, Spanish, and mathematics</li>
+                    </ul>
+                </section>
+                <section class="section-sub section-sub-job">
+                    <h3>Software Engineering Intern, Kinetech Arts &#x2F; Kineviz Studios</h3>
+                    <h4>February 2015 - June 2015</h4>
+                    <p>Kineviz is a data visualization company that uses interactive demos and art to help display data in a more meaningful way.</p>
+                    <h4>Highlights</h4>
+                    <ul>
+                        <li>Designed and built a full-stack web application to visualize twitter and audio data in a 3D virtual world</li>
+                        <li>Integrated Oculus Rift, Wii Balance Board, and Microsoft Kinect</li>
+                        <li>Invited to present the project for Autodesk&#39;s 3D Webfest, along with top WebGL developers</li>
+                        <li>Project can be viewed here: (http:&#x2F;&#x2F;vrdatalandscape.com&#x2F;)</li>
+                    </ul>
+                </section>
+            </section>
+            <section id="education" class="section">
+                <h2><i class="fa fa-graduation-cap left"></i>Education</h2>
+                <section class="section-sub section-sub-education">
+                    <h3>Bachelor of Science - University of San Francisco</h3>
+                    <h4>August 2013 - May 2015</h4>
+                    <p>Computer Science</p>
+                </section>
+            </section>
+            <section id="skills" class="section">
+                <h2><i class="fa fa-tasks left"></i>Skills</h2>
+                <section class="section-sub section-sub-skill">
+                    <h3 class="skills">Web Development</h3>
+                    <ul class="list-set keywords">
+                        <li>HTML</li>
+                        <li>CSS</li>
+                        <li>Javascript</li>
+                        <li>JQuery</li>
+                        <li>node.js</li>
+                        <li>Angular.js</li>
+                        <li>MongoDB</li>
+                        <li>Three.js</li>
+                        <li>nginx</li>
+                        <li>AWS</li>
+                        <li>Digital Ocean</li>
+                    </ul>
+                </section>
+                <section class="section-sub section-sub-skill">
+                    <h3 class="skills">eCommerce Solutions</h3>
+                    <ul class="list-set keywords">
+                        <li>Shopify</li>
+                        <li>FoxyCart</li>
+                        <li>SnipCart</li>
+                        <li>Cartloom</li>
+                        <li>Americommerce/Sparkpay</li>
+                        <li>3dCart</li>
+                        <li>Affirm</li>
+                    </ul>
+                </section>
+                <section class="section-sub section-sub-skill">
+                    <h3 class="skills">Work Flow</h3>
+                    <ul class="list-set keywords">
+                        <li>Gulp.js</li>
+                        <li>Bash</li>
+                        <li>Docker</li>
+                        <li>JIRA</li>
+                    </ul>
+                </section>
+                <section class="section-sub section-sub-skill">
+                    <h3 class="skills">Programming Languages</h3>
+                    <ul class="list-set keywords">
+                        <li>Java</li>
+                        <li>C</li>
+                        <li>Javascript</li>
+                        <li>Python</li>
+                    </ul>
+                </section>
+                <section class="section-sub section-sub-skill">
+                    <h3 class="skills">Video games</h3>
+                    <ul class="list-set keywords">
+                        <li>Playing</li>
+                        <li>Building</li>
+                    </ul>
+                </section>
+            </section>
+            <section id="awards" class="section">
+                <h2><i class="fa fa-trophy left"></i>Awards</h2>
+                <section class="section-sub section-sub-award">
+                    <h3>3D Webfest Recognized Project - Autodesk</h3>
+                    <h4> May 2015</h4>
+                    <p>Built a <a href="http://vrdatalandscape.com/" target="_blank">WebGL application</a> to visualize twitter and audio data in an artistic manner. The project was put on display at Autodesk&#39;s 3D Webfest.</p>
+                </section>
+                <section class="section-sub section-sub-award">
+                    <h3>Electronic Sports World Cup - ESWC</h3>
+                    <h4> October 2014</h4>
+                    <p>Qualified to represent North America in an international LAN event in Paris, France for the title of world champion</p>
+                </section>
+                <section class="section-sub section-sub-award">
+                    <h3>1st Place, PAX East 2014 - Ubisoft</h3>
+                    <h4> March 2013</h4>
+                    <p>Won the PAX East open qualifier for the IGN Pro League Season 6 championships with a prize pool of $100,000</p>
+                </section>
+                <section class="section-sub section-sub-award">
+                    <h3>Shootmania Launch Tournament - Ubisoft</h3>
+                    <h4> April 2014</h4>
+                    <p>Qualified to be flown out to San Francisco, CA to compete in a top-16 event for $100,000 and the title of world champion</p>
+                </section>
+            </section>
+            <!--                <section id="references" class="section">
+                    <h2><i class="fa fa-thumbs-up left"></i>References</h2>
+                    <blockquote>
+                        
+                        <div class="name">- Available Upon Request</div>
+                    </blockquote>
+                </section> -->
+        </main>
+    </div>
+    <script type="text/javascript">
+    /* <![CDATA[ */
+    (function() {
+        try {
+            var s, a, i, j, r, c, l = document.getElementsByTagName("a"),
+                t = document.createElement("textarea");
+            for (i = 0; l.length - i; i++) {
+                try {
+                    a = l[i].getAttribute("href");
+                    if (a && a.indexOf("/cdn-cgi/l/email-protection") > -1 && (a.length > 28)) {
+                        s = '';
+                        j = 27 + 1 + a.indexOf("/cdn-cgi/l/email-protection");
+                        if (a.length > j) {
+                            r = parseInt(a.substr(j, 2), 16);
+                            for (j += 2; a.length > j && a.substr(j, 1) != 'X'; j += 2) {
+                                c = parseInt(a.substr(j, 2), 16) ^ r;
+                                s += String.fromCharCode(c);
+                            }
+                            j += 1;
+                            s += a.substr(j, a.length - j);
+                        }
+                        t.innerHTML = s.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+                        l[i].setAttribute("href", "mailto:" + t.value);
+                    }
+                } catch (e) {}
+            }
+        } catch (e) {}
+    })();
+    /* ]]> */
+    </script>
+</body>
+
+</html>
