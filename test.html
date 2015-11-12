@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+    overflow: hidden;
+    margin: 0;
+}
+</style>
+    <title>Three</title>
+
+</head>
+<body>
+
+<script src="assets/js/three.min.js"></script>
+<script src="assets/js/MouseControls.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+
+
+<script>
+
+    var scene, camera, renderer, controls;
+    var geometry, material, mesh;
+
+    init();
+    animate();
+
+    function init() {
+
+        container = document.createElement( 'div' );
+        document.body.appendChild( container );
+
+        scene = new THREE.Scene();
+
+        camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
+        camera.position.z = 100;
+
+        controls = new THREE.MouseControls(camera);
+
+        // create the plane mesh
+        var material = new THREE.MeshBasicMaterial({color: 0xffffff, wireframe: true });
+        var geometry = new THREE.PlaneGeometry(50, 70);
+        var planeMesh= new THREE.Mesh( geometry, material );
+        // add it to the WebGL scene
+        scene.add(planeMesh);
+
+        renderer = new THREE.WebGLRenderer();
+        // renderer.setClearColorHex(0xffffff, 1);
+        renderer.setSize( window.innerWidth, window.innerHeight );
+
+        document.body.appendChild( renderer.domElement );
+
+    }
+
+    function animate() {
+
+        requestAnimationFrame( animate );
+
+        // mesh.rotation.x += 0.01;
+        // mesh.rotation.y += 0.02;
+
+        renderer.render( scene, camera );
+
+    }
+
+</script>
+
+</body>
+</html>
