@@ -1,69 +1,129 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<style>
-body {
-    overflow: hidden;
-    margin: 0;
-}
-</style>
+    <style>
+    body {
+        overflow: hidden;
+        margin: 0;
+    }
+
+    canvas {
+        pointer-events: none;
+    }
+    
+    .number {
+        font-size: 50px;
+        /*color: white;*/
+    }
+    
+    iframe {
+        overflow: scroll;
+    }
+    </style>
     <title>Three</title>
-
 </head>
+
 <body>
-
-<script src="assets/js/three.min.js"></script>
-<script src="assets/js/MouseControls.js"></script>
+    <script src="assets/js/three.min.js"></script>
+    <script src="assets/js/MouseControls.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
-
-
-<script>
-
-    var scene, camera, renderer, controls;
-    var geometry, material, mesh;
+    <script src="https://dl.dropboxusercontent.com/u/3587259/Code/Threejs/CSS3DRenderer.js"></script>
+    <script>
+    var camera, sceneGl, rendererGl;
+    var sceneCss, rendererCss;
+    var controls;
 
     init();
     animate();
 
     function init() {
 
-        container = document.createElement( 'div' );
-        document.body.appendChild( container );
-
-        scene = new THREE.Scene();
-
-        camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
+        camera = new THREE.PerspectiveCamera(90, window.innerWidth / window.innerHeight, 1, 10000);
         camera.position.z = 100;
 
         controls = new THREE.MouseControls(camera);
 
+        sceneGl = new THREE.Scene();
+        sceneCss = new THREE.Scene();
+
+
         // create the plane mesh
-        var material = new THREE.MeshBasicMaterial({color: 0xffffff, wireframe: true });
+        var material = new THREE.MeshBasicMaterial({
+            color: 0x000000,
+            wireframe: true
+        });
         var geometry = new THREE.PlaneGeometry(50, 70);
-        var planeMesh= new THREE.Mesh( geometry, material );
+        var planeMesh = new THREE.Mesh(geometry, material);
         // add it to the WebGL scene
-        scene.add(planeMesh);
+        sceneGl.add(planeMesh);
 
-        renderer = new THREE.WebGLRenderer();
-        // renderer.setClearColorHex(0xffffff, 1);
-        renderer.setSize( window.innerWidth, window.innerHeight );
+        // }
 
-        document.body.appendChild( renderer.domElement );
+
+        // var boxGeom = new THREE.CubeGeometry(60, 60, 60);
+
+        // var cubeMaterial = new THREE.MeshBasicMaterial({
+        //     color: 0x05009A,
+        //     shading: THREE.FlatShading,
+        //     side: THREE.DoubleSide
+        // });
+
+        // var cube = new THREE.Mesh(boxGeom, cubeMaterial);
+        // cube.position.copy(new THREE.Vector3(100, 75, 50));
+        // cube.rotation.copy(Math.PI / 6);
+
+        // sceneGl.add(cube);
+        var test = document.createElement('iframe');
+        test.src = "index.html"
+            // test.style.width = "50px";
+        object = new THREE.CSS3DObject(test);
+        console.log(object.width)
+
+        sceneCss.add(object);
+
+        sceneGl.add(createFloor());
+
+        rendererCss = new THREE.CSS3DRenderer();
+        rendererCss.setSize(window.innerWidth, window.innerHeight);
+        rendererCss.domElement.style.position = 'absolute';
+        rendererCss.domElement.style.top = 0;
+
+        rendererGl = new THREE.WebGLRenderer({
+            alpha: true
+        });
+        rendererGl.setClearColor(0x000000, 0);
+
+        rendererGl.setSize(window.innerWidth, window.innerHeight);
+
+        rendererGl.domElement.style.position = 'absolute';
+        rendererGl.domElement.style.zIndex = 1;
+        rendererGl.domElement.style.top = 0;
+        rendererCss.domElement.appendChild(rendererGl.domElement);
+
+        document.body.appendChild(rendererCss.domElement);
 
     }
 
     function animate() {
 
-        requestAnimationFrame( animate );
+        requestAnimationFrame(animate);
 
-        // mesh.rotation.x += 0.01;
-        // mesh.rotation.y += 0.02;
-
-        renderer.render( scene, camera );
+        rendererGl.render(sceneGl, camera);
+        rendererCss.render(sceneCss, camera);
 
     }
 
-</script>
-
+    function createFloor() {
+        geometry = new THREE.PlaneGeometry(2000, 2000, 5, 5);
+        geometry.applyMatrix(new THREE.Matrix4().makeRotationX(-Math.PI / 2));
+        var material = new THREE.MeshBasicMaterial({
+            color: 0x000000,
+            wireframe: true
+        });
+        return new THREE.Mesh(geometry, material);
+    }
+    </script>
 </body>
+
 </html>
