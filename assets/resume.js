@@ -24,3 +24,21 @@
             }
         } catch (e) {}
     })();
+
+function inIframe () {
+    try {
+        return window.self !== window.top;
+    } catch (e) {
+        return true;
+    }
+}
+ $(document).mousemove(function(event) {
+            console.log("X: " + event.clientX + " Y: " + event.clientY);
+        })
+
+if (inIframe()) {
+    document.addEventListener('click', function() {
+        console.log("FFF")
+        window.parent.$('body').trigger('test');
+    });
+}
