@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -56,34 +55,12 @@
 
             }
 
-            #frontView {
-                position: absolute;
-                height: 100%;
-                width: 100%;
-                left: 0;
-                top: 0;
-                z-index: 1;
-                opacity: 0;
-            }
-
-            #rearView {
-                position: absolute;
-                height: 400px;
-                width: 600px;
-                right: 0;
-                bottom: 0;
-                z-index: 100;
-                background-color: black;
-                opacity: 0;
-            }
-
         </style>
     </head>
     <body>
         <script src="assets/js/three.min.js"></script>
         <script src="assets/js/PointerLockControls.js"></script>
         <script src="assets/js/InvertedCamera.js"></script>
-
 
         <div id="blocker">
 
@@ -94,15 +71,14 @@
             </div>
 
         </div>
-        <canvas id="rearView"></canvas>
-        <canvas id="frontView"></canvas>
 
         <script>
 
-            var camera, rearCamera, scene, renderer, rearRenderer;
+            var rearCamera, rearScene, rearRenderer, rearControls;
+
+            var camera, scene, renderer;
             var geometry, material, mesh;
-            var controls, rearControls;
-            var container;
+            var controls;
 
             var objects = [];
 
@@ -125,12 +101,14 @@
 
                         controlsEnabled = true;
                         controls.enabled = true;
+                        rearControls.enabled = true;
 
                         blocker.style.display = 'none';
 
                     } else {
 
                         controls.enabled = false;
+                        rearControls.enabled = false;
 
                         blocker.style.display = '-webkit-box';
                         blocker.style.display = '-moz-box';
@@ -216,20 +194,26 @@
             function init() {
 
                 camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 1000 );
-                // rearCamera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 100 );
+                rearCamera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 1000 );
 
                 scene = new THREE.Scene();
                 scene.fog = new THREE.Fog( 0xffffff, 0, 750 );
+                rearScene = new THREE.Scene();
+                rearScene.fog = new THREE.Fog ( 0xffffff, 0, 750 );
 
                 var light = new THREE.HemisphereLight( 0xeeeeff, 0x777788, 0.75 );
                 light.position.set( 0.5, 1, 0.75 );
                 scene.add( light );
 
+                light = new THREE.HemisphereLight( 0xeeeeff, 0x777788, 0.75 ); 
+                light.position.set( 0.5, 1, 0.75 );
+                rearScene.add( light );
+
                 controls = new THREE.PointerLockControls( camera );
                 scene.add( controls.getObject() );
 
-                // rearControls = new THREE.InvertedCamera( rearCamera );
-                // scene.add( rearControls.getObject() );
+                rearControls = new THREE.InvertedCamera( rearCamera );
+                rearScene.add( rearControls.getObject() );
 
                 var onKeyDown = function ( event ) {
 
@@ -346,6 +330,7 @@
                     mesh.position.y = Math.floor( Math.random() * 20 ) * 20 + 10;
                     mesh.position.z = Math.floor( Math.random() * 20 - 10 ) * 20;
                     scene.add( mesh );
+                    // rearScene.add( mesh );
 
                     material.color.setHSL( Math.random() * 0.2 + 0.5, 0.75, Math.random() * 0.25 + 0.75 );
 
@@ -355,19 +340,16 @@
 
                 //
 
-                // rearContainer = document.getElementById( 'rearView' );
-                // document.body.appendChild( rearContainer );
-                // rearRenderer = new THREE.WebGLRenderer();
-                // rearRenderer.setSize( 200, 200 );
-                // rearContainer.appendChild( rearRenderer.domElement );
-
-                frontContainer = document.getElementById('frontView');
-                document.body.appendChild( frontContainer );
                 renderer = new THREE.WebGLRenderer();
                 renderer.setClearColor( 0xffffff );
                 renderer.setPixelRatio( window.devicePixelRatio );
                 renderer.setSize( window.innerWidth, window.innerHeight );
-                frontContainer.appendChild( renderer.domElement );
+                document.body.appendChild( renderer.domElement );
+
+                rearRenderer = new THREE.WebGLRenderer();
+                rearRenderer.setClearColor( 0xffffff );
+                rearRenderer.setPixelRation( window.devicePixelRatio );
+                renderer.setSize( window.innerWidth, window.innerHeight );
 
                 //
 
@@ -380,11 +362,7 @@
                 camera.aspect = window.innerWidth / window.innerHeight;
                 camera.updateProjectionMatrix();
 
-                rearCamera.aspect = rearContainer.innerWidth / rearContainer.innerHeight;
-                rearCamera.updateProjectionMatrix();
-
                 renderer.setSize( window.innerWidth, window.innerHeight );
-                rearRenderer.setSize( rearContainer.innerWidth / rearContainer.innerHeight );
 
             }
 
