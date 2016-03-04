@@ -210,6 +210,24 @@
     }
     
     @media print {
+        #profiles {
+            display: none;
+        }
+        h1 {
+            font-size: 2em;
+        }
+        h3 {
+            font-size: 1em;
+        }
+        .label {
+            margin-bottom: .3em;
+        }
+        h2 {
+            font-style: 1em;
+        }
+        p {
+            font-size: .5em;
+        }
         body {
             background: #FFFFFF;
             color: #171717;
