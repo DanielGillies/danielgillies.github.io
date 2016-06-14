@@ -130,23 +130,23 @@
 
     Ship.prototype.speedY = 3;
 
-    Ship.prototype.update = function() {
-      var cloudPoss, i, j;
-      this.fly();
-      Ship.__super__.update.apply(this, arguments);
-      cloudPoss = Math.random();
-      if (cloudPoss > .3) {
-        for (i = j = 0; j <= 3; i = ++j) {
-          this.createCloud();
-        }
-      }
-      if (cloudPoss > .7) {
-        this.createCloud();
-      }
-      if (cloudPoss > .9) {
-        return this.createCloud();
-      }
-    };
+    // Ship.prototype.update = function() {
+    //   var cloudPoss, i, j;
+    //   this.fly();
+    //   Ship.__super__.update.apply(this, arguments);
+    //   cloudPoss = Math.random();
+    //   if (cloudPoss > .3) {
+    //     for (i = j = 0; j <= 3; i = ++j) {
+    //       this.createCloud();
+    //     }
+    //   }
+    //   if (cloudPoss > .7) {
+    //     this.createCloud();
+    //   }
+    //   if (cloudPoss > .9) {
+    //     return this.createCloud();
+    //   }
+    // };
 
     Ship.prototype.fly = function() {
       if (this.x < this.scene.target.x - 10) {
