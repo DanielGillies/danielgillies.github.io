@@ -1,0 +1,310 @@
+ @font-face {
+     font-family: Din;
+     src: url('../fonts/din-regular.ttf');
+ }
+ 
+ @font-face {
+     font-family: Din;
+     font-weight: bold;
+     src: url('../fonts/din-bold.ttf');
+ }
+ /***************************************************
+****************** GENERAL DESIGN ******************
+****************************************************/
+ 
+ html,
+ body,
+ main {
+     /*height: 100%;*/
+     font-family: Din, Sans-Serif !important;
+ }
+ 
+ h1,
+ h2,
+ h3,
+ h4,
+ h5,
+ h6 {
+     font-weight: bold;
+ }
+ 
+ main h1 {
+     font-size: 5rem;
+ }
+ 
+ main {
+     margin-top: -80px;
+     -webkit-transform: none;
+     -moz-transform: none;
+     -ms-transform: none;
+     -o-transform: none;
+     transform: none;
+ }
+ 
+ .page {
+     display: none;
+ }
+
+ .mobilebr {
+ 	display: none;
+ }
+
+ @media only screen and (max-width: 767px) {
+ 	.mobilebr {
+ 		display:block;
+ 	}
+ }
+ /***************************************************
+******************** NAVIGATION ********************
+****************************************************/
+ 
+ .cd-logo {
+     position: absolute;
+     top: 10px;
+     left: 15px;
+     float: none;
+     width: 100px;
+ }
+ 
+ .cd-3d-nav-trigger {
+     position: absolute;
+     float: none;
+     right: 20px;
+     height: 45px;
+     width: 45px;
+     /*margin-top: 18px;*/
+     top: 25px;
+     /* replace text with background image */
+     overflow: hidden;
+     text-indent: 100%;
+     white-space: nowrap;
+     color: transparent;
+ }
+
+ .cd-3d-nav li {
+ 	width: 33%;
+ }
+
+ .cd-marker {
+ 	width: 33%;
+ }
+ /***************************************************
+********************** HERO ************************
+****************************************************/
+ 
+ .cd-headline {
+     font-weight: bold;
+ }
+ 
+ .cd-header {
+     z-index: 100;
+     position: relative;
+ }
+ 
+ .cd-intro {
+     width: 100%;
+     max-width: none;
+     text-align: left;
+     height: 100vh;
+     background-repeat: no-repeat;
+     background-size: cover;
+     background-position: 50% 50%;
+     background-image: url("../img/backgrounds/hero.jpg");
+ }
+ 
+ .cd-intro h1 {
+     position: relative;
+     top: 40%;
+     width: 80%;
+     margin: 0 auto;
+ }
+ 
+ .cd-intro {
+     margin: 0;
+ }
+ 
+ .cd-headline {
+     font-size: 4rem;
+ }
+ 
+ .cd-words-wrapper {
+     -webkit-transition: all linear .5s;
+     -moz-transition: all linear .5s;
+     transition: all linear .5s;
+ }
+ 
+ @media only screen and (min-width: 768px) {
+     .cd-intro {
+         margin: 0;
+     }
+     .cd-headline {
+         font-size: 5rem;
+     }
+ }
+ 
+ @media only screen and (min-width: 1170px) {
+     .cd-intro {
+         margin: 0;
+     }
+     .cd-headline {
+         font-size: 6rem;
+     }
+ }
+ /***************************************************
+********************* COMPANIES ********************
+****************************************************/
+ 
+ .companies {
+     position: relative;
+     background: #333;
+ }
+ 
+ .companies {
+     padding: 6em 0;
+ }
+ 
+ #companies h1 {
+     margin-bottom: 1em;
+     font-weight: bold;
+ }
+ 
+ #companies .cd-intro {
+     height: 600px;
+     background-image: url("../img/backgrounds/section2.jpg");
+ }
+ /***************************************************
+****************** COMPANY LOGOS *******************
+****************************************************/
+ 
+ .cd-trigger {
+     height: 100%;
+     background: rgba(0, 0, 0, .8);
+ }
+ 
+ .no-touch .cd-trigger:hover {
+     background: rgba(0, 0, 0, .8);
+     /*border: 4px solid #999900;*/
+ }
+ 
+ .cd-trigger span, .cd-trigger-mobile span {
+ 	color: white;
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+     font-size: 22px;
+     font-weight: bold;
+ }
+ 
+ .cd-item-info {
+     padding: 3em;
+ }
+ 
+ .cd-item.empty-box::after {
+     background-color: black;
+ }
+
+ .cd-trigger-mobile {
+ 	height: 100%;
+ 	width: 100%;
+ 	position: absolute;
+ 	bottom: 0;
+ 	left: 0;
+ 	background: rgba(0, 0, 0, .6);
+ 	opacity: 1;
+    visibility: visible;
+    text-align: center;
+ }
+ 
+ @media only screen and (min-width: 1024px) {
+     .cd-trigger {
+         opacity: 0;
+     }
+     .cd-trigger-mobile {
+     	opacity: 0;
+     	visibility: hidden;
+     }
+ }
+ 
+ @media only screen and (max-width: 767px) {
+     .cd-item {
+         width: 48%;
+         float: left;
+         margin: 0 4% 2em 0;
+     }
+     .cd-item:nth-child(2n) {
+         margin-right: 0;
+     }
+ }
+ /***************************************************
+********************** PEOPLE **********************
+****************************************************/
+ 
+ #people .cd-intro {
+     height: 600px;
+     background-image: url("../img/backgrounds/people.jpg");
+     position: relative;
+ }
+ 
+ #people .cd-intro:after {
+     position: absolute;
+     content: "";
+     left: 0;
+     top: 0;
+     width: 100%;
+     height: 100%;
+     opacity: .4;
+     background-color: black;
+ }
+ 
+ #people h1 {
+     margin-bottom: 1em;
+     font-weight: bold;
+     z-index: 1000;
+ }
+ /***************************************************
+******************* PEOPLE GRID ********************
+****************************************************/
+ 
+ #cd-team .cd-img-overlay {
+     background: rgba(204, 204, 0, .9);
+ }
+
+ #cd-team {
+ 	background: white;
+ }
+
+ .people {
+ 	padding: 6em 0;
+ }
+
+.cd-member-bio .cd-bio-content p {
+	font-size: 16px;
+	color: black;
+}
+
+.cd-member-bio .cd-bio-content h1 {
+	font-size: 22px;
+}
+
+#cd-team .cd-img-overlay span {
+	font-size: 16px;
+}
+
+#cd-team .cd-member-info {
+	font-size: 18px;
+	color: #CCCC00;
+}
+
+#cd-team .cd-member-info span {
+	font-size: 16px;
+}
+
+.cd-member-bio .cd-member-bio-pict::after {
+	background: -webkit-linear-gradient( bottom , #CCCC00, rgba(204, 204, 0, 0));
+    background: linear-gradient(to top, #CCCC00, rgba(204, 204, 0, 0));
+}
+
+.cd-member-bio {
+	background: #CCCC00;
+}
