@@ -6,8 +6,8 @@ jQuery(document).ready(function($) {
     var found = false;
 
     $(".cd-3d-nav li").each(function(index) {
-    	if (index == 0)
-    		first = $(this)
+        if (index == 0)
+            first = $(this)
         $(this).removeClass('cd-selected')
         var link = $(this).find("a");
         // console.log(hash);
@@ -28,21 +28,24 @@ jQuery(document).ready(function($) {
     })
 
     if (!found) {
-    	first.addClass('cd-selected');
-    	$(first.find("a")[0].hash).show();
+        first.addClass('cd-selected');
+        $(first.find("a")[0].hash).show();
     }
 
     // $($(".cd-selected a").attr("href")).show()
 
     $(".cd-3d-nav a").click(function(event) {
 
-        setTimeout(function() {
-        	$(".page").hide();
-        	$(event.currentTarget.hash).show();
-            // $(".page").fadeOut(300, function() {
-            //     $(event.currentTarget.hash).fadeIn(300);
-            // });
-            // console.log(event.currentTarget.hash)
-        })
+        $(".page").hide();
+        $(event.currentTarget.hash).show();
+        // $(".page").fadeOut(300, function() {
+        //     $(event.currentTarget.hash).fadeIn(300);
+        // });
+        // console.log(event.currentTarget.hash)
+    })
+
+    #(".cd-logo").click(function(event) {
+        #(".page").hide();
+        ("#home").show();
     })
 })
