@@ -44,8 +44,8 @@ jQuery(document).ready(function($) {
         // console.log(event.currentTarget.hash)
     })
 
-    #(".cd-logo").click(function(event) {
-        #(".page").hide();
-        ("#home").show();
+    $(".cd-logo").click(function(event) {
+        $(".page").hide();
+        $("#home").show();
     })
 })
