@@ -44,15 +44,15 @@
  .page {
      display: none;
  }
-
+ 
  .mobilebr {
- 	display: none;
+     display: none;
  }
-
+ 
  @media only screen and (max-width: 767px) {
- 	.mobilebr {
- 		display:block;
- 	}
+     .mobilebr {
+         display: block;
+     }
  }
  /***************************************************
 ******************** NAVIGATION ********************
@@ -60,10 +60,11 @@
  
  .cd-logo {
      position: absolute;
-     top: 10px;
+     /*top: 10px;*/
      left: 15px;
      float: none;
      width: 100px;
+     margin-top: 0;
  }
  
  .cd-3d-nav-trigger {
@@ -80,13 +81,78 @@
      white-space: nowrap;
      color: transparent;
  }
-
+ 
  .cd-3d-nav li {
- 	width: 33%;
+     width: 25%;
+ }
+ 
+ .cd-marker {
+     width: 25%;
+ }
+ 
+ .cd-3d-nav a::before {
+     content: '';
+     height: 32px;
+     width: 32px;
+     position: absolute;
+     left: 50%;
+     top: 50%;
+     bottom: auto;
+     right: auto;
+     -webkit-transform: translateX(-50%) translateY(-50%);
+     -moz-transform: translateX(-50%) translateY(-50%);
+     -ms-transform: translateX(-50%) translateY(-50%);
+     -o-transform: translateX(-50%) translateY(-50%);
+     transform: translateX(-50%) translateY(-50%);
+     background-size: 32px 64px;
+     background-repeat: no-repeat;
+     background-position: 0 0;
  }
 
- .cd-marker {
- 	width: 33%;
+ .cd-3d-nav li:nth-of-type(4) a::before {
+    background-image: url(../img/icons/icon-4.svg);
+}
+ 
+ @media only screen and (min-width: 768px) {
+     main.nav-is-visible {
+         -webkit-transform: translateY(80px);
+         -moz-transform: translateY(80px);
+         -ms-transform: translateY(80px);
+         -o-transform: translateY(80px);
+         transform: translateY(80px);
+     }
+     .cd-3d-nav-container {
+         height: 80px;
+     }
+     .cd-header.nav-is-visible {
+         -webkit-transform: translateY(80px);
+         -moz-transform: translateY(80px);
+         -ms-transform: translateY(80px);
+         -o-transform: translateY(80px);
+         transform: translateY(80px);
+     }
+     .cd-3d-nav a::before {
+         top: 1em;
+         left: 50%;
+         right: auto;
+         -webkit-transform: translateX(-50%);
+         -moz-transform: translateX(-50%);
+         -ms-transform: translateX(-50%);
+         -o-transform: translateX(-50%);
+         transform: translateX(-50%);
+     }
+     .cd-3d-nav a {
+         padding: 4.0em 1em 0;
+         color: #ffffff;
+         font-size: 1.3rem;
+         font-weight: 600;
+         text-align: center;
+         -webkit-font-smoothing: antialiased;
+         -moz-osx-font-smoothing: grayscale;
+         white-space: nowrap;
+         overflow: hidden;
+         text-overflow: ellipsis;
+     }
  }
  /***************************************************
 ********************** HERO ************************
@@ -109,14 +175,25 @@
      background-repeat: no-repeat;
      background-size: cover;
      background-position: 50% 50%;
-     background-image: url("../img/backgrounds/hero.jpg");
+     /*background-image: url("../img/backgrounds/hero.jpg");*/
  }
  
  .cd-intro h1 {
      position: relative;
      top: 40%;
-     width: 80%;
-     margin: 0 auto;
+     width: 100%;
+     /*margin: 0 auto;*/
+     left: 0;
+     right: 0;
+ }
+ 
+ #home .cd-intro h1 {
+     position: absolute;
+     top: 40%;
+     width: 100%;
+     /*margin: 0 auto;*/
+     left: 0;
+     right: 0;
  }
  
  .cd-intro {
@@ -132,6 +209,14 @@
      -moz-transition: all linear .5s;
      transition: all linear .5s;
  }
+ /* #home .video-viewport{
+    position:relative;
+    top: 0;
+    left: 0;
+    z-index: -100;
+
+ }
+ */
  
  @media only screen and (min-width: 768px) {
      .cd-intro {
@@ -169,8 +254,13 @@
  }
  
  #companies .cd-intro {
-     height: 600px;
-     background-image: url("../img/backgrounds/section2.jpg");
+     height: 400px;
+     background-image: url("../img/backgrounds/companies.jpg");
+ }
+ 
+ #companies .cd-intro h1 {
+     top: 80%;
+     margin-bottom: 0;
  }
  /***************************************************
 ****************** COMPANY LOGOS *******************
@@ -186,8 +276,9 @@
      /*border: 4px solid #999900;*/
  }
  
- .cd-trigger span, .cd-trigger-mobile span {
- 	color: white;
+ .cd-trigger span,
+ .cd-trigger-mobile span {
+     color: white;
      position: absolute;
      top: 50%;
      left: 50%;
@@ -203,17 +294,17 @@
  .cd-item.empty-box::after {
      background-color: black;
  }
-
+ 
  .cd-trigger-mobile {
- 	height: 100%;
- 	width: 100%;
- 	position: absolute;
- 	bottom: 0;
- 	left: 0;
- 	background: rgba(0, 0, 0, .6);
- 	opacity: 1;
-    visibility: visible;
-    text-align: center;
+     height: 100%;
+     width: 100%;
+     position: absolute;
+     bottom: 0;
+     left: 0;
+     background: rgba(0, 0, 0, .6);
+     opacity: 1;
+     visibility: visible;
+     text-align: center;
  }
  
  @media only screen and (min-width: 1024px) {
@@ -221,8 +312,8 @@
          opacity: 0;
      }
      .cd-trigger-mobile {
-     	opacity: 0;
-     	visibility: hidden;
+         opacity: 0;
+         visibility: hidden;
      }
  }
  
@@ -241,9 +332,10 @@
 ****************************************************/
  
  #people .cd-intro {
-     height: 600px;
-     background-image: url("../img/backgrounds/people.jpg");
+     height: 400px;
+     background-image: url("../img/backgrounds/people.jpeg");
      position: relative;
+     background-position: 50% 75%;
  }
  
  #people .cd-intro:after {
@@ -269,42 +361,208 @@
  #cd-team .cd-img-overlay {
      background: rgba(204, 204, 0, .9);
  }
-
+ 
  #cd-team {
- 	background: white;
+     background: white;
  }
-
+ 
  .people {
- 	padding: 6em 0;
+     padding: 6em 0;
  }
-
-.cd-member-bio .cd-bio-content p {
-	font-size: 16px;
-	color: black;
-}
-
-.cd-member-bio .cd-bio-content h1 {
-	font-size: 22px;
-}
-
-#cd-team .cd-img-overlay span {
-	font-size: 16px;
-}
-
-#cd-team .cd-member-info {
-	font-size: 18px;
-	color: #CCCC00;
-}
-
-#cd-team .cd-member-info span {
-	font-size: 16px;
-}
-
-.cd-member-bio .cd-member-bio-pict::after {
-	background: -webkit-linear-gradient( bottom , #CCCC00, rgba(204, 204, 0, 0));
-    background: linear-gradient(to top, #CCCC00, rgba(204, 204, 0, 0));
-}
-
-.cd-member-bio {
-	background: #CCCC00;
-}
+ 
+ .cd-member-bio .cd-bio-content p {
+     font-size: 16px;
+     color: black;
+ }
+ 
+ .cd-member-bio .cd-bio-content h1 {
+     font-size: 22px;
+ }
+ 
+ #cd-team .cd-img-overlay span {
+     font-size: 16px;
+ }
+ 
+ #cd-team .cd-member-info {
+     font-size: 18px;
+     color: #CCCC00;
+ }
+ 
+ #cd-team .cd-member-info span {
+     font-size: 16px;
+ }
+ 
+ .cd-member-bio .cd-member-bio-pict::after {
+     background: -webkit-linear-gradient( bottom, #CCCC00, rgba(204, 204, 0, 0));
+     background: linear-gradient(to top, #CCCC00, rgba(204, 204, 0, 0));
+ }
+ 
+ .cd-member-bio {
+     background: #CCCC00;
+ }
+ 
+ .video-background {
+     padding: 0;
+     border-right: none;
+     border-left: none;
+     position: relative;
+ }
+ 
+ .video-container {
+     position: relative;
+     top: 0%;
+     left: 0%;
+     height: 100%;
+     width: 100%;
+     overflow: hidden;
+ }
+ 
+ .video-container .title-container {
+     z-index: 1000;
+     position: absolute;
+     top: 35%;
+     width: 100%;
+     text-align: center;
+     color: #fff;
+ }
+ 
+ .video-container .description .inner {
+     font-size: 1em;
+     width: 45%;
+     margin: 0 auto;
+ }
+ 
+ .video-container .link {
+     position: absolute;
+     bottom: 3em;
+     width: 100%;
+     text-align: center;
+     z-index: 1001;
+     font-size: 2em;
+     color: #fff;
+ }
+ 
+ .video-container .link a {
+     color: #fff;
+ }
+ 
+ .video-container video {
+     position: absolute;
+     z-index: 0;
+     bottom: 0;
+     min-width: 100%;
+     max-height: 100%;
+     object-fit: cover;
+ }
+ 
+ .video-container video.fillWidth {
+     width: 100%;
+ }
+ 
+ .overlay1:before {
+     position: absolute;
+     content: '';
+     width: 100%;
+     height: 100%;
+     top: 0;
+     left: 0;
+     background: #282828;
+     opacity: 0.1;
+     z-index: 3;
+ }
+ 
+ .overlay2:before {
+     position: absolute;
+     content: '';
+     width: 100%;
+     height: 100%;
+     top: 0;
+     left: 0;
+     background: #282828;
+     opacity: 0.2;
+     z-index: 3;
+ }
+ 
+ .overlay3:before {
+     position: absolute;
+     content: '';
+     width: 100%;
+     height: 100%;
+     top: 0;
+     left: 0;
+     background: #282828;
+     opacity: 0.3;
+     z-index: 3;
+ }
+ 
+ .overlay4:before {
+     position: absolute;
+     content: '';
+     width: 100%;
+     height: 100%;
+     top: 0;
+     left: 0;
+     background: #282828;
+     opacity: 0.4;
+     z-index: 3;
+ }
+ 
+ .overlay5:before {
+     position: absolute;
+     content: '';
+     width: 100%;
+     height: 100%;
+     top: 0;
+     left: 0;
+     background: #282828;
+     opacity: 0.5;
+     z-index: 3;
+ }
+ 
+ .overlay6:before {
+     position: absolute;
+     content: '';
+     width: 100%;
+     height: 100%;
+     top: 0;
+     left: 0;
+     background: #344152;
+     opacity: 0.6;
+     z-index: 3;
+ }
+ 
+ .overlay7:before {
+     position: absolute;
+     content: '';
+     width: 100%;
+     height: 400px;
+     top: 0;
+     left: 0;
+     background: #003366;
+     opacity: 0.6;
+     z-index: 3;
+ }
+ 
+ .overlay8:before {
+     position: absolute;
+     content: '';
+     width: 100%;
+     height: 100%;
+     top: 0;
+     left: 0;
+     background: #282828;
+     opacity: 0.8;
+     z-index: 3;
+ }
+ 
+ .overlay9:before {
+     position: absolute;
+     content: '';
+     width: 100%;
+     height: 100%;
+     top: 0;
+     left: 0;
+     background: #282828;
+     opacity: 0.9;
+     z-index: 3;
+ }
