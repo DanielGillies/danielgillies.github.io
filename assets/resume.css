@@ -271,11 +271,11 @@ blockquote .name {
         margin: 0.25em 0;
     }
     h3 {
-        color: #555555;
+        color: #333333;
         margin-bottom: 5px;
     }
     h4 {
-        color: #bbbbbb;
+        color: #888888;
         margin-bottom: 5px;
     }
     .contact-list li,
@@ -283,11 +283,11 @@ blockquote .name {
         color: #111111;
     }
     p {
-        color: #555555;
+        color: #333333;
         margin: 2px;
     }
     li {
-        color: #555555;
+        color: #444444;
         margin: 2px;
     }
     .list-set.keywords li {
