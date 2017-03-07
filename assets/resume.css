@@ -198,6 +198,10 @@ blockquote .name {
     background: #666666;
 }
 
+.m0 {
+    margin: 0;
+}
+
 @media (max-width: 768px) {
     body {
         font-size: 50%;
@@ -303,5 +307,8 @@ blockquote .name {
         -webkit-transition: none !important;
         -moz-transition: none !important;
         transition: none !important;
+    }
+    #references {
+        text-align: center;
     }
 }
