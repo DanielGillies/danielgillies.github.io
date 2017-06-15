@@ -18,6 +18,9 @@
 </head>
 
 <body>
+    <div class="btn dl-btn download">
+        <a href="resume.pdf">Download PDF</a>
+    </div>
     <div class="main-wrap">
         <header class="header">
             <h1>Daniel Gillies</h1>
@@ -46,30 +49,33 @@
                     <p>Piper makes a build-it-yourself computer kit for kids using a Raspberry Pi. It runs a 3D game we made to teach kids about STEM topics with a voxel engine.</p>
                     <h4>Highlights</h4>
                     <ul>
-                        <li>Designed and developed music sequencer level with recording functionality</li>
-                        <li>Helped create a menu/HUD system using PyQt, a Qt wrapper for python</li>
-                        <li>Built sound and video utilities to allow us to easily play audio and videos for the user</li>
-                        <li>Implented a subscription system, beginning with checkout on our website until unsubscribe</li>
-                        <li>Helped create a coding API for children, consisting of the 500 most common English words</li>
-                        <li>Worked on changing/maintaining core game code such as the main update loop</li>
+                        <li>Designed and Developed music sequencer level with full drum kit and one octave with recording functionality and dynamic length/bpm.</li>
+                        <li>Built a GUI system using PyQt to control level selection, updating, wifi selection, language settings, volume settings, and ingame HUD.</li>
+                        <li>Created sound and video utilities to allow for easy playing of audio and video.</li>
+                        <li>Modified pieces of Irrlicht Engine and Minetest to add custom support for special Lua API calls,  such as releasing mouse control from the game.</li>
+                        <li>Built out multiple Lua scripts to modify how Minetest is played to suit our needs for Piper.</li>
+                        <li>Implemented a mini-game level with simple pathfinding on a grid system to ensure that the programmatically generated level was beatable.</li>
                     </ul>
                 </section>
                 <section class="section-sub section-sub-job">
-                    <h3>Software Engineer/Lead Experience Engineer, Skully</h3>
-                    <h4>July 2015 - July 2016</h4>
+                    <h3>Lead Experience Engineer, Skully</h3>
+                    <h4>February 2015 - July 2016</h4>
                     <p>Skully is a hardware company manufacturing motorcycle helmets with a heads-up display that features a 180 degree rear-view camera and gps.</p>
                     <h4>Highlights</h4>
                     <ul>
-                        <li>Dove into semi-built website and turned it into an Angular site</li>
-                        <li>Removed Angular and implemented handlebars</li>
-                        <li>Used gulp to improve work flow</li>
-                        <li>Heavily changed website functionality and mobile-first priorities</li>
-                        <li>Developed animations using Greensock</li>
-                        <li>Implemented 5+ different eCommerce solutions</li>
-                        <li>Developed a back-end using AWS, Docker, Elastic Beanstalk, and Nginx</li>
-                        <li>Contributed to python application for flashing hardware on Mac and Windows through USB</li>
-                        <li>Lead Engineer of a new VR Experience created in WebGL, Unity and Unreal Engine 4</li>
-                        <li>Built an interactive point of sale iPad app for an in-store kiosk using Unity</li>
+                        <li>Built a Three.js/WebGL VR experience of our helmet to be used on a phone with a local webserver hosting the experience.</li>
+                        <li>Designed and implemented the VR experience in Unity to be deployed as a standalone app for iOS and Android, working with Google Cardboard and Gear VR.</li>
+                    </ul>
+                </section>
+                <section class="section-sub section-sub-job">
+                    <h3>Software Developer, Skully</h3>
+                    <h4>July 2015 - February 2016</h4>
+                    <h4>Highlights</h4>
+                    <ul>
+                        <li>Built website using handlebars.js for templating and html/css/javascript for frontend, using Bootstrap 3 for responsiveness.</li>
+                        <li>Implemented an NGINX server on a Docker image for easy testing and deployment to AWS Elastic Beanstalk.</li>
+                        <li>Designed a workflow using Gulp.js to build minified source files, compress images/videos, compile handlebars templates, build docker image, and deploy to AWS.</li>
+                        <li>Implemented eCommerce solutions, and was featured by Shopify for implementation of their “Add to Cart button" swapping.</li>
                     </ul>
                 </section>
                 <!--                 <section class="section-sub section-sub-job">
@@ -87,10 +93,11 @@
                     <p>Kineviz is a data visualization company that uses interactive demos and art to help display data in a more meaningful way.</p>
                     <h4>Highlights</h4>
                     <ul>
-                        <li>Designed and built a full-stack web application to visualize twitter and audio data in a 3D virtual world</li>
-                        <li>Integrated Oculus Rift, Wii Balance Board, and Microsoft Kinect</li>
-                        <li>Invited to present the project for Autodesk&#39;s 3D Webfest, along with top WebGL developers</li>
-                        <li>Project can be viewed here: (http:&#x2F;&#x2F;vrdatalandscape.com&#x2F;)</li>
+                        <li>Created a full-stack web application to visualize tweets and audio data in a 3D world using Node.js, Three.js, Physi.js, and WebGL.</li>
+                        <li>Integrated support for Oculus Rift, Wii Balance Board for movement, and Microsoft Kinect.</li>
+                        <li>Designed and built server architecture to allow for tweets to be pulled into the 3D scene in real time with specific hashtags.</li>
+                        <li>Presented the project for Autodesk&#39;s 3D Webfest 2015 (<a href="https://youtu.be/fiS3NBZRY44?t=1605">Video</a>)</li>
+                        <li>Project can be viewed here: (<a href="http://vrdatalandscape.com">vrdatalandscape.com</a>)</li>
                     </ul>
                 </section>
             </section>
@@ -100,6 +107,11 @@
                     <h3>Bachelor of Science - University of San Francisco</h3>
                     <h4>August 2013 - May 2015</h4>
                     <p>Computer Science</p>
+                </section>
+                <section class="section-sub section-sub-education">
+                    <h3>Bachelor of Science - Marist College</h3>
+                    <h4>August 2011 - May 2013</h4>
+                    <p>Computer Science with Game Programming concentration</p>
                 </section>
             </section>
             <section id="skills" class="section">
@@ -151,6 +163,7 @@
                         <li>C#</li>
                         <li>C++</li>
                         <li>Python</li>
+                        <li>Lua</li>
                     </ul>
                 </section>
                 <section class="section-sub section-sub-skill">

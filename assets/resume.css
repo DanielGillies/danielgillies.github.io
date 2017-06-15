@@ -28,6 +28,37 @@ a:focus {
     text-decoration: none;
 }
 
+.download {
+    position: fixed;
+    top: 5px;
+    right: 5px;
+    font-size: 1.6em;
+
+}
+
+.btn {
+    padding: 5px 8px;
+    border: 1px solid #1B85F5;
+    border-radius: 5px;
+    background-color: rgba(0,0,0,0);
+    -webkit-transition: all 0.175s ease 0.05s;
+    -moz-transition: all 0.175s ease 0.05s;
+    transition: all 0.175s ease 0.05s;
+}
+
+.btn a {
+    color: #1B85F5;
+}
+
+.btn:hover {
+    background-color: #1B85F5;
+
+}
+
+.btn:hover a {
+    color: #E6E6E7;
+}
+
 .header {
     text-align: center;
     font-size: 2em;
