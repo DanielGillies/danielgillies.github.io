@@ -1,7 +1,11 @@
-function HUDElement(name, DOM) {
+"use strict";
+function HUDElement(name, DOM, HUD) {
 	this.name = name;
 	this.DOM = DOM;
 	this.isVisible = true;
+	this.HUD = HUD;
+
+	this.HUD.addHudElement(this);
 }
 
 HUDElement.prototype.hide = function() {

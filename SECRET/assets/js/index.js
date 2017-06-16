@@ -7,6 +7,12 @@ if (BABYLON.Engine.isSupported() && !window.mobileAndTabletcheck()) {
     BABYLON.SceneLoader.Load("test/", "scene.babylon", engine, function(newScene) {
         // Wait for textures and shaders to be ready
         newScene.executeWhenReady(function() {
+
+            var HUD = new Hud(newScene);
+            var lookingAt = new HUDElement("lookingAt", $(".looking-at"), HUD);
+
+            console.log(HUD);
+
             $(".progress").hide();
             var hit;
             var interactable = false;
