@@ -412,4 +412,7 @@ body {
 .secret .button {
     border-color: green;
     color: green;
+    height: 60px;
+    font-size:18px;
+    padding: 10px 39px;
 }
