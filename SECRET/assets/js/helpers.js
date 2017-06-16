@@ -126,7 +126,7 @@ function setupPointerLock(scene) {
             //camera.attachControl(canvas);
             isLocked = true;
             if (INTERACT_MENU_OPEN) {
-				toggleInteractMenu(false);
+				toggleInteractMenu(false, scene);
             }
         }
     };
@@ -148,7 +148,7 @@ function sendEscapeEvent() {
 function interact(newScene, hit) {
     if (hit.pickedMesh) {
         console.log("Interact on " + hit.pickedMesh.name)
-        toggleInteractMenu(true);
+        toggleInteractMenu(true, newScene);
 
     } else {
         console.log("Interact on nothing!");
