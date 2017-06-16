@@ -416,3 +416,12 @@ body {
     font-size:18px;
     padding: 10px 39px;
 }
+
+.tiny {
+    position: absolute;
+    bottom: 5px;
+    font-size: 10px;
+    color: white;
+    width: 100%;
+    text-align: center;
+}
