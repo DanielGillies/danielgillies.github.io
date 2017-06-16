@@ -2,43 +2,53 @@
     var eggLetters = ["l", "a", "u", "n", "c", "h"]
     var currentIndex = 0;
     var completed = false;
+    var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+    var animation = "shake";
     $(document).keypress(function(event) {
-      var pressed = event.key.toLowerCase();
-      if (completed == true) {
-        return;
-      }
-      if(eggLetters[currentIndex] == pressed) {
-        currentIndex++;
-        console.log(pressed);
-        $("." + pressed).css("color", "green");
-        if (currentIndex == eggLetters.length) {
-          completed = true;
+        var pressed = event.key.toLowerCase();
+        if (completed == true) {
+            return;
         }
-      } else {
-        $(".egg-hint .letter").each(function(i, item) {
-          $(this).css("color", "red");
-          // item[i].css("color", "red");
-        });
-        currentIndex = 0;
-      }
-      if (completed) {
-        console.log("DID IT");
-        $(".secret").show();
-      }
+        if (eggLetters[currentIndex] == pressed) {
+            currentIndex++;
+            console.log(pressed);
+            $("." + pressed).css("color", "green");
+            if (currentIndex == eggLetters.length) {
+                completed = true;
+            }
+        } else {
+            $(".egg-hint .letter").each(function(i, item) {
+                $(this).css("color", "red");
+                // item[i].css("color", "red");
+            });
+            currentIndex = 0;
+            $(".launch-text").addClass(animation)
+              .one(animationEnd, function() {
+                $(this).removeClass(animation);
+              });
+        }
+        if (completed) {
+            console.log("DID IT");
+            $(".secret").show();
+        }
     });
     var Cloud, Entity, Scene, Ship, Star,
         bind = function(fn, me) {
             return function() {
-                return fn.apply(me, arguments); }; },
+                return fn.apply(me, arguments);
+            };
+        },
         extend = function(child, parent) {
             for (var key in parent) {
-                if (hasProp.call(parent, key)) child[key] = parent[key]; }
+                if (hasProp.call(parent, key)) child[key] = parent[key];
+            }
 
             function ctor() { this.constructor = child; }
             ctor.prototype = parent.prototype;
             child.prototype = new ctor();
             child.__super__ = parent.prototype;
-            return child; },
+            return child;
+        },
         hasProp = {}.hasOwnProperty;
 
     Scene = (function() {
