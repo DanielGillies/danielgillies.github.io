@@ -1,6 +1,8 @@
 //GLOBALS
 var INTERACT_MENU_OPEN = false;
 
+var RESUME_JSON = $.getJSON("assets/data/resume.json", function(){})
+
 function vecToLocal(vector, mesh) {
     var m = mesh.getWorldMatrix();
     var v = BABYLON.Vector3.TransformCoordinates(vector, m);
@@ -9,17 +11,16 @@ function vecToLocal(vector, mesh) {
 
 function cleanString(string) {
     string = string.replace("_", " ").replace(/[^a-zA-Z ]/g, "");
-    // string = string.replace(/[^a-zA-Z ]/g, "")
     return string;
 }
 
 function getCrossHairLocation() {
-    return { x: parseInt($(".xhair").position().left), y: parseInt($(".xhair").position().top) }
+    return { x: parseInt($(SETTINGS.SELECTORS.xhair).position().left), y: parseInt($(SETTINGS.SELECTORS.xhair).position().top) }
 }
 
 function setInteractPromptLocation(pos) {
-    $(".interact-prompt").css("left", (pos.x + 30) + "px");
-    $(".interact-prompt").css("top", (pos.y - 9) + "px");
+    $(SETTINGS.SELECTORS.interactPrompt).css("left", (pos.x + 30) + "px");
+    $(SETTINGS.SELECTORS.interactPrompt).css("top", (pos.y - 9) + "px");
 }
 
 function buildSkyBox(scene) {
@@ -44,14 +45,14 @@ function setupCamera(camera) {
     // Attach camera to canvas inputs
     camera.attachControl(canvas);
 
-    camera.speed = 2.2;
+    camera.speed = SETTINGS.CAMERA.moveSpeed;
     camera.keysUp.push(87); // "w"
     camera.keysDown.push(83); // "s"
     camera.keysLeft.push(65); // "a"
     camera.keysRight.push(68); // "d"
 
     camera.inertia = 0;
-    camera.angularSensibility = 700;
+    camera.angularSensibility = SETTINGS.CAMERA.sensitivity;
 
     //Then apply collisions and gravity to the active camera
     camera.checkCollisions = true;
@@ -67,14 +68,14 @@ function fixGlass(scene) {
             scene.meshes[i].hasVertexAlpha = true;
             scene.meshes[i].visibility = .4;
         }
-        // if (scene.meshes[i].name.includes("Work")) {
-        // 	console.log(scene.meshes[i]);
-        // }
+        if (scene.meshes[i].name.includes("Work")) {
+        	console.log(scene.meshes[i]);
+        }
     }
 }
 
 function renderStats(engine) {
-    $(".stats").html("FPS: " + Math.round(engine.getFps()) + "<br>" +
+    $(SETTINGS.SELECTORS.stats).html("FPS: " + Math.round(engine.getFps()) + "<br>" +
         "Draws: " + engine._drawCalls.current);
 }
 
@@ -89,7 +90,7 @@ function rayCast(scene) {
     var direction = forward.subtract(start);
     direction = BABYLON.Vector3.Normalize(direction)
 
-    var ray = new BABYLON.Ray(start, direction, 5);
+    var ray = new BABYLON.Ray(start, direction, SETTINGS.CAMERA.reach);
     var hit = scene.pickWithRay(ray);
 
     return hit;
@@ -123,15 +124,12 @@ function setupPointerLock(scene, game) {
 
         // If the user is already locked
         if (!controlEnabled) {
-            //camera.detachControl(canvas);
             isLocked = false;
         } else {
-            //camera.attachControl(canvas);
             isLocked = true;
             if (game.popupManager.isActive()) {
                 game.popupManager.hide();
                 game.HUD.show();
-				// toggleInteractMenu(false, scene);
             }
         }
     };
@@ -143,14 +141,7 @@ function setupPointerLock(scene, game) {
     document.addEventListener("webkitpointerlockchange", pointerlockchange, false);
 }
 
-function sendEscapeEvent() {
-    var press = $.Event("pointerlockchange mspointerlockchange mozpointerlockchange webkitpointerlockchange");
-    press.ctrlKey = false;
-    press.which = 27;
-    $(document).trigger(press);
-}
-
-function interact(scene, hit, game) {
+function interact(game, hit) {
     if (hit.pickedMesh) {
         console.log("Interact on " + hit.pickedMesh.name)
         game.popupManager.show();
@@ -158,5 +149,14 @@ function interact(scene, hit, game) {
         document.exitPointerLock();
     } else {
         console.log("Interact on nothing!");
+    }
+}
+
+function buildWorkExperiences(workManager) {
+    var workArray = RESUME_JSON.responseJSON.work;
+    for (var i = 0; i < workArray.length; i++) {
+        var currentWork = RESUME_JSON.responseJSON.work[i];
+        var temp = new WorkExperience(currentWork.position, currentWork.company, currentWork.startDate, currentWork.endDate, currentWork.description, currentWork.highlights);
+        workManager.addItem(temp);
     }
 }

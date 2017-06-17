@@ -37,13 +37,13 @@ PopupManager.prototype.setCurrentManager = function(name) {
 
 PopupManager.prototype.connectClickEvents = function() {
     var PM = this;
-    PM.DOM.find(".go_right").click(function() {
+    PM.DOM.find(SETTINGS.SELECTORS.rightArrow).click(function() {
         // console.log(this);
         PM.currentManager.next();
         PM.checkForArrowStatus();
     });
 
-    PM.DOM.find(".go_left").click(function() {
+    PM.DOM.find(SETTINGS.SELECTORS.leftArrow).click(function() {
         PM.currentManager.prev();
         PM.checkForArrowStatus();
     });
@@ -51,18 +51,17 @@ PopupManager.prototype.connectClickEvents = function() {
 
 PopupManager.prototype.checkForArrowStatus = function() {
     if (this.hasNext()) {
-    	this.DOM.find(".go_right").show();
+    	this.DOM.find(SETTINGS.SELECTORS.rightArrow).show();
     } else {
-    	this.DOM.find(".go_right").hide();
+    	this.DOM.find(SETTINGS.SELECTORS.rightArrow).hide();
     }
 
     if (this.hasPrev()) {
-    	this.DOM.find(".go_left").show();
+    	this.DOM.find(SETTINGS.SELECTORS.leftArrow).show();
     } else {
-    	this.DOM.find(".go_left").hide();
+    	this.DOM.find(SETTINGS.SELECTORS.leftArrow).hide();
     }
 };
-
 
 PopupManager.prototype.hasNext = function() {
     return this.currentManager.index < this.currentManager.numItems - 1;

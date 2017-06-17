@@ -1,10 +1,10 @@
-function WorkExperience(title, company, startDate, endDate){
-	this.title = title;
-	this.company = company;
-	this.description = "Default Description."
-	this.startDate = startDate;
-	this.endDate = endDate;
-	this.highlights = [];
+function WorkExperience(title, company, startDate, endDate, description, highlights){
+	this.title = title || "Title";
+	this.company = company || "Company";
+	this.description = description || "Default Description."
+	this.startDate = startDate || "Start Date";
+	this.endDate = endDate || "End Date";
+	this.highlights = highlights || [];
 	this.HTML = "<h1>NOT DONE YET</h1>"
 }
 
@@ -29,5 +29,5 @@ WorkExperience.prototype.generateHTML = function() {
 };
 
 WorkExperience.prototype.buildDom = function() {
-	$(".popup .content").html(this.HTML);
+	$(SETTINGS.SELECTORS.popup + " " + SETTINGS.SELECTORS.content).html(this.HTML);
 };
