@@ -10,10 +10,18 @@ function HUDElement(name, DOM, HUD) {
 
 HUDElement.prototype.hide = function() {
 	this.isVisible = false
-	this.DOM.hide();
+	this.DOM.fadeOut("fast");
 };
 
 HUDElement.prototype.show = function() {
 	this.isVisible = true
-	this.DOM.show();
+	this.DOM.fadeIn("fast");
 };
+
+HUDElement.prototype.getHTML = function () {
+    return this.DOM.html();
+}
+
+HUDElement.prototype.setHTML = function (html) {
+    this.DOM.html(html);
+}

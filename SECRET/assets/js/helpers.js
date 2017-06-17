@@ -67,6 +67,9 @@ function fixGlass(scene) {
             scene.meshes[i].hasVertexAlpha = true;
             scene.meshes[i].visibility = .4;
         }
+        // if (scene.meshes[i].name.includes("Work")) {
+        // 	console.log(scene.meshes[i]);
+        // }
     }
 }
 
@@ -92,7 +95,7 @@ function rayCast(scene) {
     return hit;
 }
 
-function setupPointerLock(scene) {
+function setupPointerLock(scene, game) {
     //We start without being locked.
     var isLocked = false;
 
@@ -125,8 +128,10 @@ function setupPointerLock(scene) {
         } else {
             //camera.attachControl(canvas);
             isLocked = true;
-            if (INTERACT_MENU_OPEN) {
-				toggleInteractMenu(false, scene);
+            if (game.popupManager.isActive()) {
+                game.popupManager.hide();
+                game.HUD.show();
+				// toggleInteractMenu(false, scene);
             }
         }
     };
@@ -145,39 +150,13 @@ function sendEscapeEvent() {
     $(document).trigger(press);
 }
 
-function interact(newScene, hit) {
+function interact(scene, hit, game) {
     if (hit.pickedMesh) {
         console.log("Interact on " + hit.pickedMesh.name)
-        toggleInteractMenu(true, newScene);
-
+        game.popupManager.show();
+        game.HUD.hide();
+        document.exitPointerLock();
     } else {
         console.log("Interact on nothing!");
-    }
-}
-
-function toggleHUD(turnOn) {
-    if (turnOn) {
-        $(".looking-at").fadeIn("fast");
-        $(".interact-prompt").fadeIn("fast");
-        $(".xhair").fadeIn("fast");
-    } else {
-        $(".looking-at").fadeOut("fast");
-        $(".interact-prompt").fadeOut("fast");
-        $(".xhair").fadeOut("fast");
-    }
-}
-
-function toggleInteractMenu(turnOn, scene) {
-    if (turnOn) {
-        $(".popup").fadeIn("fast");
-        document.exitPointerLock();
-        INTERACT_MENU_OPEN = true;
-        scene.activeCamera.detachControl(canvas);
-        toggleHUD(false);
-    } else {
-        $(".popup").fadeOut("fast");
-        INTERACT_MENU_OPEN = false;
-        scene.activeCamera.attachControl(canvas);
-        toggleHUD(true);
     }
 }

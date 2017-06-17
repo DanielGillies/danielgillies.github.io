@@ -1,6 +1,6 @@
 "use strict";
-function Hud(scene) {
-	this.scene = scene;
+function Hud() {
+	this.scene;
 	this.HudElements = [];
 	this.isVisible = true;
 }
@@ -39,7 +39,7 @@ Hud.prototype.addHudElement = function(HudElement) {
 
 Hud.prototype.getHudElementByName = function(name) {
 	for (var i = 0; i < this.HudElements.length; i++) {
-		if (this.HudElements[i].namme == name) {
+		if (this.HudElements[i].name == name) {
 			return this.HudElements[i];
 		}
 	}
