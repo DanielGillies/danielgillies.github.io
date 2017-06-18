@@ -62,15 +62,52 @@ function setupCamera(camera) {
     camera.ellipsoid = new BABYLON.Vector3(1, 1, 1);
 }
 
-function fixGlass(scene) {
+function fixGlass(scene, shadowGens, box2) {
+
     for (var i = 0; i < scene.meshes.length; i++) {
-        if (scene.meshes[i].name.includes("Glass")) {
-            scene.meshes[i].hasVertexAlpha = true;
-            scene.meshes[i].visibility = .4;
+        currMesh = scene.meshes[i];
+        // if (currMesh.material && !currMesh.name.includes("Wall") && !currMesh.name.includes("Ceiling") && !currMesh.name.includes("Floor")) {
+        if (currMesh.material) {
+            // currMesh.material.specularColor = new BABYLON.Color3(1, 1, 1);
+            // currMesh.material.specularPower = 64;
+            currMesh.material.maxSimultaneousLights = 6;
+
+            shadowGens.forEach(function(item) {
+                item.getShadowMap().renderList.push(currMesh);
+            })
         }
-        if (scene.meshes[i].name.includes("Work")) {
-        	console.log(scene.meshes[i]);
+        // if (currMesh.name == "Cube") {
+        //     var c = currMesh;
+        //     // c.applyFog = true;
+        //     // c.receiveShadows = false;
+        //     currMesh.material = box2.material;
+        //     // currMesh.material.useEmissiveAsIllumination = false;
+        //     // currMesh.material.useMicroSurfaceFromReflectivityMapAlpha = false;
+        //     // currMesh.material.usePhysicalLightFalloff = false;
+        //     // currMesh.material.useSpecularOverAlpha = false;
+        //     // currMesh.material.diffuseTexture = new BABYLON.Texture("test/Rough_Brick_Wall_Albedo.png", scene);
+        //     // currMesh.material.diffuseColor = new BABYLON.Color3(1,1,1);
+        //     // currMesh.material.indexOfRefraction = 0.98;
+        //     // currMesh.material.overloadedShadowIntensity = .7;
+        //     // currMesh.material.overloadedShadeIntensity = .5;
+        //     // delete currMesh.material.microSurface;
+        //     // delete currMesh.material.directIntensity;
+        //     // m.ambientTexture = new BABYLON.Texture("test/Rough_Brick_Wall_AO.png", scene);
+        //     // delete m.ambientTextureStrength;
+        //     // // delete m.albedoColor;
+        //     console.log(currMesh)
+        //     console.log(box2);
+        // }
+        if (currMesh.name.includes("Glass")) {
+            currMesh.hasVertexAlpha = true;
+            currMesh.visibility = .4;
         }
+        // if (currMesh.name.includes("Floor")) {
+        //     scene
+        // }
+        // if (currMesh.name == ("Work_Experience")) {
+        // 	console.log(scene.meshes[i]);
+        // }
     }
 }
 
