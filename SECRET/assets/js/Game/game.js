@@ -4,4 +4,6 @@ function Game(scene, HUD, popupManager) {
 	this.popupManager = popupManager;
 	this.HUD.scene = this.scene;
 	this.popupManager.scene = this.scene;
+	this.tvOn = false;
+	this.tvTexture;
 }

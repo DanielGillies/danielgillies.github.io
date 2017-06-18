@@ -10,6 +10,8 @@ Manager.prototype.addItem = function(item) {
 }
 
 Manager.prototype.next = function() {
+	console.log("NEXT CALLED ");
+	console.log(this.list);
 	if (this.index < this.numItems - 1) {
 		this.index++;
 		this.buildCurrent();

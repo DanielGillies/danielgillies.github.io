@@ -4,6 +4,12 @@ function PopupManager(DOM, managers) {
     this.managers = managers || {};
     this.currentManager;
     this.bActive = false;
+    this.connectClickEvents();
+    this.canBeActivated = false;
+}
+
+PopupManager.prototype.isCurrentManager = function(name) {
+    return this.managers[name] == this.currentManager;
 }
 
 PopupManager.prototype.show = function() {
@@ -30,13 +36,13 @@ PopupManager.prototype.setCurrentManager = function(name) {
     if (this.managers[name]) {
         this.currentManager = this.managers[name];
         this.currentManager.buildCurrent();
-        this.connectClickEvents();
         this.checkForArrowStatus();
     }
 }
 
 PopupManager.prototype.connectClickEvents = function() {
     var PM = this;
+    // console.log(PM.DOM.find(SETTINGS.SELECTORS.rightArrow))
     PM.DOM.find(SETTINGS.SELECTORS.rightArrow).click(function() {
         // console.log(this);
         PM.currentManager.next();

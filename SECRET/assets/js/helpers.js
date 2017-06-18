@@ -1,6 +1,8 @@
 //GLOBALS
 var INTERACT_MENU_OPEN = false;
 
+var WORK_OBJECTS = ["Computer Desk", "Monitor1", "Chair", "Monitor2", "PC", "MousePad"];
+
 var RESUME_JSON = $.getJSON("assets/data/resume.json", function(){})
 
 function vecToLocal(vector, mesh) {
@@ -62,42 +64,42 @@ function setupCamera(camera) {
     camera.ellipsoid = new BABYLON.Vector3(1, 1, 1);
 }
 
-function fixGlass(scene, shadowGens, box2) {
+function fixGlass(scene, shadowGens) {
 
     for (var i = 0; i < scene.meshes.length; i++) {
         currMesh = scene.meshes[i];
         // if (currMesh.material && !currMesh.name.includes("Wall") && !currMesh.name.includes("Ceiling") && !currMesh.name.includes("Floor")) {
         if (currMesh.material) {
-            // currMesh.material.specularColor = new BABYLON.Color3(1, 1, 1);
-            // currMesh.material.specularPower = 64;
             currMesh.material.maxSimultaneousLights = 6;
 
             shadowGens.forEach(function(item) {
-                item.getShadowMap().renderList.push(currMesh);
+                item.getShadowMap().renderList.push(currMesh); 
             })
         }
-        // if (currMesh.name == "Cube") {
-        //     var c = currMesh;
-        //     // c.applyFog = true;
-        //     // c.receiveShadows = false;
-        //     currMesh.material = box2.material;
-        //     // currMesh.material.useEmissiveAsIllumination = false;
-        //     // currMesh.material.useMicroSurfaceFromReflectivityMapAlpha = false;
-        //     // currMesh.material.usePhysicalLightFalloff = false;
-        //     // currMesh.material.useSpecularOverAlpha = false;
-        //     // currMesh.material.diffuseTexture = new BABYLON.Texture("test/Rough_Brick_Wall_Albedo.png", scene);
-        //     // currMesh.material.diffuseColor = new BABYLON.Color3(1,1,1);
-        //     // currMesh.material.indexOfRefraction = 0.98;
-        //     // currMesh.material.overloadedShadowIntensity = .7;
-        //     // currMesh.material.overloadedShadeIntensity = .5;
-        //     // delete currMesh.material.microSurface;
-        //     // delete currMesh.material.directIntensity;
-        //     // m.ambientTexture = new BABYLON.Texture("test/Rough_Brick_Wall_AO.png", scene);
-        //     // delete m.ambientTextureStrength;
-        //     // // delete m.albedoColor;
-        //     console.log(currMesh)
-        //     console.log(box2);
-        // }
+        if (currMesh.name == "TV-Panel") {
+            console.log(currMesh);
+            currMat = currMesh.material.subMaterials[4];
+            currMat.diffuseTexture = new BABYLON.VideoTexture("video", ["assets/video/Team Carbon Frag Video.mp4"], scene, true);
+            currMat.diffuseTexture.video.loop = false;
+            currMat.diffuseTexture.video.muted = true;
+            console.log(currMat.diffuseTexture.video.currentTime);
+            console.log(currMat.diffuseTexture.video.muted);
+            //name = "mesh42"
+            // currMat.diffuseTexture.uOffset = -0.04;
+            // currMat.diffuseTexture.uScale = 0.0343;
+            // currMat.diffuseTexture.vOffset = 0.884;
+            // currMat.diffuseTexture.vScale = 0.06;
+            currMat.diffuseTexture.uOffset = -0.04;
+            currMat.diffuseTexture.uScale = 0.0343;
+            currMat.diffuseTexture.vOffset = -0.116;
+            currMat.diffuseTexture.vScale = 0.06;
+            // u.scale: 0.0343
+            // v.scale: 0.06
+            // u.offset: -0.04
+            // v.offset: 0.884
+            // currMesh.materials[5].diffuseTexture?
+            // currMesh.material.diffuseTexture = new BABYLON.VideoTexture("video", ["assets/video/Team Carbon Frag Video.mp4"], scene, true);
+        }
         if (currMesh.name.includes("Glass")) {
             currMesh.hasVertexAlpha = true;
             currMesh.visibility = .4;
@@ -179,11 +181,30 @@ function setupPointerLock(scene, game) {
 }
 
 function interact(game, hit) {
-    if (hit.pickedMesh) {
+    if (hit.pickedMesh && game.popupManager.canBeActivated) {
         console.log("Interact on " + hit.pickedMesh.name)
         game.popupManager.show();
         game.HUD.hide();
         document.exitPointerLock();
+    } else if (game.HUD.getHudElementByName("lookingAt").getHTML().includes("TV")) {
+        var currMat = hit.pickedMesh.material.subMaterials[4]
+        if (game.tvOn) {
+            currMat.diffuseTexture.video.pause();
+            currMat.diffuseTexture = game.tvTexture;
+            game.tvOn = false;
+            // Turn off TV
+        } else {
+            // Turn on TV
+            game.tvOn = true;
+            game.tvTexture = hit.pickedMesh.material.subMaterials[4].diffuseTexture;
+            currMat.diffuseTexture = new BABYLON.VideoTexture("video", ["assets/video/Team Carbon Frag Video.mp4"], game.scene, true);
+            currMat.diffuseTexture.video.loop = false;
+            currMat.diffuseTexture.uOffset = -0.04;
+            currMat.diffuseTexture.uScale = 0.0343;
+            currMat.diffuseTexture.vOffset = -0.116;
+            currMat.diffuseTexture.vScale = 0.06;
+            console.log(hit.pickedMesh);
+        }
     } else {
         console.log("Interact on nothing!");
     }
@@ -195,5 +216,14 @@ function buildWorkExperiences(workManager) {
         var currentWork = RESUME_JSON.responseJSON.work[i];
         var temp = new WorkExperience(currentWork.position, currentWork.company, currentWork.startDate, currentWork.endDate, currentWork.description, currentWork.highlights);
         workManager.addItem(temp);
+    }
+}
+
+function buildAwards(awardManager) {
+    var awardArray = RESUME_JSON.responseJSON.awards;
+    for (var i = 0; i < awardArray.length; i++) {
+        var currentAward = RESUME_JSON.responseJSON.awards[i];
+        var temp = new Award(currentAward.award, currentAward.organization, currentAward.date, currentAward.description, currentAward.video);
+        awardManager.addItem(temp);
     }
 }
