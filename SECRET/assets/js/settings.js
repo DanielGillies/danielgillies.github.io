@@ -17,7 +17,7 @@ var SETTINGS = {
 	"CAMERA": {
 		"moveSpeed": 2.2,
 		"sensitivity": 700,
-		"reach": 2
+		"reach": 5
 	},
 	"KEYBINDS": {
 		"interact": KEYS.e

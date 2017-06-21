@@ -44,7 +44,7 @@ if (BABYLON.Engine.isSupported() && !window.mobileAndTabletcheck()) {
             var aMan = new Manager();
             buildAwards(aMan);
 
-            var PM = new PopupManager($(SETTINGS.SELECTORS.popup), { "EM": eMan , "AM": aMan});
+            var PM = new PopupManager($(SETTINGS.SELECTORS.popup), { "EM": eMan, "AM": aMan });
 
             console.log(PM);
 
@@ -61,10 +61,13 @@ if (BABYLON.Engine.isSupported() && !window.mobileAndTabletcheck()) {
 
             newScene.registerBeforeRender(function() {
                 renderStats(engine);
+                var distanceToTV = distanceVector(camera.position, TV.position);
+                console.log(distanceToTV);
                 hit = rayCast(newScene);
                 if (hit.pickedMesh) {
                     console.log(hit.pickedMesh.name);
                     if (hit.pickedMesh.parent) {
+                        // Check if we are aiming at the desk
                         if (WORK_OBJECTS.includes(hit.pickedMesh.parent.name)) {
                             PM.canBeActivated = true;
                             lookingAt.setHTML("Work Experience");
@@ -72,10 +75,10 @@ if (BABYLON.Engine.isSupported() && !window.mobileAndTabletcheck()) {
                                 PM.setCurrentManager("EM");
                             }
                             if (!PM.isActive()) {
-                                interactPrompt.setHTML("E to interact");
                                 lookingAt.show();
                                 interactPrompt.show();
                             }
+                            // Check if we are aiming at the trophy
                         } else if (hit.pickedMesh.parent.name == "Awards") {
                             PM.canBeActivated = true;
                             lookingAt.setHTML("Awards");
@@ -83,23 +86,27 @@ if (BABYLON.Engine.isSupported() && !window.mobileAndTabletcheck()) {
                                 PM.setCurrentManager("AM");
                             }
                             if (!PM.isActive()) {
-                                interactPrompt.setHTML("E to interact");
                                 lookingAt.show();
                                 interactPrompt.show();
                             }
-                        } else if (hit.pickedMesh.parent.name == "TV") {
-                            lookingAt.setHTML("Watch TV");
-                            lookingAt.show();
-                            interactPrompt.show();
+                            // Check if we are aiming at the tv and in range since hitbox is fucked up
                         } else {
+                            lookingAt.setHTML("");
+                            lookingAt.hide();
+                            interactPrompt.hide();
                             PM.canBeActivated = false;
                         }
+                    } else if (hit.pickedMesh.name == "TV" && distanceToTV < 6.5) {
+                        console.log("HELLO")
+                        lookingAt.setHTML("Watch TV");
+                        lookingAt.show();
+                        interactPrompt.show();
+                    } else {
+                        lookingAt.setHTML("");
+                        lookingAt.hide();
+                        interactPrompt.hide();
+                        PM.canBeActivated = false;
                     }
-                    // console.log(hit.pickedMesh.parent.name);
-                    // if (lookingAt.getHTML() != cleanString(hit.pickedMesh.name)) {
-                    //     lookingAt.setHTML(cleanString(hit.pickedMesh.name));
-                        
-                    // }
                 } else {
                     lookingAt.hide();
                     interactPrompt.hide();

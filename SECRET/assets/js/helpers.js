@@ -1,9 +1,12 @@
 //GLOBALS
 var INTERACT_MENU_OPEN = false;
 
-var WORK_OBJECTS = ["Computer Desk", "Monitor1", "Chair", "Monitor2", "PC", "MousePad"];
+var WORK_OBJECTS = ["Computer Desk", "Left-Monitor", "Computer Area", "Right-Monitor", "PC", "MousePad"];
 
 var RESUME_JSON = $.getJSON("assets/data/resume.json", function(){})
+
+var TV;
+var PANEL;
 
 function vecToLocal(vector, mesh) {
     var m = mesh.getWorldMatrix();
@@ -77,22 +80,37 @@ function fixGlass(scene, shadowGens) {
             })
         }
         if (currMesh.name == "TV-Panel") {
+            console.log("PANEL");
             console.log(currMesh);
-            currMat = currMesh.material.subMaterials[4];
-            currMat.diffuseTexture = new BABYLON.VideoTexture("video", ["assets/video/Team Carbon Frag Video.mp4"], scene, true);
-            currMat.diffuseTexture.video.loop = false;
-            currMat.diffuseTexture.video.muted = true;
-            console.log(currMat.diffuseTexture.video.currentTime);
-            console.log(currMat.diffuseTexture.video.muted);
-            //name = "mesh42"
+            PANEL = currMesh;
+            if (TV) {
+                // PANEL.position = TV.position;
+            }
+        }
+        if (currMesh.name == "TV") {
+            TV = currMesh;
+            if (PANEL) {
+                // PANEL.position = TV.position;
+            }
+            // currMat = currMesh.material.subMaterials[4];
+            // currMat.diffuseTexture = new BABYLON.VideoTexture("video", ["assets/video/screen.mp4"], scene, true);
+            console.log("TV");
+            console.log(TV);
+            // console.log(currMesh);
+            // 
+            // currMat.diffuseTexture.video.loop = false;
+            // currMat.diffuseTexture.video.muted = true;
+            // console.log(currMat.diffuseTexture.video.currentTime);
+            // console.log(currMat.diffuseTexture.video.muted);
+            // //name = "mesh42"
+            // // currMat.diffuseTexture.uOffset = -0.04;
+            // // currMat.diffuseTexture.uScale = 0.0343;
+            // // currMat.diffuseTexture.vOffset = 0.884;
+            // // currMat.diffuseTexture.vScale = 0.06;
             // currMat.diffuseTexture.uOffset = -0.04;
             // currMat.diffuseTexture.uScale = 0.0343;
-            // currMat.diffuseTexture.vOffset = 0.884;
+            // currMat.diffuseTexture.vOffset = -0.116;
             // currMat.diffuseTexture.vScale = 0.06;
-            currMat.diffuseTexture.uOffset = -0.04;
-            currMat.diffuseTexture.uScale = 0.0343;
-            currMat.diffuseTexture.vOffset = -0.116;
-            currMat.diffuseTexture.vScale = 0.06;
             // u.scale: 0.0343
             // v.scale: 0.06
             // u.offset: -0.04
@@ -129,7 +147,7 @@ function rayCast(scene) {
     var direction = forward.subtract(start);
     direction = BABYLON.Vector3.Normalize(direction)
 
-    var ray = new BABYLON.Ray(start, direction, SETTINGS.CAMERA.reach);
+    var ray = new BABYLON.Ray(start, direction, 4);
     var hit = scene.pickWithRay(ray);
 
     return hit;
@@ -197,7 +215,8 @@ function interact(game, hit) {
             // Turn on TV
             game.tvOn = true;
             game.tvTexture = hit.pickedMesh.material.subMaterials[4].diffuseTexture;
-            currMat.diffuseTexture = new BABYLON.VideoTexture("video", ["assets/video/Team Carbon Frag Video.mp4"], game.scene, true);
+            currMat.diffuseTexture = new BABYLON.VideoTexture("video", [], game.scene, true);
+            currMat.diffuseTexture.video.currentSrc = "assets/video/Team Carbon Frag Video.mp4";
             currMat.diffuseTexture.video.loop = false;
             currMat.diffuseTexture.uOffset = -0.04;
             currMat.diffuseTexture.uScale = 0.0343;
@@ -226,4 +245,13 @@ function buildAwards(awardManager) {
         var temp = new Award(currentAward.award, currentAward.organization, currentAward.date, currentAward.description, currentAward.video);
         awardManager.addItem(temp);
     }
+}
+
+function distanceVector( v1, v2 )
+{
+    var dx = v1.x - v2.x;
+    var dy = v1.y - v2.y;
+    var dz = v1.z - v2.z;
+
+    return Math.sqrt( dx * dx + dy * dy + dz * dz );
 }
