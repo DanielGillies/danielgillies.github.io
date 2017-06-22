@@ -14,6 +14,29 @@ if (BABYLON.Engine.isSupported() && !window.mobileAndTabletcheck()) {
 
             console.log(newScene);
 
+            var loader = new BABYLON.AssetsManager(newScene);
+            var headTask = loader.addMeshTask("head", "", "assets/models/head/", "model_mesh.obj");
+            BABYLON.OBJFileLoader.OPTIMIZE_WITH_UV = true;
+            loader.load();
+            var head;
+            headTask.onSuccess = function(task) {
+                head = task.loadedMeshes[0];
+                task.loadedMeshes[0].position = new BABYLON.Vector3(30, 50, 0);
+                // task.loadedMeshes[0].position = new BABYLON.Vector3(0, 6, 0);
+
+                task.loadedMeshes[0].scaling = new BABYLON.Vector3(70, 70, 70);
+                // task.loadedMeshes[0].billboardMode = BABYLON.Mesh.BILLBOARDMODE_ALL;
+                // console.log("WEFWEFWEFWEF)")
+                // console.log(task.loadedMeshes[0]);
+            }
+
+            // var loader = new BABYLON.AssetsManager(newScene);
+            // var head = loader.addMeshTask("head", "", "assets/models/head/", "model_mesh.obj");
+
+            // BABYLON.SceneLoader.Load("assets/models/head/", "model_mesh.obj", engine, function(newScene) {
+            //     // ...
+            // });
+
             var light = new BABYLON.DirectionalLight("Dir0", new BABYLON.Vector3(1, -1, -.7), newScene);
             light.position = new BABYLON.Vector3(10, 10, 7);
 
@@ -52,20 +75,48 @@ if (BABYLON.Engine.isSupported() && !window.mobileAndTabletcheck()) {
 
             setInteractPromptLocation(getCrossHairLocation());
 
-            fixGlass(newScene, shadowGens);
+            fixGlass(game, shadowGens);
             buildSkyBox(newScene);
             setupCamera(camera);
+
+            var channel = new TVChannel(game, "assets/video/musicmuseum.mp4");
+            var channel2 = new TVChannel(game, "assets/video/Team Carbon Frag Video.mp4");
+
+            game.TV.addChannel(channel);
+            game.TV.addChannel(channel2);
+
 
             //Set gravity for the scene (G force like, on Y-axis)
             newScene.gravity = new BABYLON.Vector3(0, -0.9, 0);
 
             newScene.registerBeforeRender(function() {
+                if (head) {
+
+                    head.lookAt(newScene.activeCamera.position, 0,  Math.PI ,  Math.PI);
+                    // head.rotationQuaternion.x *= -1;
+                    // head.rotationQuaternion.y *= -1;
+                    // head.rotationQuaternion.z *= -1;
+                    // var heading = newScene.activeCamera.position.subtract(head.position);
+                    // console.log(heading);
+                    // // var camera = scene.activeCamera
+
+                    // // var start = head.position;
+
+                    // // var forward = new BABYLON.Vector3(0, 0, 1);
+                    // // forward = vecToLocal(forward, head);
+
+                    // // var direction = forward.subtract(start);
+                    // // direction = BABYLON.Vector3.Normalize(direction)
+
+                    // head.rotation = heading;
+                }
+
                 renderStats(engine);
-                var distanceToTV = distanceVector(camera.position, TV.position);
-                console.log(distanceToTV);
+                var distanceToTV = distanceVector(camera.position, game.TV.mesh.position);
+                // console.log(distanceToTV);
                 hit = rayCast(newScene);
                 if (hit.pickedMesh) {
-                    console.log(hit.pickedMesh.name);
+                    // console.log(hit.pickedMesh.name);
                     if (hit.pickedMesh.parent) {
                         // Check if we are aiming at the desk
                         if (WORK_OBJECTS.includes(hit.pickedMesh.parent.name)) {
@@ -89,16 +140,21 @@ if (BABYLON.Engine.isSupported() && !window.mobileAndTabletcheck()) {
                                 lookingAt.show();
                                 interactPrompt.show();
                             }
-                            // Check if we are aiming at the tv and in range since hitbox is fucked up
+
                         } else {
                             lookingAt.setHTML("");
                             lookingAt.hide();
                             interactPrompt.hide();
                             PM.canBeActivated = false;
                         }
+                        // Check if we are aiming at the tv and in range since hitbox is fucked up
                     } else if (hit.pickedMesh.name == "TV" && distanceToTV < 6.5) {
-                        console.log("HELLO")
-                        lookingAt.setHTML("Watch TV");
+                        if (game.TV.channelNum == 0)
+                            lookingAt.setHTML("Watch TV");
+                        else if (game.TV.channelNum == game.TV.channelsList.length - 1)
+                            lookingAt.setHTML("Turn off TV");
+                        else
+                            lookingAt.setHTML("Next Channel");
                         lookingAt.show();
                         interactPrompt.show();
                     } else {

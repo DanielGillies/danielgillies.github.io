@@ -67,10 +67,10 @@ function setupCamera(camera) {
     camera.ellipsoid = new BABYLON.Vector3(1, 1, 1);
 }
 
-function fixGlass(scene, shadowGens) {
+function fixGlass(game, shadowGens) {
 
-    for (var i = 0; i < scene.meshes.length; i++) {
-        currMesh = scene.meshes[i];
+    for (var i = 0; i < game.scene.meshes.length; i++) {
+        currMesh = game.scene.meshes[i];
         // if (currMesh.material && !currMesh.name.includes("Wall") && !currMesh.name.includes("Ceiling") && !currMesh.name.includes("Floor")) {
         if (currMesh.material) {
             currMesh.material.maxSimultaneousLights = 6;
@@ -79,23 +79,13 @@ function fixGlass(scene, shadowGens) {
                 item.getShadowMap().renderList.push(currMesh); 
             })
         }
-        if (currMesh.name == "TV-Panel") {
-            console.log("PANEL");
-            console.log(currMesh);
-            PANEL = currMesh;
-            if (TV) {
-                // PANEL.position = TV.position;
-            }
-        }
         if (currMesh.name == "TV") {
-            TV = currMesh;
-            if (PANEL) {
-                // PANEL.position = TV.position;
-            }
+            // TV = currMesh;
             // currMat = currMesh.material.subMaterials[4];
             // currMat.diffuseTexture = new BABYLON.VideoTexture("video", ["assets/video/screen.mp4"], scene, true);
+            game.TV = new Tv(game, currMesh);
             console.log("TV");
-            console.log(TV);
+            console.log(game.TV);
             // console.log(currMesh);
             // 
             // currMat.diffuseTexture.video.loop = false;
@@ -147,7 +137,7 @@ function rayCast(scene) {
     var direction = forward.subtract(start);
     direction = BABYLON.Vector3.Normalize(direction)
 
-    var ray = new BABYLON.Ray(start, direction, 4);
+    var ray = new BABYLON.Ray(start, direction, SETTINGS.CAMERA.reach);
     var hit = scene.pickWithRay(ray);
 
     return hit;
@@ -204,26 +194,10 @@ function interact(game, hit) {
         game.popupManager.show();
         game.HUD.hide();
         document.exitPointerLock();
-    } else if (game.HUD.getHudElementByName("lookingAt").getHTML().includes("TV")) {
-        var currMat = hit.pickedMesh.material.subMaterials[4]
-        if (game.tvOn) {
-            currMat.diffuseTexture.video.pause();
-            currMat.diffuseTexture = game.tvTexture;
-            game.tvOn = false;
-            // Turn off TV
-        } else {
-            // Turn on TV
-            game.tvOn = true;
-            game.tvTexture = hit.pickedMesh.material.subMaterials[4].diffuseTexture;
-            currMat.diffuseTexture = new BABYLON.VideoTexture("video", [], game.scene, true);
-            currMat.diffuseTexture.video.currentSrc = "assets/video/Team Carbon Frag Video.mp4";
-            currMat.diffuseTexture.video.loop = false;
-            currMat.diffuseTexture.uOffset = -0.04;
-            currMat.diffuseTexture.uScale = 0.0343;
-            currMat.diffuseTexture.vOffset = -0.116;
-            currMat.diffuseTexture.vScale = 0.06;
-            console.log(hit.pickedMesh);
-        }
+    } else if (hit.pickedMesh.name == "TV") {        
+        game.TV.nextChannel();
+        console.log(game.TV);
+        // game.TV.nextChannel();
     } else {
         console.log("Interact on nothing!");
     }
