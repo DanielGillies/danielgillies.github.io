@@ -68,6 +68,8 @@ function setupCamera(camera) {
 }
 
 function fixGlass(game, shadowGens) {
+    var most = 0;
+    var winner;
 
     for (var i = 0; i < game.scene.meshes.length; i++) {
         currMesh = game.scene.meshes[i];
