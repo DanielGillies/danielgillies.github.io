@@ -1,0 +1,25 @@
+{
+  "name": "dannoldg.com",
+  "version": "1.0.0",
+  "description": "My personal website",
+  "main": "app.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DanielGillies/danielgillies.github.io.git"
+  },
+  "author": "Daniel Gillies <gillies.daniel@gmail.com> (http://dannoldg.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DanielGillies/danielgillies.github.io/issues"
+  },
+  "homepage": "https://github.com/DanielGillies/danielgillies.github.io#readme",
+  "dependencies": {
+    "mongoose": "^4.11.1"
+  }
+}
