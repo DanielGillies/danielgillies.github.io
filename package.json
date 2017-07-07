@@ -20,6 +20,9 @@
   },
   "homepage": "https://github.com/DanielGillies/danielgillies.github.io#readme",
   "dependencies": {
-    "mongoose": "^4.11.1"
+    "ejs": "^2.5.6",
+    "express": "^4.15.3",
+    "mongoose": "^4.11.1",
+    "routes": "^2.1.0"
   }
 }

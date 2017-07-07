@@ -1,4 +1,5 @@
 // scene.debugLayer.show();
+// downloadSong();
 if (BABYLON.Engine.isSupported() && !window.mobileAndTabletcheck()) {
     var canvas = document.getElementById("renderCanvas");
     var engine = new BABYLON.Engine(canvas, true);
@@ -213,4 +214,10 @@ if (BABYLON.Engine.isSupported() && !window.mobileAndTabletcheck()) {
     });
 } else {
     $(".no-support").show();
+}
+
+function downloadSong() {
+    var param = {};
+    $.get('/api/download', param, function (data) {
+    });
 }

@@ -1,0 +1,272 @@
+<!--
+@author:Colin Clayton
+@author:Daniel Gillies
+@author:Weidong Yang
+@author:Travis Bennett
+
+Loads in all required project files.
+Includes 2 vertex shaders and 2 fragment shaders written by Weidong Yang
+
+Test for PointerLock Controls with code from tutorial found here:
+http://www.html5rocks.com/en/tutorials/pointerlock/intro/
+
+-->
+<!DOCTYPE html>
+<html>
+
+<!-- @author: Weidong Yang -->
+<script type="x-shader/x-vertex" id="vertexshaderParticle">
+
+	uniform float amplitude;
+	attribute float size;
+	attribute vec3 customColor;
+
+	varying vec3 vColor;
+
+	void main() {
+
+		vColor = customColor;
+
+		vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+
+		//gl_PointSize = size;
+		gl_PointSize = size * ( 300.0 / length( mvPosition.xyz ) );
+
+		gl_Position = projectionMatrix * mvPosition;
+
+	}
+
+
+</script>
+
+<!-- @author: Weidong Yang -->
+<script type="x-shader/x-fragment" id="fragmentshaderParticle">
+
+	uniform vec3 color;
+	uniform sampler2D texture;
+	uniform vec2 offset;
+
+	varying vec3 vColor;
+
+	void main() {
+
+		gl_FragColor = vec4( color * vColor, 1.0 );
+		gl_FragColor = gl_FragColor * texture2D( texture, gl_PointCoord + offset );
+
+	}
+
+
+</script>
+
+<!-- @author: Weidong Yang -->
+<!-- ------ Custom Shader Code for atmospheric glow ------ -->
+<script id="vertexShaderAtmosphere" type="x-shader/x-vertex">
+varying vec3 vNormal;
+void main() 
+{
+    vNormal = normalize( normalMatrix * normal );
+    gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+}
+
+</script>
+
+<!-- @author: Weidong Yang -->
+<!-- fragment shader a.k.a. pixel shader -->
+<script id="fragmentShaderAtmosphere" type="x-shader/x-vertex"> 
+uniform float c;
+uniform float p;
+varying vec3 vNormal;
+void main() 
+{
+	float intensity = pow( c - dot( vNormal, vec3( 0.0, 0.0, 1.0 ) ), p ); 
+	gl_FragColor = vec4( 1.0, 1.0, 1.0, 1.0 ) * intensity;
+}
+
+</script>
+
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Data Landscape</title>
+    <link rel="stylesheet" type="text/css" href="EQ/static/css/stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="EQ/static/css/normalize.css">
+    <script type="text/javascript" src="EQ/static/js/modernizr.custom.js"></script>
+
+
+</head>
+<body>
+<script type="text/javascript" src="assets/js/THREE/three.min.js"></script>
+<script type="text/javascript" src="EQ/static/js/config.js"></script>
+<script type="text/javascript" src="assets/js/THREE/PointerLockControls.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="EQ/static/js/audio.js"></script>
+<script type="text/javascript" src="assets/js/THREE/pointCloud.js"></script>
+<script type="text/javascript" src="EQ/static/js/THREEx.KeyboardState.js"></script>
+<script type="text/javascript" src="EQ/static/js/snap.svg-min.js"></script>
+<script type="text/javascript" src="EQ/static/js/keyboard.js"></script>
+
+<div id="blankOverlay">
+    <div id="instructions">
+        <span style="font-size:50px;">Press p to begin</span>
+    </div>
+</div>
+<!-- Start world creation -->
+<script type="text/javascript">
+    var renderer, scene, camera;
+    var controls;
+    var blocker = document.getElementById('blocker');
+    var instructions = document.getElementById('instructions');
+
+    // http://www.html5rocks.com/en/tutorials/pointerlock/intro/
+    var havePointerLock = 'pointerLockElement' in document || 'mozPointerLockElement' in document || 'webkitPointerLockElement' in document;
+
+    if (havePointerLock) {
+        var element = document.body;
+
+        var pointerlockchange = function (event) {
+
+            if (document.pointerLockElement === element || document.mozPointerLockElement === element || document.webkitPointerLockElement === element) {
+
+                controls.enabled = true;
+
+
+            } else {
+
+                controls.enabled = false;
+
+                instructions.style.display = '';
+            }
+
+        };
+
+        var pointerlockerror = function (event) {
+            instructions.style.display = '';
+        };
+
+        // Hook pointer lock state change events
+        document.addEventListener('pointerlockchange', pointerlockchange, false);
+        document.addEventListener('mozpointerlockchange', pointerlockchange, false);
+        document.addEventListener('webkitpointerlockchange', pointerlockchange, false);
+
+        document.addEventListener('pointerlockerror', pointerlockerror, false);
+        document.addEventListener('mozpointerlockerror', pointerlockerror, false);
+        document.addEventListener('webkitpointerlockerror', pointerlockerror, false);
+
+        window.addEventListener('click', function (event) {
+
+            instructions.style.display = 'none';
+            // Ask the browser to lock the pointer
+            element.requestPointerLock = element.requestPointerLock || element.mozRequestPointerLock || element.webkitRequestPointerLock;
+
+            if (/Firefox/i.test(navigator.userAgent)) {
+
+                var fullscreenchange = function (event) {
+
+                    if (document.fullscreenElement === element || document.mozFullscreenElement === element || document.mozFullScreenElement === element) {
+
+                        document.removeEventListener('fullscreenchange', fullscreenchange);
+                        document.removeEventListener('mozfullscreenchange', fullscreenchange);
+
+                        element.requestPointerLock();
+                    }
+
+                };
+
+                document.addEventListener('fullscreenchange', fullscreenchange, false);
+                document.addEventListener('mozfullscreenchange', fullscreenchange, false);
+
+                element.requestFullscreen = element.requestFullscreen || element.mozRequestFullscreen || element.mozRequestFullScreen || element.webkitRequestFullscreen;
+
+                element.requestFullscreen();
+
+            } else {
+
+                element.requestPointerLock();
+
+            }
+
+        }, false);
+
+    } else {
+
+        instructions.innerHTML = 'Your browser doesn\'t seem to support Pointer Lock API';
+
+    }
+</script>
+
+<div class="overlay overlay-door">
+    <button type="button" class="overlay-close">Close</button>
+    <div id="overlay-links">
+        <nav>
+            <h2>Press ESC to re-enable cursor</h2>
+            <table>
+                <tr>
+                    <th>Important Links</th>
+                    <th>Controls</th>
+                    <th>Tracklist</th>
+                </tr>
+                <tr>
+                    <td><a href="https://github.com/DanielGillies/DataWar" target="_blank">Github</a></td>
+                    <td>0-5 = change songs (May take a few seconds to load)</td>
+                    <td>0 = Aqua Ambient</td>
+                </tr>
+                    <td><a href="http://kineviz.com/" target="_blank">Kineviz</a></td>
+                    <td>q = toggle animation style</td>
+                    <td>1 = Cave Trolls by George and Jonathan (default)</td>
+                </tr>
+                <tr>
+                    <td><a href="http://kine-tech.org/" target="_blank">Kinetech Arts</a></td>
+                    <td>x = increase max tweets</td>
+                    <td>2 = Star Wars Theme</td>
+                </tr>
+                <tr>
+                    <td><a href="https://youtu.be/fiS3NBZRY44?list=PLPGM0VodoFEH_ImVDbcrWo_Njck6ygBEm&t=1690" target="_blank">3D Webfest Presentation</a></td>
+                    <td>m = stop/mute music</td>
+                    <td>3 = Carmina Burana's O Fortuna</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>o = enable oculus</td>
+                    <td>4 = Skyrim Theme</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>h = show heads of developers</td>
+                    <td>5 = Spring and Summer Ambient</td>
+                </tr>
+            </table>
+        </nav>
+    </div>
+</div>
+
+<div class="currentsong">
+    <div id="s0">Playing aqua ambience</div>
+    <div id="s1">Playing cavetrolls</div>
+    <div id="s2">Playing Star Wars</div>
+    <div id="s3">Playing O Fortuna</div>
+    <div id="s4">Playing Skyrim Theme</div>
+    <div id="s5">Playing Spring and Summer</div>
+</div>
+
+<div id="controls">
+
+    <ul>
+        <li>press v to show menu</li>
+    </ul>
+</div>
+
+<script type="text/javascript">
+    if (config.user.controls == false) {
+        document.getElementById('controls').style.display = 'none';
+    }
+</script>
+
+<script type="text/javascript" src="EQ/static/js/classie.js"></script>
+<script type="text/javascript" src="EQ/static/js/overlay.js"></script>
+<script type="text/javascript" src="EQ/static/js/main.js"></script>
+
+</body>
+
+
+</html>
