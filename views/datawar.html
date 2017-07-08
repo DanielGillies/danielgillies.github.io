@@ -155,6 +155,10 @@ void main()
 
         window.addEventListener('click', function (event) {
 
+            if (classie.has(overlay, 'open')) {
+                return;
+            }
+
             instructions.style.display = 'none';
             // Ask the browser to lock the pointer
             element.requestPointerLock = element.requestPointerLock || element.mozRequestPointerLock || element.webkitRequestPointerLock;
@@ -197,46 +201,8 @@ void main()
 
 <div class="overlay overlay-door">
     <button type="button" class="overlay-close">Close</button>
-    <div id="overlay-links">
-        <nav>
-            <h2>Press ESC to re-enable cursor</h2>
-            <table>
-                <tr>
-                    <th>Important Links</th>
-                    <th>Controls</th>
-                    <th>Tracklist</th>
-                </tr>
-                <tr>
-                    <td><a href="https://github.com/DanielGillies/DataWar" target="_blank">Github</a></td>
-                    <td>0-5 = change songs (May take a few seconds to load)</td>
-                    <td>0 = Aqua Ambient</td>
-                </tr>
-                    <td><a href="http://kineviz.com/" target="_blank">Kineviz</a></td>
-                    <td>q = toggle animation style</td>
-                    <td>1 = Cave Trolls by George and Jonathan (default)</td>
-                </tr>
-                <tr>
-                    <td><a href="http://kine-tech.org/" target="_blank">Kinetech Arts</a></td>
-                    <td>x = increase max tweets</td>
-                    <td>2 = Star Wars Theme</td>
-                </tr>
-                <tr>
-                    <td><a href="https://youtu.be/fiS3NBZRY44?list=PLPGM0VodoFEH_ImVDbcrWo_Njck6ygBEm&t=1690" target="_blank">3D Webfest Presentation</a></td>
-                    <td>m = stop/mute music</td>
-                    <td>3 = Carmina Burana's O Fortuna</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>o = enable oculus</td>
-                    <td>4 = Skyrim Theme</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>h = show heads of developers</td>
-                    <td>5 = Spring and Summer Ambient</td>
-                </tr>
-            </table>
-        </nav>
+    <input type="text" id="search_query" placeholder="Rick Astley - Never Gonna Give You Up" spellcheck="false">
+    <div class="search_results">
     </div>
 </div>
 
@@ -264,6 +230,7 @@ void main()
 
 <script type="text/javascript" src="EQ/static/js/classie.js"></script>
 <script type="text/javascript" src="EQ/static/js/overlay.js"></script>
+<script type="text/javascript" src="assets/js/THREE/search.js"></script>
 <script type="text/javascript" src="EQ/static/js/main.js"></script>
 
 </body>

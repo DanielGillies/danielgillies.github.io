@@ -56,10 +56,12 @@ var init_keys = function (renderDom) {
             if (pointCloud2.animation == 4) {
                 pointCloud2.animation = 0;
             }
+            console.log(pointCloud2);
+            // pointCloud2.initNew();
         }
         if (scope.keyboard.eventMatches(event, 'p') && !wasPressed['p']) {
             console.log("Starting");
-            chooseSong(config.audio.selectedSong);
+            // chooseSong(config.audio.selectedSong);
             $("#blankOverlay").fadeOut();
         }
         if (scope.keyboard.eventMatches(event, 'n') && !wasPressed['n']) {

@@ -5,6 +5,7 @@
 
 'use strict';
 
+var uniqid = require('uniqid');
 var mongoose = require('mongoose');
 var exec = require('child_process').exec;
 
@@ -41,11 +42,13 @@ module.exports = function(app) {
 
 
   app.route('/api/download').get(function (req, res) {
-    var cmd = "python server/_downloads/youtube_dl/__main__.py https://www.youtube.com/watch?v=dQw4w9WgXcQ --extract-audio -o test.mp3 --audio-format mp3";
+    var id = req.query.id;
+    var filename = uniqid();
+    var cmd = "python server/_downloads/youtube_dl/__main__.py https://www.youtube.com/watch?v=" + id + " --extract-audio -o " + filename + ".mp3 --audio-format mp3";
     exec(cmd, function(error, stdout, stderr) {
+        res.json({file: filename});
     });
-    // /*echo */exec("cd C:\\xampp\\htdocs\\Audis\\_downloads\\youtube_dl && __main__.py https://www.youtube.com/watch?v=" . $_POST['video'] . " --extract-audio -o \"..\\" . $fileName . ".%(ext)s\" --audio-format mp3");
-  })
+  });
 
   app.route('/test').get(function (req, res) {
     res.render("test.html");

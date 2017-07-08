@@ -7,12 +7,16 @@
  * based off of audio input's frequencies.
  */
 
+var freqSections = [];
+var pointSections = [];
+var inited = false;
+
 "use strict";
-var PointCloud = function (_scene) {
+var PointCloud = function(_scene) {
     // we have to pre seed the particles. hide them with color black and size 0.
     this.scene = _scene;
     this.maxParticles = 20000;
-    this.fieldSize = 10000;
+    this.fieldSize = 12800;
     this.idx = -1;
     this.geometry = new THREE.Geometry();
     this.maxHeight = config.eq.maxHeight || 250;
@@ -22,20 +26,21 @@ var PointCloud = function (_scene) {
     this.subtractor = 150;
     this.animation = config.eq.animType || 2;
     this.colors = config.eq.colors;
+    this.freqBands = 8192;
 
     this.attributes = {
-        size: {type: 'f', value: []},
-        customColor: {type: 'c', value: []}
+        size: { type: 'f', value: [] },
+        customColor: { type: 'c', value: [] }
     };
 
     this.values_size = this.attributes.size.value;
     this.values_color = this.attributes.customColor.value;
 
     this.uniforms = {
-        amplitude: {type: "f", value: 1.0},
-        color: {type: "c", value: new THREE.Color(0xFFFF66)}, //Yellow as base color.
-        texture: {type: "t", value: THREE.ImageUtils.loadTexture("./assets/images/spark1.png")},
-        offset: {type: "v2", value: new THREE.Vector2(2, -4).multiplyScalar(0.01)}
+        amplitude: { type: "f", value: 1.0 },
+        color: { type: "c", value: new THREE.Color(0xFFFF66) }, //Yellow as base color.
+        texture: { type: "t", value: THREE.ImageUtils.loadTexture("./assets/images/spark1.png") },
+        offset: { type: "v2", value: new THREE.Vector2(2, -4).multiplyScalar(0.01) }
     };
     this.init();
 };
@@ -43,7 +48,7 @@ var PointCloud = function (_scene) {
 /**
  * @author: Weidong Yang
  */
-PointCloud.prototype.init = function () {
+PointCloud.prototype.init = function() {
     var shaderMaterial = new THREE.ShaderMaterial({
         uniforms: this.uniforms,
         attributes: this.attributes,
@@ -68,7 +73,7 @@ PointCloud.prototype.init = function () {
  * @author: Danny Gillies
  * Determines which type of animation we would like to use based on user input
  */
-PointCloud.prototype.update = function () {
+PointCloud.prototype.update = function() {
     if (this.animation % 4 == 0) {
         this.updateLinear();
     } else if (this.animation % 4 == 1) {
@@ -78,14 +83,73 @@ PointCloud.prototype.update = function () {
     } else if (this.animation % 4 == 3) {
         this.updateGridRandom();
     }
+    // this.updateNew();
 };
-
 /**
  * @author: Danny Gillies
  * @author: Colin Clayton
  * Separates the PointCloud into 16 sections, sets colors based on location and animates each section based on frequency
  */
-PointCloud.prototype.updateLinear = function () {
+PointCloud.prototype.initNew = function() {
+    if (typeof binaries === 'object' && binaries.length - 1 > 0) {
+        var bandsPerSection = this.freqBands / 16;
+        for (var i = 0; i < 16; i++) {
+            // freqSections[i] = [];
+            pointSections[i] = [];
+            // console.log(i + " == " + i * bandsPerSection + " -> " + (((i + 1) * bandsPerSection) - 1));
+            // for (var ii = i * bandsPerSection; ii < (i + 1) * bandsPerSection; ii++) {
+            //     freqSections[i].push(binaries[ii]);
+            // }
+        }
+        // console.log(freqSections);
+
+        for (var i = 0; i < this.geometry.vertices.length; i++) {
+            var position = this.geometry.vertices[i];
+            var index = Math.floor(position.x / (this.fieldSize / 16)) + 8;
+            pointSections[index].push(this.geometry.vertices[i]);
+            this.values_color[i].setHex(this.colors[index]);
+            // console.log(index);
+        }
+    }
+    //Need to tell THREE.js to update the particles' positions and colors.
+    this.geometry.verticesNeedUpdate = true;
+    this.geometry.__dirtyVertices = true;
+    this.attributes["customColor"].needsUpdate = true;
+    inited = true;
+}
+PointCloud.prototype.updateNew = function() {
+    if (!inited) {
+        return
+    } else {
+        var chunk = 512;
+        var i, j, temparray;
+        for (i = 0, j = binaries.length, ii = 0; i < j; i += chunk, ii++) {
+            temparray = binaries.slice(i, i + chunk);
+            var max = 0;
+            for (var jj = 0; jj < temparray.length; jj++) {
+                if (temparray[i] > max) {
+                    max = temparray[i];
+                }
+            }
+            console.log("II: " + ii + " -- Max: " + max);
+            for (var x = 0; x < pointSections[ii].length; x++) {
+                pointSections[ii][x].y = calculateY(max);
+
+            // this.geometry.vertices[i].y = position.y;
+            }
+        }
+        //Need to tell THREE.js to update the particles' positions and colors.
+        this.geometry.verticesNeedUpdate = true;
+        this.geometry.__dirtyVertices = true;
+        this.attributes["customColor"].needsUpdate = true;
+        inited = true;
+    }
+
+}
+function printBin() {
+    console.log(binaries);
+}
+PointCloud.prototype.updateLinear = function() {
 
     if (typeof binaries === 'object' && binaries.length - 1 > 0) {
 
@@ -94,10 +158,10 @@ PointCloud.prototype.updateLinear = function () {
             var position = this.geometry.vertices[i];
 
             // gets index (0 - 15)
-            var index = Math.floor((position.x / (this.fieldSize / 50)) + 8);
-
-            var low = (index * 10);
-            var high = (index + 1) * 10;
+            var index = Math.floor((position.x / (this.fieldSize / 16)) + 8);
+            // 0 = 
+            var low = (index * 16);
+            var high = (index + 1) * 16;
             var segment = [];
 
             for (var k = low; k < high; k++) {
@@ -113,23 +177,16 @@ PointCloud.prototype.updateLinear = function () {
 
             if (index >= 0 && index <= 3) {
                 this.values_color[i].setHex(this.colors[0]);
-            }
-            else if (index >= 4 && index <= 7) {
+            } else if (index >= 4 && index <= 7) {
                 this.values_color[i].setHex(this.colors[1]);
-            }
-            else if (index >= 8 && index <= 11) {
+            } else if (index >= 8 && index <= 11) {
                 this.values_color[i].setHex(this.colors[2]);
-            }
-            else if (index >= 12 && index <= 15) {
+            } else if (index >= 12 && index <= 15) {
                 this.values_color[i].setHex(this.colors[3]);
 
             }
-            position.y += this.getLevelHighest(max);
-            if (position.y > 500) {
-                position.y = 495;
-            } else if (position.y < 0) {
-                position.y = 0;
-            }
+            // position.y = calculateY(max);
+            position.y = max * 8;
 
             this.geometry.vertices[i].y = position.y;
 
@@ -147,14 +204,15 @@ PointCloud.prototype.updateLinear = function () {
  * @author: Danny Gillies
  * Separates the PointCloud into 32 sections, sets colors based on location and animates each section based on frequency
  */
-PointCloud.prototype.updateLinear32 = function () {
+PointCloud.prototype.updateLinear32 = function() {
 
     if (typeof binaries === 'object' && binaries.length - 1 > 0) {
+
 
         for (var i = 0; i < this.geometry.vertices.length; i++) {
 
             var position = this.geometry.vertices[i];
-            var index = Math.floor((position.x / (this.fieldSize / 30)) + 16);
+            var index = Math.floor((position.x / (this.fieldSize / 31)) + 16);
 
             var low = (index * 5);
             var high = (index + 1) * 5;
@@ -173,36 +231,31 @@ PointCloud.prototype.updateLinear32 = function () {
 
             if (index >= 0 && index <= 3) {
                 this.values_color[i].setHex(this.colors[0]);
-            }
-            else if (index >= 4 && index <= 7) {
+            } else if (index >= 4 && index <= 7) {
                 this.values_color[i].setHex(this.colors[1]);
-            }
-            else if (index >= 8 && index <= 11) {
+            } else if (index >= 8 && index <= 11) {
                 this.values_color[i].setHex(this.colors[2]);
-            }
-            else if (index >= 12 && index <= 15) {
+            } else if (index >= 12 && index <= 15) {
                 this.values_color[i].setHex(this.colors[3]);
-            }
-            else if (index >= 16 && index <= 19) {
+            } else if (index >= 16 && index <= 19) {
                 this.values_color[i].setHex(this.colors[4]);
-            }
-            else if (index >= 20 && index <= 23) {
+            } else if (index >= 20 && index <= 23) {
                 this.values_color[i].setHex(this.colors[5]);
-            }
-            else if (index >= 24 && index <= 27) {
+            } else if (index >= 24 && index <= 27) {
                 this.values_color[i].setHex(this.colors[6]);
-            }
-            else if (index >= 28 && index <= 31) {
+            } else if (index >= 28 && index <= 31) {
                 this.values_color[i].setHex(this.colors[7]);
             }
-            position.y += this.getLevelHighest(max);
-            if (position.y > this.maxHeight) {
-                position.y = this.maxHeight - 5;
-            } else if (position.y < 0) {
-                position.y = 0;
-            }
+            position.y = calculateY(max);
+            // position.y += this.getLevelHighest(max);
+            // if (position.y > this.maxHeight) {
+            //     position.y = this.maxHeight - 5;
+            // } else if (position.y < 0) {
+            //     position.y = 0;
+            // }
             this.geometry.vertices[i].y = position.y;
         }
+
         //Need to tell THREE.js to update the particles' positions and colors.
         this.geometry.verticesNeedUpdate = true;
         this.geometry.__dirtyVertices = true;
@@ -214,15 +267,13 @@ PointCloud.prototype.updateLinear32 = function () {
  * @author: Danny Gillies
  * Separates the PointCloud into a 16x16 grid, color is based on location in the grid and each section is animated by frequencies
  */
-PointCloud.prototype.updateGrid = function () {
-
+PointCloud.prototype.updateGrid = function() {
     if (typeof binaries === 'object' && binaries.length - 1 > 0) {
-
         for (var i = 0; i < this.geometry.vertices.length; i++) {
             var position = this.geometry.vertices[i];
 
-            var x_index = Math.floor((position.x / (this.fieldSize / 16.25)) + 8);
-            var z_index = Math.floor((position.z / (this.fieldSize / 16.25)) + 8);
+            var x_index = Math.floor((position.x / (this.fieldSize / 16)) + 8);
+            var z_index = Math.floor((position.z / (this.fieldSize / 16)) + 8);
 
             var x_low = x_index;
             var x_high = (x_index + 1);
@@ -253,8 +304,7 @@ PointCloud.prototype.updateGrid = function () {
                 } else if (z_index >= 12 && z_index <= 15) {
                     this.values_color[i].setHex(this.colors[3]);
                 }
-            }
-            else if (x_index >= 4 && x_index <= 7) {
+            } else if (x_index >= 4 && x_index <= 7) {
                 if (z_index >= 0 && z_index <= 3) {
                     this.values_color[i].setHex(this.colors[4]);
                 } else if (z_index >= 4 && z_index <= 7) {
@@ -267,8 +317,7 @@ PointCloud.prototype.updateGrid = function () {
                     this.values_color[i].setHex(this.colors[7]);
                 }
 
-            }
-            else if (x_index >= 8 && x_index <= 11) {
+            } else if (x_index >= 8 && x_index <= 11) {
                 if (z_index >= 0 && z_index <= 3) {
                     this.values_color[i].setHex(this.colors[8]);
 
@@ -282,8 +331,7 @@ PointCloud.prototype.updateGrid = function () {
                     this.values_color[i].setHex(this.colors[11]);
                 }
 
-            }
-            else if (x_index >= 12 && x_index <= 15) {
+            } else if (x_index >= 12 && x_index <= 15) {
                 if (z_index >= 0 && z_index <= 3) {
                     this.values_color[i].setHex(this.colors[12]);
 
@@ -297,12 +345,13 @@ PointCloud.prototype.updateGrid = function () {
                     this.values_color[i].setHex(this.colors[15]);
                 }
             }
-            position.y += this.getLevelHighest(max);
-            if (position.y > this.maxHeight) {
-                position.y = this.maxHeight - 5;
-            } else if (position.y < 0) {
-                position.y = 0;
-            }
+            position.y = calculateY(max);
+            // position.y += this.getLevelHighest(max);
+            // if (position.y > this.maxHeight) {
+            //     position.y = this.maxHeight - 5;
+            // } else if (position.y < 0) {
+            //     position.y = 0;
+            // }
             this.geometry.vertices[i].y = position.y;
         }
         //Need to tell THREE.js to update the particles' positions and colors.
@@ -312,11 +361,16 @@ PointCloud.prototype.updateGrid = function () {
     }
 };
 
+function calculateY(max) {
+    var denom = 1 + (Math.pow(Math.E, (-(1 / 15) * (max - 180))));
+    return 1000 / denom;
+}
+
 /**
  * @author: Travis Bennett
  * Colors are set randomly, but manipulates points of the same color based on frequency
  */
-PointCloud.prototype.updateGridRandom = function () {
+PointCloud.prototype.updateGridRandom = function() {
 
     if (typeof binaries === 'object' && binaries.length - 1 > 0) {
 
@@ -346,7 +400,7 @@ PointCloud.prototype.updateGridRandom = function () {
  *
  * Calculates the amount to move the particle up or down based on frequency
  */
-PointCloud.prototype.getLevelHighest = function (value) {
+PointCloud.prototype.getLevelHighest = function(value) {
     return value / (this.divisor) - this.subtractor;
 };
 
@@ -371,7 +425,7 @@ function getRandomColor() {
  * @author: Weidong Yang
  * Modified by Colin Clayton
  */
-PointCloud.prototype.seedParticles = function (numVertices) {
+PointCloud.prototype.seedParticles = function(numVertices) {
     for (var i = 0; i < numVertices; i++) {
         var vertex = new THREE.Vector3();
         vertex.x = (Math.random() - 0.5);
@@ -388,7 +442,7 @@ PointCloud.prototype.seedParticles = function (numVertices) {
 /**
  * @author: Weidong Yang
  */
-PointCloud.prototype.addBatch = function (batchSize) {
+PointCloud.prototype.addBatch = function(batchSize) {
     for (var i = 0; i < batchSize; i++) {
         var vertex = new THREE.Vector3();
         vertex.x = (Math.random() - 0.5);
@@ -405,7 +459,7 @@ PointCloud.prototype.addBatch = function (batchSize) {
  * @author: Weidong Yang
  */
 //pull camera back 50, now we add particle at the center of yawObject
-PointCloud.prototype.addInFrontOfCamera = function () {
+PointCloud.prototype.addInFrontOfCamera = function() {
     var pos = controls.getObject().position.clone();
     pos.add(new THREE.Vector3(
         (Math.random() - 0.5) * 4,
@@ -418,7 +472,7 @@ PointCloud.prototype.addInFrontOfCamera = function () {
 /**
  * @author: Weidong Yang
  */
-PointCloud.prototype.add = function (vertex, color, size) {
+PointCloud.prototype.add = function(vertex, color, size) {
     this.idx++;
     if (this.idx == this.maxParticles) { //when max particle exceeded, we stop adding new points.
         return this.idx--;
@@ -437,7 +491,7 @@ PointCloud.prototype.add = function (vertex, color, size) {
 /**
  * @author: Colin Clayton
  */
-PointCloud.prototype.changeColor = function (idx, color) {
+PointCloud.prototype.changeColor = function(idx, color) {
     this.values_color[idx].copy(new THREE.Color(color));
     this.attributes["customColor"].needsUpdate = true;
 };
@@ -445,8 +499,6 @@ PointCloud.prototype.changeColor = function (idx, color) {
 /**
  * @author: Weidong Yang
  */
-PointCloud.prototype.changeOpacity = function (idx, opacity) {
+PointCloud.prototype.changeOpacity = function(idx, opacity) {
     window.pc[idx].material.opacity = opacity
 };
-
-

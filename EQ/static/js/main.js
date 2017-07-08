@@ -17,7 +17,7 @@ var dt = Date.parse(curdate);
 var currTweetArray = [];
 var graph;
 
-var worldSize = 10000;
+var worldSize = 12800;
 
 var pointCloud = null;
 var pointCloud2 = null;
@@ -38,8 +38,6 @@ animate();
 
 function init() {
 
-
-    //Create a new Physi.js Scene
     scene = new THREE.Scene;
 
     //Instantiate oscControls for the Wii Balance Board
@@ -104,7 +102,9 @@ function animate() {
     requestAnimationFrame(animate);
 
     pointCloud2.update();
-    controls.update();
+    if (controls.enabled) {
+        controls.update();
+    }
     //Heads will always look at the position of the user
     if (window.heads.length > 0) {
         for (var i = 0; i < window.heads.length; i++) {

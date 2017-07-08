@@ -57,5 +57,5 @@ var config={
 			0x8800FF, //Dark Green
 			0x0000FF //Dark Blue
 		]
-	}
+	},
 };
