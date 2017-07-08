@@ -103,7 +103,7 @@ function startSong(url) {
                         }
                         // binaries[i] = (binaries[i] + 1) * 128.0;
                     }
-                    console.log(i);
+                    // console.log(i);
                     // console.log(binaries);
                     // for (var i = 0; i < 1024; i++) {
                     //     temp.push((binaries[i] + 140)* 2);

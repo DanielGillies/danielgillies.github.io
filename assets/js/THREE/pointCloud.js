@@ -146,9 +146,13 @@ PointCloud.prototype.updateNew = function() {
     }
 
 }
-function printBin() {
-    console.log(binaries);
+
+function convertToFreq(index) {
+    var steps = (index*119)/binaries.length;
+    var freq = 440*Math.pow(2,((steps-53)/12));
+    return freq;
 }
+
 PointCloud.prototype.updateLinear = function() {
 
     if (typeof binaries === 'object' && binaries.length - 1 > 0) {
@@ -160,6 +164,7 @@ PointCloud.prototype.updateLinear = function() {
             // gets index (0 - 15)
             var index = Math.floor((position.x / (this.fieldSize / 16)) + 8);
             // 0 = 
+            var temp = (index*119)/256;
             var low = (index * 16);
             var high = (index + 1) * 16;
             var segment = [];
@@ -185,8 +190,8 @@ PointCloud.prototype.updateLinear = function() {
                 this.values_color[i].setHex(this.colors[3]);
 
             }
-            // position.y = calculateY(max);
-            position.y = max * 8;
+            position.y = calculateY(max);
+            // position.y = max * 8;
 
             this.geometry.vertices[i].y = position.y;
 
@@ -373,16 +378,22 @@ function calculateY(max) {
 PointCloud.prototype.updateGridRandom = function() {
 
     if (typeof binaries === 'object' && binaries.length - 1 > 0) {
+        this.geometry.vertices;
 
         for (var i = 0; i < this.geometry.vertices.length; i++) {
             var position = this.geometry.vertices[i];
             this.values_color[i].setHex(this.colors[i % 12]);
 
-            position.y += this.getLevelHighest(binaries[i % (binaries.length)]);
-            if (position.y > this.maxHeight) {
-                position.y = this.maxHeight;
-            } else if (position.y < 0) {
-                position.y = 0;
+            // position.y += this.getLevelHighest(binaries[i % (binaries.length)]);
+            // if (position.y > this.maxHeight) {
+            //     position.y = this.maxHeight;
+            // } else if (position.y < 0) {
+            //     position.y = 0;
+            // }
+            position.y = calculateY(binaries[i % (binaries.length)]);
+            if (position.y < 15 ) {
+                // this.geometry.vertices
+                this.values_color[i].setHex("#000000");
             }
             this.geometry.vertices[i].y = position.y;
         }
