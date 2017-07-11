@@ -73,7 +73,7 @@ function startSong(url) {
                 sourceJs.connect(context.destination);
                 analyser = context.createAnalyser();
                 analyser.smoothingTimeConstant = 0.6;
-                analyser.fftSize = 512;
+                analyser.fftSize = 1024;
 
                 source = context.createBufferSource();
                 source.buffer = buffer;

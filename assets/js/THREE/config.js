@@ -36,7 +36,7 @@ var config={
 	},
 	eq:{
 		animType:0,
-		maxHeight:1000,
+		maxHeight:1500,
 		minSize:75,
 		maxSize:150,
 		colors:[

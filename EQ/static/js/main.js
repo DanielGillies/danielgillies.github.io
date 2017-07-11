@@ -1,25 +1,15 @@
 /**
- * @author:Colin Clayton
  * @author:Danny Gillies
  * Initializes and renders the scene.
- * Creates an audio equalizer visualization with particles from the PointCloud class
- * and a twitter visualization.
+ * Creates an audio equalizer visualization with particles from the PointCloud class.
  */
 
 var renderer, scene, camera, directionalLight, water;
 var geometry, material, mesh, ground, PlayerCube, yawObject;
 var controls;
-var waterNormals;
-var oculusEffect;
-
-var curdate = "Wed, 18 Oct 2000 13:00:00 EST";
-var dt = Date.parse(curdate);
-var currTweetArray = [];
-var graph;
 
 var worldSize = 12800;
 
-var pointCloud = null;
 var pointCloud2 = null;
 var lineTrace = null;
 var VIEW_ANGLE = 75;
@@ -28,9 +18,6 @@ var ASPECT = window.innerWidth / window.innerHeight;
 var NEAR = 1;
 var FAR = 100000;
 var SCREEN_WIDTH = window.innerWidth, SCREEN_HEIGHT = window.innerHeight;
-
-window.heads = new Array();
-window.pyramid = null;
 
 init();
 animate();
@@ -80,7 +67,7 @@ function init() {
     pointCloud2.fieldSize = worldSize;
 
     //Adds particles to the scene
-    pointCloud2.addBatch(20000);
+    pointCloud2.addBatch(40000);
 
     //Provides key controls
     init_keys(renderer.domElement);
@@ -105,13 +92,6 @@ function animate() {
     if (controls.enabled) {
         controls.update();
     }
-    //Heads will always look at the position of the user
-    if (window.heads.length > 0) {
-        for (var i = 0; i < window.heads.length; i++) {
-            window.heads[i].lookAt(yawObject.position);
-        }
-    }
-
     renderer.render(scene, camera);
 
 }

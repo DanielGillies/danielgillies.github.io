@@ -24,6 +24,7 @@
     "express": "^4.15.3",
     "mongoose": "^4.11.1",
     "routes": "^2.1.0",
+    "shelljs": "^0.7.8",
     "uniqid": "^4.1.1"
   }
 }

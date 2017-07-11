@@ -5,14 +5,14 @@
  *
  * Handles controls for Menu
  */
-var init_keys = function (renderDom) {
+var init_keys = function(renderDom) {
     // only on keydown + no repeat
     var scope = this;
     var wasPressed = {};
 
     this.keyboard = new THREEx.KeyboardState(renderDom);
 
-    window.addEventListener('keydown', function (event) {
+    window.addEventListener('keydown', function(event) {
         if (scope.keyboard.eventMatches(event, '0') && !wasPressed['0']) {
             console.log("Playing track 0");
             chooseSong(0);
@@ -71,11 +71,24 @@ var init_keys = function (renderDom) {
         if (scope.keyboard.eventMatches(event, 'v') && !wasPressed['v']) {
             console.log("Opening overlay");
             toggleOverlay();
+            $.get("api/getRecent", null,
+                function(response) {
+                    for (var i = 0; i < response.length; i++) {
+                        console.log(i);
+                        $(".recent").append(
+                            "<div class=\"result\" data-file=\"" + response[i].file +
+                            "\"><img src=\"" + response[i].thumbnail +
+                            "\"><div class=\"info\"><h2>" + response[i].title + "</h2>" +
+                            "<h4>" + response[i].channel + "</h4></div></div>"
+                        )
+                    }
+                    console.log(response);
+                });
         }
     });
 
     // listen on keyup to maintain ```wasPressed``` array
-    window.addEventListener('keyup', function (event) {
+    window.addEventListener('keyup', function(event) {
         if (scope.keyboard.eventMatches(event, '0')) {
             wasPressed['0'] = false;
         }

@@ -1,274 +1,277 @@
-html, body {
-	width: 100%;
-	height: 100%;
+html,
+body {
+    width: 100%;
+    height: 100%;
 }
 
 body {
-	background-color: #000000;
-	margin: 0;
-	overflow: hidden;
-	font-family: Comic;
+    background-color: #000000;
+    margin: 0;
+    overflow: hidden;
+    font-family: Comic;
 }
 
-.aggettivi{
-	display:inline;
-	width:100px;
-	height:100px;
+.aggettivi {
+    display: inline;
+    width: 100px;
+    height: 100px;
 }
-
-
 
 #blankOverlay {
-	width:100%;
-	height: 100%;
-	position: absolute;
-	background-color: #000000;
-	text-align: center;
-	font-size: 46px;
-	/*display: none;*/
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: #000000;
+    text-align: center;
+    font-size: 46px;
+    /*display: none;*/
 }
 
 #blocker {
-	opacity: 0;
-
-	position: absolute;
-
-	width: 100%;
-	height: 100%;
-
-	background-color: rgba(0,0.3,0.0);
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0.3, 0.0);
 }
 
 #instructions {
-
-	width: 100%;
-	height: 100%;
-
-	display: -webkit-box;
-	display: -moz-box;
-	display: box;
-
-	-webkit-box-orient: horizontal;
-	-moz-box-orient: horizontal;
-	box-orient: horizontal;
-
-	-webkit-box-pack: center;
-	-moz-box-pack: center;
-	box-pack: center;
-
-	-webkit-box-align: center;
-	-moz-box-align: center;
-	box-align: center;
-
-	color: #EEEEEE;
-	text-align: center;
-
-	cursor: pointer;
-
+    width: 100%;
+    height: 100%;
+    display: -webkit-box;
+    display: -moz-box;
+    display: box;
+    -webkit-box-orient: horizontal;
+    -moz-box-orient: horizontal;
+    box-orient: horizontal;
+    -webkit-box-pack: center;
+    -moz-box-pack: center;
+    box-pack: center;
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    box-align: center;
+    color: #EEEEEE;
+    text-align: center;
+    cursor: pointer;
 }
 
 .bwrap {
-	margin:0.5em 0 0 0
+    margin: 0.5em 0 0 0
 }
 
-#controls{
-	color: white;
-	position:absolute;
-	bottom:0;
-	right:0;
-	border-radius:3px;
+#controls {
+    color: white;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border-radius: 3px;
 }
-
-
 
 
 /* Overlay style */
+
 .overlay {
-	position: fixed;
-	width: 100%;
-	height: 100%;
-	top: 0;
-	left: 0;
-	background: rgba(155,155,155,0.6);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(155, 155, 155, 0.6);
 }
+
 
 /* Overlay closing cross */
+
 .overlay .overlay-close {
-	width: 80px;
-	height: 80px;
-	position: absolute;
-	right: 20px;
-	top: 20px;
-	overflow: hidden;
-	border: none;
-	background: url(../img/cross.png) no-repeat center center;
-	text-indent: 200%;
-	color: transparent;
-	outline: none;
-	z-index: 100;
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    overflow: hidden;
+    border: none;
+    background: url(../img/cross.png) no-repeat center center;
+    text-indent: 200%;
+    color: transparent;
+    outline: none;
+    z-index: 100;
 }
 
+
 /* Menu style */
+
 .overlay nav {
-	width: 100%;
-	text-align: center;
-	position: relative;
-	top: 50%;
-	height: 60%;
-	-webkit-transform: translateY(-50%);
-	transform: translateY(-50%);
+    width: 100%;
+    text-align: center;
+    position: relative;
+    top: 50%;
+    height: 60%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
 }
 
 .overlay table {
-	/*position: absolute;*/
-	text-align: center;
-	/*left: 0px;*/
-	width: 100%;
-	margin: 0;
-	padding: 0;
+    /*position: absolute;*/
+    text-align: center;
+    /*left: 0px;*/
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
-
 .overlay table td {
-	width: 33%;
-	font-size: 24px;
-	font-weight: 300;
-	/*display: block;*/
-	color: #fff;
-	-webkit-transition: color 0.2s;
-	transition: color 0.2s;
+    width: 33%;
+    font-size: 24px;
+    font-weight: 300;
+    /*display: block;*/
+    color: #fff;
+    -webkit-transition: color 0.2s;
+    transition: color 0.2s;
 }
 
 .overlay table a {
-	/*width: 50%;*/
-	font-size: 24px;
-	font-weight: 300;
-	/*display: block;*/
-	color: #fff;
-	-webkit-transition: color 0.2s;
-	transition: color 0.2s;
+    /*width: 50%;*/
+    font-size: 24px;
+    font-weight: 300;
+    /*display: block;*/
+    color: #fff;
+    -webkit-transition: color 0.2s;
+    transition: color 0.2s;
 }
 
 .overlay table th {
-	font-size: 36px;
-	font-weight: 400;
-	/*display: block;*/
-	color: #999;
-	-webkit-transition: color 0.2s;
-	transition: color 0.2s;
+    font-size: 36px;
+    font-weight: 400;
+    /*display: block;*/
+    color: #999;
+    -webkit-transition: color 0.2s;
+    transition: color 0.2s;
 }
 
 .overlay table tr td a:hover,
 .overlay table tr td a:focus {
-	color: #f0f0f0;
+    color: #f0f0f0;
 }
 
+
 /* Effects */
+
 .overlay-door {
-	visibility: hidden;
-	width: 0;
-	left: 50%;
-	-webkit-transform: translateX(-50%);
-	transform: translateX(-50%);
-	-webkit-transition: width 0.5s 0.3s, visibility 0s 0.8s;
-	transition: width 0.5s 0.3s, visibility 0s 0.8s;
+    visibility: hidden;
+    width: 0;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    -webkit-transition: width 0.5s 0.3s, visibility 0s 0.8s;
+    transition: width 0.5s 0.3s, visibility 0s 0.8s;
 }
 
 .overlay-door.open {
-	visibility: visible;
-	width: 100%;
-	-webkit-transition: width 0.5s;
-	transition: width 0.5s;
+    visibility: visible;
+    width: 100%;
+    -webkit-transition: width 0.5s;
+    transition: width 0.5s;
 }
 
 .overlay-door nav {
-	position: absolute;
-	left: 50%;
-	-webkit-transform: translateY(-50%) translateX(-50%);
-	transform: translateY(-50%) translateX(-50%);
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translateY(-50%) translateX(-50%);
+    transform: translateY(-50%) translateX(-50%);
 }
 
 .overlay-door nav,
 .overlay-door .overlay-close {
-	opacity: 0;
-	-webkit-transition: opacity 0.3s 0.5s;
-	transition: opacity 0.3s 0.5s;
+    opacity: 0;
+    -webkit-transition: opacity 0.3s 0.5s;
+    transition: opacity 0.3s 0.5s;
 }
 
 .overlay-door.open nav,
 .overlay-door.open .overlay-close {
-	opacity: 1;
-	-webkit-transition-delay: 0.5s;
-	transition-delay: 0.5s;
+    opacity: 1;
+    -webkit-transition-delay: 0.5s;
+    transition-delay: 0.5s;
 }
 
 .overlay-door.close nav,
 .overlay-door.close .overlay-close {
-	-webkit-transition-delay: 0s;
-	transition-delay: 0s;
+    -webkit-transition-delay: 0s;
+    transition-delay: 0s;
 }
 
 @media screen and (max-height: 30.5em) {
-	.overlay nav {
-		height: 70%;
-		font-size: 34px;
-	}
-	.overlay table tr td {
-		min-height: 34px;
-	}
+    .overlay nav {
+        height: 70%;
+        font-size: 34px;
+    }
+    .overlay table tr td {
+        min-height: 34px;
+    }
 }
 
-.currentsong {
-	opacity: 0;
-	text-align: center;
-	color: #ffffff;
+.result .info {
+    color: white;
+    display: inline-block;
 }
 
-#s0 {
-	display: none;
-	opacity:0;
-	-webkit-transition: opacity 2s;
-	-moz-transition: opacity 2s;
-	-o-transition: opacity 2s;
-	transition: opacity 2s;
+.result {
+    padding: 10px;
 }
-#s1 {
-	display: none;
-	opacity:0;
-	-webkit-transition: opacity 2s;
-	-moz-transition: opacity 2s;
-	-o-transition: opacity 2s;
-	transition: opacity 2s;
+
+.result:hover {
+    cursor: pointer;
+    border: 1px solid white;
 }
-#s2 {
-	display: none;
-	opacity:0;
-	-webkit-transition: opacity 2s;
-	-moz-transition: opacity 2s;
-	-o-transition: opacity 2s;
-	transition: opacity 2s;
+
+.search_results h2,
+.recent h2 {
+    /*color: white;*/
+    /*display: inline-block;*/
+    margin-top: 0;
 }
-#s3 {
-	display: none;
-	opacity:0;
-	-webkit-transition: opacity 2s;
-	-moz-transition: opacity 2s;
-	-o-transition: opacity 2s;
-	transition: opacity 2s;
+
+.search_results h4,
+.recent h4 {
+    /*color: white;*/
+    /*display: inline-block;*/
+    margin-bottom: 0;
 }
-#s4 {
-	display: none;
-	opacity:0;
-	-webkit-transition: opacity 2s;
-	-moz-transition: opacity 2s;
-	-o-transition: opacity 2s;
-	transition: opacity 2s;
+
+.search_results img,
+.recent img {
+    vertical-align: top;
+    margin-right: 10px;
+    /*margin: 10px;*/
 }
-#s5 {
-	display: none;
-	opacity:0;
-	-webkit-transition: opacity 2s;
-	-moz-transition: opacity 2s;
-	-o-transition: opacity 2s;
-	transition: opacity 2s;
+
+#search_query {
+    border: none;
+    border-color: transparent;
+    background: rgba(155, 155, 155, 0);
+    color: #999;
+    font-size: 40px;
 }
+
+#search_query:focus {
+	outline: none;
+}
+
+#search_query::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: white;
+}
+#search_query::-moz-placeholder { /* Firefox 19+ */
+  color: white;
+}
+#search_query:-ms-input-placeholder { /* IE 10+ */
+  color: white;
+}
+#search_query:-moz-placeholder { /* Firefox 18- */
+  color: white;
+}
+
+
+/*.recent .result .info {
+	color: white;
+	display: inline-block;
+}*/

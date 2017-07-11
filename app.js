@@ -10,9 +10,12 @@ var port = 8080;
 
 var http = require('http');
 var express = require('express');
+var mongoose = require('mongoose');
 var path = require('path');
 var app = express();	
 var server = http.createServer(app);
+
+mongoose.connect('mongodb://localhost/boombox');
 
 require('./server/routes')(app);
 

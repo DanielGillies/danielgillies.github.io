@@ -1,21 +1,16 @@
 /**
  * @author:Weidong Yang
- * @author:Colin Clayton
  * @author:Danny Gillies
  * Creates a PointCloud system
  * Provides a few interesting ways to update particles within PointCloud
  * based off of audio input's frequencies.
  */
 
-var freqSections = [];
-var pointSections = [];
-var inited = false;
-
 "use strict";
 var PointCloud = function(_scene) {
     // we have to pre seed the particles. hide them with color black and size 0.
     this.scene = _scene;
-    this.maxParticles = 20000;
+    this.maxParticles = 40000;
     this.fieldSize = 12800;
     this.idx = -1;
     this.geometry = new THREE.Geometry();
@@ -117,35 +112,6 @@ PointCloud.prototype.initNew = function() {
     this.attributes["customColor"].needsUpdate = true;
     inited = true;
 }
-PointCloud.prototype.updateNew = function() {
-    if (!inited) {
-        return
-    } else {
-        var chunk = 512;
-        var i, j, temparray;
-        for (i = 0, j = binaries.length, ii = 0; i < j; i += chunk, ii++) {
-            temparray = binaries.slice(i, i + chunk);
-            var max = 0;
-            for (var jj = 0; jj < temparray.length; jj++) {
-                if (temparray[i] > max) {
-                    max = temparray[i];
-                }
-            }
-            console.log("II: " + ii + " -- Max: " + max);
-            for (var x = 0; x < pointSections[ii].length; x++) {
-                pointSections[ii][x].y = calculateY(max);
-
-            // this.geometry.vertices[i].y = position.y;
-            }
-        }
-        //Need to tell THREE.js to update the particles' positions and colors.
-        this.geometry.verticesNeedUpdate = true;
-        this.geometry.__dirtyVertices = true;
-        this.attributes["customColor"].needsUpdate = true;
-        inited = true;
-    }
-
-}
 
 function convertToFreq(index) {
     var steps = (index*119)/binaries.length;
@@ -163,10 +129,8 @@ PointCloud.prototype.updateLinear = function() {
 
             // gets index (0 - 15)
             var index = Math.floor((position.x / (this.fieldSize / 16)) + 8);
-            // 0 = 
-            var temp = (index*119)/256;
-            var low = (index * 16);
-            var high = (index + 1) * 16;
+            var low = (index * 20);
+            var high = (index + 1) * 20;
             var segment = [];
 
             for (var k = low; k < high; k++) {
@@ -219,8 +183,8 @@ PointCloud.prototype.updateLinear32 = function() {
             var position = this.geometry.vertices[i];
             var index = Math.floor((position.x / (this.fieldSize / 31)) + 16);
 
-            var low = (index * 5);
-            var high = (index + 1) * 5;
+            var low = (index * 10);
+            var high = (index + 1) * 10;
             var segment = [];
 
             for (var k = low; k < high; k++) {
@@ -368,7 +332,7 @@ PointCloud.prototype.updateGrid = function() {
 
 function calculateY(max) {
     var denom = 1 + (Math.pow(Math.E, (-(1 / 15) * (max - 180))));
-    return 1000 / denom;
+    return config.eq.maxHeight / denom;
 }
 
 /**
