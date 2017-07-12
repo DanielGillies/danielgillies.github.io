@@ -34,6 +34,7 @@ function performSearch() {
 
 function bindSearchResults() {
     $(".search_results > div").on("click", function() {
+        toggleOverlay();
         var query = {
             id: $(this).data("id"),
             title: $(this).data("title"),
@@ -47,7 +48,6 @@ function bindSearchResults() {
             function(response) {
                 console.log(response);
                 startSong("assets/audio/downloaded/" + response.file + ".mp3");
-                 toggleOverlay();
             }
         )
     });
