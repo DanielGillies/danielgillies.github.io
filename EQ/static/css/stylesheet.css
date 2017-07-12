@@ -1,14 +1,16 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 html,
 body {
     width: 100%;
     height: 100%;
+    font-family: "Roboto";
 }
 
 body {
     background-color: #000000;
     margin: 0;
     overflow: hidden;
-    font-family: Comic;
+    /*font-family: Comic;*/
 }
 
 .aggettivi {
@@ -17,15 +19,15 @@ body {
     height: 100px;
 }
 
-#blankOverlay {
+/*#blankOverlay {
     width: 100%;
     height: 100%;
     position: absolute;
     background-color: #000000;
     text-align: center;
     font-size: 46px;
-    /*display: none;*/
-}
+    /*display: none;
+}*/
 
 #blocker {
     opacity: 0;
@@ -35,7 +37,14 @@ body {
     background-color: rgba(0, 0.3, 0.0);
 }
 
-#instructions {
+.instructions {
+    display: none;
+    text-align: center;
+    width: 100%;
+    color: white;
+}
+
+/*#instructions {
     width: 100%;
     height: 100%;
     display: -webkit-box;
@@ -53,7 +62,7 @@ body {
     color: #EEEEEE;
     text-align: center;
     cursor: pointer;
-}
+}*/
 
 .bwrap {
     margin: 0.5em 0 0 0
@@ -76,138 +85,65 @@ body {
     height: 100%;
     top: 0;
     left: 0;
-    background: rgba(155, 155, 155, 0.6);
+    background: rgba(80, 80, 80, 1);
+    display: none;
+    color: white;
+    z-index: 10;
 }
 
+.overlay.open {
+    display: block;
+}
 
-/* Overlay closing cross */
+.search_panel {
+    display: none;
+    width: 100%;
+    height: 90%;
+}
 
-.overlay .overlay-close {
-    width: 80px;
-    height: 80px;
+.toggle_panel {
     position: absolute;
-    right: 20px;
-    top: 20px;
-    overflow: hidden;
-    border: none;
-    background: url(../img/cross.png) no-repeat center center;
-    text-indent: 200%;
-    color: transparent;
-    outline: none;
-    z-index: 100;
-}
-
-
-/* Menu style */
-
-.overlay nav {
+    bottom: 0;
     width: 100%;
     text-align: center;
-    position: relative;
-    top: 50%;
-    height: 60%;
-    -webkit-transform: translateY(-50%);
-    transform: translateY(-50%);
 }
 
-.overlay table {
-    /*position: absolute;*/
+.toggle_panel:hover {
+    background-color: white;
+    color: black;
+    cursor: pointer;
+}
+
+.recent_panel {
+    display: none;
+    width: 100%;
+    height: 100%;
+}
+
+.recent {
+    overflow-y: scroll;
+    height: 80%;
+}
+
+.active {
+    display: block;
+}
+
+.search_results {
+    /*border-top: 1px solid white;*/
+    /*text-align: left;*/
+}
+
+.search_title {
     text-align: center;
-    /*left: 0px;*/
     width: 100%;
-    margin: 0;
-    padding: 0;
+    font-size: 48px;
 }
 
-.overlay table td {
-    width: 33%;
-    font-size: 24px;
-    font-weight: 300;
-    /*display: block;*/
-    color: #fff;
-    -webkit-transition: color 0.2s;
-    transition: color 0.2s;
-}
-
-.overlay table a {
-    /*width: 50%;*/
-    font-size: 24px;
-    font-weight: 300;
-    /*display: block;*/
-    color: #fff;
-    -webkit-transition: color 0.2s;
-    transition: color 0.2s;
-}
-
-.overlay table th {
-    font-size: 36px;
-    font-weight: 400;
-    /*display: block;*/
-    color: #999;
-    -webkit-transition: color 0.2s;
-    transition: color 0.2s;
-}
-
-.overlay table tr td a:hover,
-.overlay table tr td a:focus {
-    color: #f0f0f0;
-}
-
-
-/* Effects */
-
-.overlay-door {
-    visibility: hidden;
-    width: 0;
-    left: 50%;
-    -webkit-transform: translateX(-50%);
-    transform: translateX(-50%);
-    -webkit-transition: width 0.5s 0.3s, visibility 0s 0.8s;
-    transition: width 0.5s 0.3s, visibility 0s 0.8s;
-}
-
-.overlay-door.open {
-    visibility: visible;
+.recent_title {
+    text-align: center;
     width: 100%;
-    -webkit-transition: width 0.5s;
-    transition: width 0.5s;
-}
-
-.overlay-door nav {
-    position: absolute;
-    left: 50%;
-    -webkit-transform: translateY(-50%) translateX(-50%);
-    transform: translateY(-50%) translateX(-50%);
-}
-
-.overlay-door nav,
-.overlay-door .overlay-close {
-    opacity: 0;
-    -webkit-transition: opacity 0.3s 0.5s;
-    transition: opacity 0.3s 0.5s;
-}
-
-.overlay-door.open nav,
-.overlay-door.open .overlay-close {
-    opacity: 1;
-    -webkit-transition-delay: 0.5s;
-    transition-delay: 0.5s;
-}
-
-.overlay-door.close nav,
-.overlay-door.close .overlay-close {
-    -webkit-transition-delay: 0s;
-    transition-delay: 0s;
-}
-
-@media screen and (max-height: 30.5em) {
-    .overlay nav {
-        height: 70%;
-        font-size: 34px;
-    }
-    .overlay table tr td {
-        min-height: 34px;
-    }
+    font-size: 48px;
 }
 
 .result .info {
@@ -246,32 +182,40 @@ body {
 }
 
 #search_query {
+    position: absolute;
+    top: 40%;
+    left: 20%;
+    width: 60%;
+    text-align: center;
     border: none;
     border-color: transparent;
     background: rgba(155, 155, 155, 0);
-    color: #999;
+    color: #fff;
     font-size: 40px;
+    margin: 20px;
+    border-bottom: 1px solid white;
 }
 
 #search_query:focus {
-	outline: none;
+    outline: none;
 }
 
-#search_query::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-  color: white;
-}
-#search_query::-moz-placeholder { /* Firefox 19+ */
-  color: white;
-}
-#search_query:-ms-input-placeholder { /* IE 10+ */
-  color: white;
-}
-#search_query:-moz-placeholder { /* Firefox 18- */
-  color: white;
+#search_query::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: #999;
 }
 
+#search_query::-moz-placeholder {
+    /* Firefox 19+ */
+    color: #999;
+}
 
-/*.recent .result .info {
-	color: white;
-	display: inline-block;
-}*/
+#search_query:-ms-input-placeholder {
+    /* IE 10+ */
+    color: #999;
+}
+
+#search_query:-moz-placeholder {
+    /* Firefox 18- */
+    color: #999;
+}

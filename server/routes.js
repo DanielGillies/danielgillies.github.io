@@ -23,42 +23,12 @@ module.exports = function(app) {
 
     app.engine('html', require('ejs').renderFile);
 
-    // Route that client calls to get tweets from database
-    // app.route('/api/tweets')
-    //     .get(function (req, res) {
-    //       console.log(req.query.date);
-    //       dt = req.query.date;
-    //       Tweet.find({created_at: {$gt: dt}}, function (err, tweets) {
-    //         if (err) return handleError(err);
-    //         res.json({tweets: tweets});
-    //       }).limit(70);
-    //     });
-
-
-    // // Route to clear out the database
-    // app.route('/fresh')
-    //     .get(function (req, res) {
-    //       Tweet.remove({}, function (err) {
-    //         if (err) return handleError(err);
-    //         res.render('datawar.html');
-    //       });
-    //     });
-
-    /*
-    id: $(this).data("id"),
-            title: $(this).data("title"),
-            description: $(this).data("description"),
-            channel_name: $(this).data("channel_name")
-            */
-
     app.route('/api/getRecent').get(function(req, res) {
-        var query = Song.find({}, null, { limit: 5, sort: { 'timestamp': -1 } });
+        var query = Song.find({}, null, { limit: 15, sort: { 'timestamp': -1 } });
         query.exec(function(err, songs) {
             res.json(songs);
             console.log(songs);
         });
-        // var songs = Song.find().sort("timestamp", -1).limit(5);
-        // console.log(songs);
     })
 
     app.route('/api/download').get(function(req, res) {

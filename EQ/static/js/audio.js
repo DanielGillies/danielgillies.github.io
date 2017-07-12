@@ -56,6 +56,7 @@ var request = new XMLHttpRequest();
  * @param url
  */
 function startSong(url) {
+    stop();
     request.open("GET", url, true);
     request.responseType = "arraybuffer";
 

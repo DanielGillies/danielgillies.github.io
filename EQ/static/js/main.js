@@ -54,6 +54,7 @@ function init() {
     //We are putting the camera inside of 'yawObject'
     //Then adding it to the scene
     scene.add(controls.getObject());
+    controls.getObject().position.set(270, 5540, 11500);
 
     //Set the position of the camera
     camera.position.set(0, 10, 0);
