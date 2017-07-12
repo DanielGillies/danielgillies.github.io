@@ -94,7 +94,6 @@ function animate() {
         controls.update();
     }
     renderer.render(scene, camera);
-
 }
 /**
  * Makes sure everything is rendered appropriately for current screen size
@@ -103,13 +102,13 @@ function onWindowResize() {
 
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
-    if (oculusControls) {
-        oculusEffect.setSize(window.innerWidth, window.innerHeight); //resizes oculus effect appropriately
+    // if (oculusControls) {
+    //     oculusEffect.setSize(window.innerWidth, window.innerHeight); //resizes oculus effect appropriately
 
-    }
-    else {
-        renderer.setSize(window.innerWidth, window.innerHeight);
-    }
+    // }
+    // else {
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    // }
 }
 
 /**

@@ -129,8 +129,8 @@ PointCloud.prototype.updateLinear = function() {
 
             // gets index (0 - 15)
             var index = Math.floor((position.x / (this.fieldSize / 16)) + 8);
-            var low = (index * 20);
-            var high = (index + 1) * 20;
+            var low = (index * 16);
+            var high = (index + 1) * 16;
             var segment = [];
 
             for (var k = low; k < high; k++) {
@@ -183,8 +183,8 @@ PointCloud.prototype.updateLinear32 = function() {
             var position = this.geometry.vertices[i];
             var index = Math.floor((position.x / (this.fieldSize / 31)) + 16);
 
-            var low = (index * 10);
-            var high = (index + 1) * 10;
+            var low = (index * 8);
+            var high = (index + 1) * 8;
             var segment = [];
 
             for (var k = low; k < high; k++) {

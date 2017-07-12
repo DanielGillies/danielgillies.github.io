@@ -58,8 +58,6 @@ function unbindSearchResults() {
 }
 
 $("#search_query").on("keyup", function(event) {
-    // if (event.which == 13)
-    //     performSearch();
     if (searchTimer != -1) {
         clearInterval(searchTimer);
     }
@@ -115,28 +113,46 @@ $(".toggle_panel").click(function() {
     }
 })
 
+// Bind sort most recent click -- loads most played and swaps DOM
+$(".sort_recent").click(function() {
+    $(".recent").empty();
+    $(this).removeClass("active");
+    $(".sort_most").addClass("active");
+    loadRecentlyPlayed("played");
+})
 
-function loadRecentlyPlayed() {
-    $.get("api/getRecent", null,
+// Bind sort most played click -- loads most recent and swaps DOM
+$(".sort_most").click(function() {
+    $(".recent").empty();
+    $(this).removeClass("active");
+    $(".sort_recent").addClass("active");
+    loadRecentlyPlayed("recent");
+})
+
+// Takes in boolean for recent. if true, return in recent order, else return in most played order
+function loadRecentlyPlayed(sortOrder) {
+    $.get("api/getRecent", {sortOrder: sortOrder},
                 function(response) {
             for (var i = 0; i < response.length; i++) {
-                console.log(i);
                 $(".recent").append(
                     "<div class=\"result\" data-file=\"" + response[i].file +
+                    "\" data-id=\"" + response[i].id +
                     "\"><img src=\"" + response[i].thumbnail +
                     "\"><div class=\"info\"><h2>" + response[i].title + "</h2>" +
-                    "<h4>" + response[i].channel + "</h4></div></div>"
+                    "<h4>" + response[i].channel + "</h4>" + 
+                    "</div><div id=\"playCount\">Played: " + response[i].playCount + "</div></div>"
                 )
             }
             bindRecentlyPlayed();
-            console.log(response);
         });
-
 }
 
 function bindRecentlyPlayed() {
     $(".recent > div").on("click", function() {
-        startSong("assets/audio/downloaded/" + $(this).data("file") + ".mp3");
+        $.get("api/playRecent", {id: $(this).data("id")}, function(response) {
+            startSong("assets/audio/downloaded/" + response.file + ".mp3");
+        })
+        // startSong("assets/audio/downloaded/" + $(this).data("file") + ".mp3");
         toggleOverlay();
     })
 }

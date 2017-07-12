@@ -1,4 +1,3 @@
-
 var mongoose = require('mongoose');
 
 var songSchema = mongoose.Schema({
@@ -7,7 +6,9 @@ var songSchema = mongoose.Schema({
 	channel : String,
     description : String, 
     thumbnail : String,
-    timestamp : Number
+    timestamp : Number,
+    playCount : Number,
+    id: String
 })
 
 module.exports = mongoose.model('Song', songSchema)

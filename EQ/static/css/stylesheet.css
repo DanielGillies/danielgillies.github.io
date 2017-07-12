@@ -125,9 +125,12 @@ body {
     height: 80%;
 }
 
-.active {
-    display: block;
+.result #playCount {
+    position: absolute;
+    right: 20px;
+    top: 40%;
 }
+
 
 .search_results {
     /*border-top: 1px solid white;*/
@@ -153,6 +156,25 @@ body {
 
 .result {
     padding: 10px;
+    position: relative;
+}
+
+.sort {
+    display: none;
+    position: absolute;
+    top: 50px;
+    left: 85%;
+    padding: 10px;
+}
+
+.sort h4 {
+    display: inline;
+}
+
+.sort:hover {
+    cursor: pointer;
+    background-color: white;
+    color: rgb(80,80,80);
 }
 
 .result:hover {
@@ -219,3 +241,28 @@ body {
     /* Firefox 18- */
     color: #999;
 }
+
+.active {
+    display: block !important;
+}
+
+.close_btn {
+    font-size: 30px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+/*    -webkit-transition: font-size .5s, top .5s, right .5s;
+    transition: font-size .5s, top .5s, right .5s;*/
+}
+
+.close_btn:hover {
+    cursor: pointer;
+    font-size: 40px;
+    top: 5px;
+    right: 5px;
+}
+/*
+c://documents/index.html
+localhost/index.html
+
+var fr = new FileReader();*/
