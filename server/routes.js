@@ -106,12 +106,8 @@ module.exports = function(app) {
         });
     });
 
-    app.route('/test').get(function(req, res) {
-        res.render("test.html");
-    })
-
-    app.route('/boombox').get(function(req, res) {
-        res.render("boombox.html");
+    app.route('/jukebox').get(function(req, res) {
+        res.render("jukebox.html");
     })
 
     // Route to load the main page (GO HERE)

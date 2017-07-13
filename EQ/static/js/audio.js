@@ -91,19 +91,19 @@ function startSong(url) {
                     // for (var i = 0; i < binaries.length; i++) {
                     //     binaries[i] = (binaries[i] + 1) * 128.0;
                     // }
-                    num0 = 0;
-                    for (var i = 0; i < binaries.length; i++) {
-                        if (binaries[i] == 0) {
-                            num0++;
-                        } else {
-                            num0 = 0;
-                        }
-                        if (num0 > 10) {
-                            i = i-10;
-                            break;
-                        }
-                        // binaries[i] = (binaries[i] + 1) * 128.0;
-                    }
+                    // num0 = 0;
+                    // for (var i = 0; i < binaries.length; i++) {
+                    //     if (binaries[i] == 0) {
+                    //         num0++;
+                    //     } else {
+                    //         num0 = 0;
+                    //     }
+                    //     if (num0 > 10) {
+                    //         i = i-10;
+                    //         break;
+                    //     }
+                    //     // binaries[i] = (binaries[i] + 1) * 128.0;
+                    // }
                     // console.log(i);
                     // console.log(binaries);
                     // for (var i = 0; i < 1024; i++) {

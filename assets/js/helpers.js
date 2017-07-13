@@ -82,12 +82,11 @@ function fixGlass(game, shadowGens) {
             })
         }
         if (currMesh.name == "TV") {
+            // console.log(currMesh);
             // TV = currMesh;
             // currMat = currMesh.material.subMaterials[4];
             // currMat.diffuseTexture = new BABYLON.VideoTexture("video", ["assets/video/screen.mp4"], scene, true);
             game.TV = new Tv(game, currMesh);
-            console.log("TV");
-            console.log(game.TV);
             // console.log(currMesh);
             // 
             // currMat.diffuseTexture.video.loop = false;
@@ -200,6 +199,8 @@ function interact(game, hit) {
         game.TV.nextChannel();
         console.log(game.TV);
         // game.TV.nextChannel();
+    } else if (hit.pickedMesh.name == "JukeBox") {
+        window.location.href = "jukebox";
     } else {
         console.log("Interact on nothing!");
     }

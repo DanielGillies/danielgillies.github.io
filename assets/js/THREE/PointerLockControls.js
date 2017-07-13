@@ -2,6 +2,8 @@
  * @author mrdoob / http://mrdoob.com/
  */
 
+ var SPEED = 40000;
+
 THREE.PointerLockControls = function(camera) {
 
     var scope = this;
@@ -164,20 +166,20 @@ THREE.PointerLockControls = function(camera) {
         velocity.z -= velocity.z * 10.0 * delta;
 
         if (moveForward) {
-            velocity.z -= 12000.0 * delta;
-            velocity.y += (12000.0 * vector.y) * delta;
+            velocity.z -= SPEED * delta;
+            velocity.y += (SPEED * vector.y) * delta;
         }
 
         if (moveBackward) {
-            velocity.z += 12000.0 * delta;
-            velocity.y -= (12000.0 * vector.y) * delta;
+            velocity.z += SPEED * delta;
+            velocity.y -= (SPEED * vector.y) * delta;
         }
 
-        if (moveLeft) velocity.x -= 12000.0 * delta;
-        if (moveRight) velocity.x += 12000.0 * delta;
+        if (moveLeft) velocity.x -= SPEED * delta;
+        if (moveRight) velocity.x += SPEED * delta;
 
-        if (moveUp) velocity.y += 12000.0 * delta;
-        if (moveDown) velocity.y -= 12000.0 * delta;
+        if (moveUp) velocity.y += SPEED * delta;
+        if (moveDown) velocity.y -= SPEED * delta;
 
         yawObject.translateX(velocity.x * delta);
         yawObject.translateY(velocity.y * delta);

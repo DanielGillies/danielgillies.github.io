@@ -8,6 +8,8 @@ var renderer, scene, camera, directionalLight, water;
 var geometry, material, mesh, ground, PlayerCube, yawObject;
 var controls;
 
+var START_POS = new THREE.Vector3(270, 5540, 11500)
+
 var worldSize = 12800;
 
 var pointCloud2 = null;
@@ -21,7 +23,6 @@ var SCREEN_WIDTH = window.innerWidth, SCREEN_HEIGHT = window.innerHeight;
 
 init();
 animate();
-
 
 function init() {
 
@@ -54,15 +55,12 @@ function init() {
     //We are putting the camera inside of 'yawObject'
     //Then adding it to the scene
     scene.add(controls.getObject());
-    controls.getObject().position.set(270, 5540, 11500);
-
+    controls.getObject().position.set(START_POS.x, START_POS.y, START_POS.z);
     //Set the position of the camera
     camera.position.set(0, 10, 0);
 
     //Create a second PointCloud to fill the scene with particles
     pointCloud2 = new PointCloud(scene);
-
-    pointCloud2.maxParticles = 50000;
 
     //Sets value that determines how the particles span the space
     pointCloud2.fieldSize = worldSize;
@@ -76,7 +74,6 @@ function init() {
     //Reads kinect data / builds skeleton
     var bSkeleton = true;
     // window.Kinect = connectKinect(bSkeleton);
-
 
     window.addEventListener('resize', onWindowResize, false);
 }
@@ -92,6 +89,11 @@ function animate() {
     pointCloud2.update();
     if (controls.enabled) {
         controls.update();
+        var pos = controls.getObject().position
+        if (pos.z > 25000 || pos.z < -25000 || pos.y > 20000 || pos.y < -20000 || pos.x > 25000 || pos.x < -25000) {
+            console.log("MOVE");
+            controls.getObject().position.set(START_POS.x, START_POS.y, START_POS.z);
+        }
     }
     renderer.render(scene, camera);
 }

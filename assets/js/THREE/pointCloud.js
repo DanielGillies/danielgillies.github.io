@@ -22,6 +22,7 @@ var PointCloud = function(_scene) {
     this.animation = config.eq.animType || 2;
     this.colors = config.eq.colors;
     this.freqBands = 8192;
+    this.built = false;
 
     this.attributes = {
         size: { type: 'f', value: [] },
@@ -69,49 +70,20 @@ PointCloud.prototype.init = function() {
  * Determines which type of animation we would like to use based on user input
  */
 PointCloud.prototype.update = function() {
-    if (this.animation % 4 == 0) {
-        this.updateLinear();
-    } else if (this.animation % 4 == 1) {
-        this.updateLinear32();
-    } else if (this.animation % 4 == 2) {
-        this.updateGrid();
-    } else if (this.animation % 4 == 3) {
-        this.updateGridRandom();
-    }
-    // this.updateNew();
-};
-/**
- * @author: Danny Gillies
- * @author: Colin Clayton
- * Separates the PointCloud into 16 sections, sets colors based on location and animates each section based on frequency
- */
-PointCloud.prototype.initNew = function() {
     if (typeof binaries === 'object' && binaries.length - 1 > 0) {
-        var bandsPerSection = this.freqBands / 16;
-        for (var i = 0; i < 16; i++) {
-            // freqSections[i] = [];
-            pointSections[i] = [];
-            // console.log(i + " == " + i * bandsPerSection + " -> " + (((i + 1) * bandsPerSection) - 1));
-            // for (var ii = i * bandsPerSection; ii < (i + 1) * bandsPerSection; ii++) {
-            //     freqSections[i].push(binaries[ii]);
-            // }
+        if (this.animation % 4 == 0) {
+            this.updateLinear();
+        } else if (this.animation % 4 == 1) {
+            this.updateLinear32();
+        } else if (this.animation % 4 == 2) {
+            this.updateGrid();
+        } else if (this.animation % 4 == 3) {
+            this.updateGridRandom();
         }
-        // console.log(freqSections);
-
-        for (var i = 0; i < this.geometry.vertices.length; i++) {
-            var position = this.geometry.vertices[i];
-            var index = Math.floor(position.x / (this.fieldSize / 16)) + 8;
-            pointSections[index].push(this.geometry.vertices[i]);
-            this.values_color[i].setHex(this.colors[index]);
-            // console.log(index);
-        }
+    } else {
+        this.buildBinaries();
     }
-    //Need to tell THREE.js to update the particles' positions and colors.
-    this.geometry.verticesNeedUpdate = true;
-    this.geometry.__dirtyVertices = true;
-    this.attributes["customColor"].needsUpdate = true;
-    inited = true;
-}
+};
 
 function convertToFreq(index) {
     var steps = (index*119)/binaries.length;
@@ -119,6 +91,18 @@ function convertToFreq(index) {
     return freq;
 }
 
+PointCloud.prototype.buildBinaries = function() {
+    if (!this.built)
+    for (var i = 0; i < 512; i++) {
+        binaries[i] = 0;
+    }
+    this.built = true;
+};
+
+/**
+ * @author: Danny Gillies
+ * Separates the PointCloud into 16 sections, sets colors based on location and animates each section based on frequency
+ */
 PointCloud.prototype.updateLinear = function() {
 
     if (typeof binaries === 'object' && binaries.length - 1 > 0) {

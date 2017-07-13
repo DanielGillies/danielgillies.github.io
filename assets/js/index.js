@@ -158,6 +158,10 @@ if (BABYLON.Engine.isSupported() && !window.mobileAndTabletcheck()) {
                             lookingAt.setHTML("Next Channel");
                         lookingAt.show();
                         interactPrompt.show();
+                    } else if (hit.pickedMesh.name == "JukeBox") {
+                        lookingAt.setHTML("Enter Boombox");
+                        lookingAt.show();
+                        interactPrompt.show();
                     } else {
                         lookingAt.setHTML("");
                         lookingAt.hide();

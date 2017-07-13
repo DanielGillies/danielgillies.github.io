@@ -85,7 +85,7 @@ body {
     height: 100%;
     top: 0;
     left: 0;
-    background: rgba(80, 80, 80, 1);
+    background: #049;
     display: none;
     color: white;
     z-index: 10;
@@ -110,7 +110,7 @@ body {
 
 .toggle_panel:hover {
     background-color: white;
-    color: black;
+    color: #049;
     cursor: pointer;
 }
 
@@ -150,7 +150,7 @@ body {
 }
 
 .result .info {
-    color: white;
+    /*color: white;*/
     display: inline-block;
 }
 
@@ -163,7 +163,7 @@ body {
     display: none;
     position: absolute;
     top: 50px;
-    left: 85%;
+    left: 80%;
     padding: 10px;
 }
 
@@ -174,12 +174,14 @@ body {
 .sort:hover {
     cursor: pointer;
     background-color: white;
-    color: rgb(80,80,80);
+    color: #049;
 }
 
 .result:hover {
     cursor: pointer;
-    border: 1px solid white;
+    /*border: 1px solid white;*/
+    background-color: white;
+    color: #049;
 }
 
 .search_results h2,
