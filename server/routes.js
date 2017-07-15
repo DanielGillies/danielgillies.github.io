@@ -42,12 +42,9 @@ module.exports = function(app) {
     app.engine('html', require('ejs').renderFile);
 
     app.route('/api/getRecent').get(function(req, res) {
-        if (req.query.sortOrder == "played")
-        {
+        if (req.query.sortOrder == "played") {
             var query = Song.find({}, null, { limit: 100, sort: { 'playCount': -1 } });
-        }
-        else
-        {
+        } else {
             var query = Song.find({}, null, { limit: 100, sort: { 'timestamp': -1 } });
         }
         query.exec(function(err, songs) {
@@ -59,7 +56,7 @@ module.exports = function(app) {
     app.route('/api/playRecent').get(function(req, res) {
         var id = req.query.id;
 
-        Song.findOneAndUpdate({ id: id }, { $inc: { playCount: 1 }, $set:{timestamp:Date.now()} }, function(err, song) {
+        Song.findOneAndUpdate({ id: id }, { $inc: { playCount: 1 }, $set: { timestamp: Date.now() } }, function(err, song) {
             if (err) return res.send(500, { error: err });
             console.log(song);
             res.json({ file: song.file })
@@ -106,8 +103,19 @@ module.exports = function(app) {
         });
     });
 
+    app.route('/send_email').get(function(req, res) {
+    })
+
     app.route('/jukebox').get(function(req, res) {
         res.render("jukebox.html");
+    })
+
+    app.route("/personal").get(function(req, res) {
+        res.render("personal.html");
+    })
+
+    app.route("/resume").get(function(req, res) {
+        res.render("resume.html");
     })
 
     // Route to load the main page (GO HERE)

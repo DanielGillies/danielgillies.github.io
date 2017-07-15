@@ -81,6 +81,9 @@ function fixGlass(game, shadowGens) {
                 item.getShadowMap().renderList.push(currMesh); 
             })
         }
+        if (currMesh.name == "Door Main") {
+            game.door = currMesh;
+        }
         if (currMesh.name == "TV") {
             // console.log(currMesh);
             // TV = currMesh;
@@ -201,6 +204,8 @@ function interact(game, hit) {
         // game.TV.nextChannel();
     } else if (hit.pickedMesh.name == "JukeBox") {
         window.location.href = "jukebox";
+    } else if (hit.pickedMesh.name.includes("Door")) {
+        window.location.href = "personal";
     } else {
         console.log("Interact on nothing!");
     }

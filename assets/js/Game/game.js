@@ -5,4 +5,5 @@ function Game(scene, HUD, popupManager, TV) {
 	this.popupManager = popupManager;
 	this.HUD.scene = this.scene;
 	this.popupManager.scene = this.scene;
+	this.door;
 }

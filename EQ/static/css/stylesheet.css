@@ -13,21 +13,10 @@ body {
     /*font-family: Comic;*/
 }
 
-.aggettivi {
-    display: inline;
-    width: 100px;
-    height: 100px;
-}
-
-/*#blankOverlay {
-    width: 100%;
-    height: 100%;
+canvas {
     position: absolute;
-    background-color: #000000;
-    text-align: center;
-    font-size: 46px;
-    /*display: none;
-}*/
+    top: 0;
+}
 
 #blocker {
     opacity: 0;
@@ -43,6 +32,7 @@ body {
     width: 100%;
     color: white;
 }
+
 
 /*#instructions {
     width: 100%;
@@ -75,6 +65,7 @@ body {
     right: 0;
     border-radius: 3px;
 }
+
 
 
 /* Overlay style */
@@ -253,7 +244,7 @@ body {
     position: absolute;
     top: 10px;
     right: 10px;
-/*    -webkit-transition: font-size .5s, top .5s, right .5s;
+    /*    -webkit-transition: font-size .5s, top .5s, right .5s;
     transition: font-size .5s, top .5s, right .5s;*/
 }
 
@@ -263,8 +254,127 @@ body {
     top: 5px;
     right: 5px;
 }
+
+
 /*
 c://documents/index.html
 localhost/index.html
 
 var fr = new FileReader();*/
+
+
+/* LOADING */
+
+@keyframes clignote {
+    0% {
+        opacity: .2;
+    }
+    50% {
+        opacity: .8;
+    }
+    100% {
+        opacity: .2;
+    }
+}
+
+@-webkit-keyframes load {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes load {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+.loading {
+    display: none;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, .2);
+    position: absolute;
+    margin: 6em 2em;
+    font-size: 1em;
+    border-top: 1.1em solid #286090;
+    border-right: 1.1em solid rgba(0, 0, 0, 0);
+    border-bottom: 1.1em solid #286090;
+    border-left: 1.1em solid rgba(0, 0, 0, 0);
+    -webkit-animation: load 4.6s infinite linear;
+    animation: load 4.6s infinite linear;
+    /*position: relative;*/
+    border-radius: 50%;
+    width: 10em;
+    height: 10em;
+    top: 50%;
+    margin-top: -5em;
+    left: 50%;
+    margin-left: -5em;
+}
+
+.loading p {
+    position: absolute;
+    content: '';
+    margin: auto;
+    top: .1em;
+    left: .1em;
+    right: .1em;
+    bottom: .1em;
+    line-height: 10em;
+    text-align: center;
+    color: #fff;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    -webkit-animation: load 5.6s infinite linear reverse, clignote 1.6s infinite linear;
+    animation: load 4.6s infinite linear reverse, clignote 1.6s infinite linear;
+}
+
+.loading:before {
+    position: absolute;
+    display: block;
+    content: '';
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    font-size: .8em;
+    text-align: center;
+    border-top: 1.1em solid #407CAD;
+    border-right: 1.1em solid rgba(0, 0, 0, 0);
+    border-bottom: 1.1em solid #407CAD;
+    border-left: 1.1em solid rgba(0, 0, 0, 0);
+    -webkit-animation: load 3.6s infinite linear;
+    animation: load 3.6s infinite linear;
+    border-radius: 50%;
+}
+
+.loading:after {
+    position: absolute;
+    display: block;
+    content: '';
+    top: 1.1em;
+    left: 1.1em;
+    right: 1.1em;
+    bottom: 1.1em;
+    font-size: .8em;
+    text-align: center;
+    border-top: 1.1em solid #72ABDB;
+    border-right: 1.1em solid rgba(0, 0, 0, 0);
+    border-bottom: 1.1em solid #72ABDB;
+    border-left: 1.1em solid rgba(0, 0, 0, 0);
+    border-radius: 50%;
+    -webkit-animation: load 1.6s infinite linear;
+    animation: load 1.6s infinite linear;
+}

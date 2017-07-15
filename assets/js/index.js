@@ -114,6 +114,8 @@ if (BABYLON.Engine.isSupported() && !window.mobileAndTabletcheck()) {
 
                 renderStats(engine);
                 var distanceToTV = distanceVector(camera.position, game.TV.mesh.position);
+                var distanceToDoor = distanceVector(camera.position, game.door.position);
+                // console.log(distanceToDoor);
                 // console.log(distanceToTV);
                 hit = rayCast(newScene);
                 if (hit.pickedMesh) {
@@ -160,6 +162,10 @@ if (BABYLON.Engine.isSupported() && !window.mobileAndTabletcheck()) {
                         interactPrompt.show();
                     } else if (hit.pickedMesh.name == "JukeBox") {
                         lookingAt.setHTML("Enter Boombox");
+                        lookingAt.show();
+                        interactPrompt.show();
+                    } else if (hit.pickedMesh.name.includes("Door") && distanceToDoor < 6.5) {
+                        lookingAt.setHTML("Go to 2d site");
                         lookingAt.show();
                         interactPrompt.show();
                     } else {
