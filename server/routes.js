@@ -15,6 +15,7 @@ var path = require("path");
 var Song = require(path.resolve("server/models/song.js"));
 var exec = require('child_process').exec;
 var fs = require("fs");
+var mobile = require("is-mobile");
 
 // Store the database connection in a variable and open the connection
 var db = mongoose.connection;
@@ -120,6 +121,10 @@ module.exports = function(app) {
 
     // Route to load the main page (GO HERE)
     app.route('/').get(function(req, res) {
-        res.render('index.html');
+        if (mobile()) {
+            res.render("personal.html");
+        } else {
+            res.render('index.html');
+        }
     });
 };

@@ -378,3 +378,25 @@ var fr = new FileReader();*/
     -webkit-animation: load 1.6s infinite linear;
     animation: load 1.6s infinite linear;
 }
+.no-support {
+    position: absolute;
+    text-align: center;
+    display: none;
+    top: 30%;
+}
+
+.no-support a:visited {
+    font-size: 30px;
+    text-decoration: none;
+    color: green;
+}
+
+.no-support a {
+    /*width: 20%;*/
+    display: inline-block;
+    margin-top: 20px;
+    padding: 15px 10px;
+    border: 2px solid green;
+    font-size: 30px;
+    text-decoration: none;
+}
