@@ -7,6 +7,10 @@
     font-family: monofonto;
 }
 
+a:visited {
+    text-decoration-line: none;
+}
+
 html,
 body {
     width: 100%;
@@ -200,4 +204,17 @@ body {
     text-align: center;
     display: none;
     color: white;
+}
+
+.lowFPS {
+    position: absolute;
+    width: 90%;
+    height: 100%;
+    z-index: 1000;
+    text-align: center;
+    padding-top: 30%;
+    display: none;
+    background-color: #bbb;
+    padding-left: 5%;
+    padding-right: 5%;
 }

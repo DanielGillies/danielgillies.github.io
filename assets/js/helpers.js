@@ -1,9 +1,15 @@
 //GLOBALS
+var FPS_SUM = 0;
+var FPS_COUNT = 0;
+var FPS_AVG_RESET = 300;
+
+var STOP_RENDER = false;
+
 var INTERACT_MENU_OPEN = false;
 
 var WORK_OBJECTS = ["Computer Desk", "Left-Monitor", "Computer Area", "Right-Monitor", "PC", "MousePad"];
 
-var RESUME_JSON = $.getJSON("assets/data/resume.json", function(){})
+var RESUME_JSON = $.getJSON("assets/data/resume.json", function() {})
 
 var TV;
 var PANEL;
@@ -78,7 +84,7 @@ function fixGlass(game, shadowGens) {
             currMesh.material.maxSimultaneousLights = 6;
 
             shadowGens.forEach(function(item) {
-                item.getShadowMap().renderList.push(currMesh); 
+                item.getShadowMap().renderList.push(currMesh);
             })
         }
         if (currMesh.name == "Door Main") {
@@ -120,7 +126,7 @@ function fixGlass(game, shadowGens) {
         //     scene
         // }
         // if (currMesh.name == ("Work_Experience")) {
-        // 	console.log(scene.meshes[i]);
+        //  console.log(scene.meshes[i]);
         // }
     }
 }
@@ -128,6 +134,23 @@ function fixGlass(game, shadowGens) {
 function renderStats(engine) {
     $(SETTINGS.SELECTORS.stats).html("FPS: " + Math.round(engine.getFps()) + "<br>" +
         "Draws: " + engine._drawCalls.current);
+    checkFPS(Math.round(engine.getFps()));
+}
+
+function checkFPS(fps) {
+    FPS_COUNT++;
+    FPS_SUM += fps;
+    var avg = FPS_SUM / FPS_COUNT;
+    if (FPS_COUNT > 300) {
+        if (avg < 20) {
+            console.log("FPS too low");
+            STOP_RENDER = true;
+            $(".lowFPS").show();
+            document.exitPointerLock();
+        }
+        FPS_COUNT = 0;
+        FPS_SUM = 0;
+    }
 }
 
 function rayCast(scene) {
@@ -198,7 +221,7 @@ function interact(game, hit) {
         game.popupManager.show();
         game.HUD.hide();
         document.exitPointerLock();
-    } else if (hit.pickedMesh.name == "TV") {        
+    } else if (hit.pickedMesh.name == "TV") {
         game.TV.nextChannel();
         // console.log(game.TV);
         // game.TV.nextChannel();
@@ -229,11 +252,10 @@ function buildAwards(awardManager) {
     }
 }
 
-function distanceVector( v1, v2 )
-{
+function distanceVector(v1, v2) {
     var dx = v1.x - v2.x;
     var dy = v1.y - v2.y;
     var dz = v1.z - v2.z;
 
-    return Math.sqrt( dx * dx + dy * dy + dz * dz );
+    return Math.sqrt(dx * dx + dy * dy + dz * dz);
 }

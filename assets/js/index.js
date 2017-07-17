@@ -190,7 +190,9 @@ if (BABYLON.Engine.isSupported() && !window.mobileAndTabletcheck()) {
 
             // Once the scene is loaded, just register a render loop to render it
             engine.runRenderLoop(function() {
-                newScene.render();
+                if (!STOP_RENDER) {
+                    newScene.render();
+                }
             });
 
             setupPointerLock(newScene, game);
