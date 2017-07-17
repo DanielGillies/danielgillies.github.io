@@ -233,6 +233,10 @@ blockquote .name {
     margin: 0;
 }
 
+.contact-header a:hover {
+    color: #1B85F5
+}
+
 @media (max-width: 768px) {
     body {
         font-size: 50%;
