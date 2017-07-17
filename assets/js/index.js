@@ -9,6 +9,11 @@ if (BABYLON.Engine.isSupported() && !window.mobileAndTabletcheck()) {
         // Wait for textures and shaders to be ready
         newScene.executeWhenReady(function() {
             $(SETTINGS.SELECTORS.progressBar).hide();
+            $(".WIP").fadeIn(400, function() {
+                setTimeout(function() {
+                    $(".WIP").fadeOut()
+                } ,4000)
+            });
             var hit;
             var interactable = false;
             var camera = newScene.activeCamera;
@@ -80,11 +85,13 @@ if (BABYLON.Engine.isSupported() && !window.mobileAndTabletcheck()) {
             buildSkyBox(newScene);
             setupCamera(camera);
 
-            var channel = new TVChannel(game, "assets/video/musicmuseum.mp4");
-            var channel2 = new TVChannel(game, "assets/video/Team Carbon Frag Video.mp4");
+            var channel1 = new TVChannel(game, "assets/video/jukebox.mp4");
+            var channel2 = new TVChannel(game, "assets/video/musicmuseum.mp4");
+            var channel3 = new TVChannel(game, "assets/video/Team Carbon Frag Video.mp4");
 
-            game.TV.addChannel(channel);
+            game.TV.addChannel(channel1);
             game.TV.addChannel(channel2);
+            game.TV.addChannel(channel3);
 
 
             //Set gravity for the scene (G force like, on Y-axis)
@@ -212,8 +219,12 @@ if (BABYLON.Engine.isSupported() && !window.mobileAndTabletcheck()) {
 
         });
     }, function(progress) {
-        // console.log(progress);
-        $(SETTINGS.SELECTORS.progressBar).html("Loading... " + progress.loaded + " / " + progress.total + "<br>" + Math.floor((progress.loaded / progress.total) * 100) + "%");
+        console.log(progress);
+        var perc = Math.floor((progress.loaded / progress.total) * 100);
+        if (perc < 100)
+            $(SETTINGS.SELECTORS.progressBar).html("Loading... " + perc + "% <br> Import meshes");
+        else
+            $(SETTINGS.SELECTORS.progressBar).html("Loading... " + perc + "% <br> Importing Textures");
         //console.log("Loaded: " + progress.loaded + " / " + progress.total);
         // To do: give progress feedback to user
     });
