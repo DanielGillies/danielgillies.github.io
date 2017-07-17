@@ -22,7 +22,6 @@
   "dependencies": {
     "ejs": "^2.5.6",
     "express": "^4.15.3",
-    "is-mobile": "^0.2.2",
     "mongoose": "^4.11.1",
     "nodemailer": "^4.0.1",
     "routes": "^2.1.0",
