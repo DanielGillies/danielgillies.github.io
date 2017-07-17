@@ -64,6 +64,7 @@ canvas {
     bottom: 0;
     right: 0;
     border-radius: 3px;
+    z-index: 2;
 }
 
 
