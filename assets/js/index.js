@@ -222,7 +222,7 @@ if (BABYLON.Engine.isSupported() && !window.mobileAndTabletcheck()) {
         // console.log(progress);
         var perc = Math.floor((progress.loaded / progress.total) * 100);
         if (perc < 100)
-            $(SETTINGS.SELECTORS.progressBar).html("Loading... " + perc + "% <br> Import meshes");
+            $(SETTINGS.SELECTORS.progressBar).html("Loading... " + perc + "% <br> Importing meshes");
         else
             $(SETTINGS.SELECTORS.progressBar).html("Loading... " + perc + "% <br> Importing Textures");
         //console.log("Loaded: " + progress.loaded + " / " + progress.total);
