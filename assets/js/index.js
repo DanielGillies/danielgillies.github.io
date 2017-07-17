@@ -168,7 +168,7 @@ if (BABYLON.Engine.isSupported() && !window.mobileAndTabletcheck()) {
                         lookingAt.show();
                         interactPrompt.show();
                     } else if (hit.pickedMesh.name == "JukeBox") {
-                        lookingAt.setHTML("Enter Boombox");
+                        lookingAt.setHTML("Enter Jukebox");
                         lookingAt.show();
                         interactPrompt.show();
                     } else if (hit.pickedMesh.name.includes("Door") && distanceToDoor < 6.5) {
