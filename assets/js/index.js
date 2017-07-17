@@ -18,7 +18,7 @@ if (BABYLON.Engine.isSupported() && !window.mobileAndTabletcheck()) {
             var interactable = false;
             var camera = newScene.activeCamera;
 
-            console.log(newScene);
+            // console.log(newScene);
 
             var loader = new BABYLON.AssetsManager(newScene);
             var headTask = loader.addMeshTask("head", "", "assets/models/head/", "model_mesh.obj");
@@ -75,7 +75,7 @@ if (BABYLON.Engine.isSupported() && !window.mobileAndTabletcheck()) {
 
             var PM = new PopupManager($(SETTINGS.SELECTORS.popup), { "EM": eMan, "AM": aMan });
 
-            console.log(PM);
+            // console.log(PM);
 
             var game = new Game(newScene, HUD, PM);
 
@@ -219,7 +219,7 @@ if (BABYLON.Engine.isSupported() && !window.mobileAndTabletcheck()) {
 
         });
     }, function(progress) {
-        console.log(progress);
+        // console.log(progress);
         var perc = Math.floor((progress.loaded / progress.total) * 100);
         if (perc < 100)
             $(SETTINGS.SELECTORS.progressBar).html("Loading... " + perc + "% <br> Import meshes");

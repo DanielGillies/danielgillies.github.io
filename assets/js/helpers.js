@@ -194,20 +194,20 @@ function setupPointerLock(scene, game) {
 
 function interact(game, hit) {
     if (hit.pickedMesh && game.popupManager.canBeActivated) {
-        console.log("Interact on " + hit.pickedMesh.name)
+        // console.log("Interact on " + hit.pickedMesh.name)
         game.popupManager.show();
         game.HUD.hide();
         document.exitPointerLock();
     } else if (hit.pickedMesh.name == "TV") {        
         game.TV.nextChannel();
-        console.log(game.TV);
+        // console.log(game.TV);
         // game.TV.nextChannel();
     } else if (hit.pickedMesh.name == "JukeBox") {
         window.location.href = "jukebox";
     } else if (hit.pickedMesh.name.includes("Door")) {
         window.location.href = "personal";
     } else {
-        console.log("Interact on nothing!");
+        // console.log("Interact on nothing!");
     }
 }
 
