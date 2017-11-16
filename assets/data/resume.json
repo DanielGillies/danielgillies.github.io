@@ -6,10 +6,21 @@
 	},
 	"work": [
 		{
+			"company": "Elevate Labs",
+			"position": "Game Developer",
+			"startDate": "September 2017",
+			"endDate": "Present",
+			"description": "Elevate is a new type of cognitive training tool designed to build communication and analytical skills.",
+			"highlights": [
+				"Designed and built prototypes for new exercises.",
+				"Modified existing games to account for new IPhone X resolution."
+			]
+		},
+		{
 			"company": "Piper, Inc.",
 			"position": "Game Developer",
 			"startDate": "October 2016",
-			"endDate": "Present",
+			"endDate": "July 2017",
 			"description": "Piper makes a build-it-yourself computer kit for kids using a Raspberry Pi. It runs a 3D game we made to teach kids about STEM topics with a voxel engine.",
 			"highlights": [
 				"Designed and Developed Music Sequencer Level to include full drum kits, octaves, and recording functionality with dynamic length and bpm.",
