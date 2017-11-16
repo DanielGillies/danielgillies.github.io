@@ -31,7 +31,10 @@ app.set('view engine', 'html');
 
 app.use(express.static('./'));
 
-var httpServer = express.createServer();
+var httpServer = http.createServer(function (req, res) {
+    res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
+    res.end();
+})
 var httpsServer = https.createServer(credentials, app);
 
 // Route all http requests to https
