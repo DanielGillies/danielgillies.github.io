@@ -31,16 +31,12 @@ app.set('view engine', 'html');
 
 app.use(express.static('./'));
 
+// Route all http requests to https
 var httpServer = http.createServer(function (req, res) {
     res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
     res.end();
 })
 var httpsServer = https.createServer(credentials, app);
-
-// Route all http requests to https
-http.get("*", function(req, res) {
-	res.redirect("https://dannoldg.com"+req.url);
-});
 
 // Start server
 httpServer.listen(httpPort);
