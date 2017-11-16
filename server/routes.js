@@ -120,7 +120,7 @@ module.exports = function(app) {
     })
 
     app.route("/personal").get(function(req, res) {
-        res.send("personal.html");
+        res.render("personal.html");
     })
 
     app.route("/resume").get(function(req, res) {
@@ -131,7 +131,7 @@ module.exports = function(app) {
     app.route('/').get(function(req, res) {
         var isMobile = isCallerMobile(req);
         if (isMobile) {
-            res.send("personal.html");
+            res.render("personal.html");
         } else {
             res.render('index.html');
         }
