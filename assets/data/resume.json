@@ -13,7 +13,8 @@
 			"description": "Elevate is a new type of cognitive training tool designed to build communication and analytical skills.",
 			"highlights": [
 				"Designed and built prototypes for new exercises.",
-				"Modified existing games to account for new IPhone X resolution."
+				"Modified existing games to allow support for IPhone X."
+				"Added new instances to data warehouse content testing pipeline."
 			]
 		},
 		{
