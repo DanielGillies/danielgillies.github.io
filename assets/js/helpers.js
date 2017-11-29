@@ -9,7 +9,7 @@ var INTERACT_MENU_OPEN = false;
 
 var WORK_OBJECTS = ["Computer Desk", "Left-Monitor", "Computer Area", "Right-Monitor", "PC", "MousePad"];
 
-var RESUME_JSON = $.getJSON("assets/data/resume.json", function() {})
+var RESUME_JSON = JSON.parse($.getJSON("assets/data/resume.json", function() {}).responseText)
 
 var TV;
 var PANEL;
@@ -235,18 +235,18 @@ function interact(game, hit) {
 }
 
 function buildWorkExperiences(workManager) {
-    var workArray = RESUME_JSON.responseJSON.work;
+    var workArray = RESUME_JSON.work;
     for (var i = 0; i < workArray.length; i++) {
-        var currentWork = RESUME_JSON.responseJSON.work[i];
+        var currentWork = RESUME_JSON.work[i];
         var temp = new WorkExperience(currentWork.position, currentWork.company, currentWork.startDate, currentWork.endDate, currentWork.description, currentWork.highlights);
         workManager.addItem(temp);
     }
 }
 
 function buildAwards(awardManager) {
-    var awardArray = RESUME_JSON.responseJSON.awards;
+    var awardArray = RESUME_JSON.awards;
     for (var i = 0; i < awardArray.length; i++) {
-        var currentAward = RESUME_JSON.responseJSON.awards[i];
+        var currentAward = RESUME_JSON.awards[i];
         var temp = new Award(currentAward.award, currentAward.organization, currentAward.date, currentAward.description, currentAward.video);
         awardManager.addItem(temp);
     }
