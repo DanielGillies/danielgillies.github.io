@@ -15,7 +15,7 @@ var path = require("path");
 var Song = require(path.resolve("server/models/song.js"));
 var exec = require('child_process').exec;
 var fs = require("fs");
-
+var resume = require("../assets/data/resume.json");
 
 // Store the database connection in a variable and open the connection
 var db = mongoose.connection;
@@ -111,6 +111,11 @@ module.exports = function(app) {
 
         });
     });
+
+    app.route("/api/get_resume").get(function(req, res) {
+      res.setHeader("Content-Type", "application/json");
+      res.json(resume);
+    })
 
     app.route('/send_email').get(function(req, res) {
     })

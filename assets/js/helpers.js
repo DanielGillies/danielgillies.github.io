@@ -8,11 +8,19 @@ var STOP_RENDER = false;
 var INTERACT_MENU_OPEN = false;
 
 var WORK_OBJECTS = ["Computer Desk", "Left-Monitor", "Computer Area", "Right-Monitor", "PC", "MousePad"];
-
-var RESUME_JSON = JSON.parse($.getJSON("assets/data/resume.json", function() {}).responseText)
+var RESUME_JSON;
+$.getJSON("assets/data/resume.json", function(data) {
+  RESUME_JSON = data
+})
 
 var TV;
 var PANEL;
+
+function getResume(callback) {
+  $.getJSON("assets/data/resume.json", function(data) {
+    callback(data);
+  })
+}
 
 function vecToLocal(vector, mesh) {
     var m = mesh.getWorldMatrix();
@@ -97,7 +105,7 @@ function fixGlass(game, shadowGens) {
             // currMat.diffuseTexture = new BABYLON.VideoTexture("video", ["assets/video/screen.mp4"], scene, true);
             game.TV = new Tv(game, currMesh);
             // console.log(currMesh);
-            // 
+            //
             // currMat.diffuseTexture.video.loop = false;
             // currMat.diffuseTexture.video.muted = true;
             // console.log(currMat.diffuseTexture.video.currentTime);
