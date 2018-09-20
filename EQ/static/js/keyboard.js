@@ -20,8 +20,13 @@ var init_keys = function(renderDom) {
             if (scope.keyboard.eventMatches(event, 'q') && !wasPressed['q']) {
                 console.log("Changing eq animation");
                 pointCloud2.animation++;
-                if (pointCloud2.animation == 4) {
-                    pointCloud2.animation = 0;
+                if (pointCloud2.animation == 3) {
+                    pointCloud2.maxHeight = 5000;
+                } else {
+                    pointCloud2.maxHeight = config.eq.maxHeight || 250;
+                    if (pointCloud2.animation == 4) {
+                        pointCloud2.animation = 0;
+                    }
                 }
                 console.log(pointCloud2);
                 // pointCloud2.initNew();
