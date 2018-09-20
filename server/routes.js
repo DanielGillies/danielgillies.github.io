@@ -88,6 +88,7 @@ module.exports = function(app) {
                 var fullpath = downloadPath + filename;
 
                 var cmd = "python server/_downloads/youtube_dl/__main__.py https://www.youtube.com/watch?v=" + id + " --extract-audio -o " + fullpath + ".mp3 --audio-format mp3";
+                console.log(cmd);
                 exec(cmd, function(error, stdout, stderr) {
                     // save file info in database
                     var song = new Song({

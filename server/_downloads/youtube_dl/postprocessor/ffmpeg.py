@@ -44,7 +44,7 @@ ACODECS = {
     'aac': 'aac',
     'flac': 'flac',
     'm4a': 'aac',
-    'opus': 'opus',
+    'opus': 'libopus',
     'vorbis': 'libvorbis',
     'wav': None,
 }
@@ -77,7 +77,7 @@ class FFmpegPostProcessor(PostProcessor):
 
     def _determine_executables(self):
         programs = ['avprobe', 'avconv', 'ffmpeg', 'ffprobe']
-        prefer_ffmpeg = False
+        prefer_ffmpeg = True
 
         self.basename = None
         self.probe_basename = None
@@ -85,7 +85,7 @@ class FFmpegPostProcessor(PostProcessor):
         self._paths = None
         self._versions = None
         if self._downloader:
-            prefer_ffmpeg = self._downloader.params.get('prefer_ffmpeg', False)
+            prefer_ffmpeg = self._downloader.params.get('prefer_ffmpeg', True)
             location = self._downloader.params.get('ffmpeg_location')
             if location is not None:
                 if not os.path.exists(location):
@@ -117,19 +117,19 @@ class FFmpegPostProcessor(PostProcessor):
                 (p, get_exe_version(p, args=['-version'])) for p in programs)
             self._paths = dict((p, p) for p in programs)
 
-        if prefer_ffmpeg:
-            prefs = ('ffmpeg', 'avconv')
-        else:
+        if prefer_ffmpeg is False:
             prefs = ('avconv', 'ffmpeg')
+        else:
+            prefs = ('ffmpeg', 'avconv')
         for p in prefs:
             if self._versions[p]:
                 self.basename = p
                 break
 
-        if prefer_ffmpeg:
-            prefs = ('ffprobe', 'avprobe')
-        else:
+        if prefer_ffmpeg is False:
             prefs = ('avprobe', 'ffprobe')
+        else:
+            prefs = ('ffprobe', 'avprobe')
         for p in prefs:
             if self._versions[p]:
                 self.probe_basename = p
@@ -542,7 +542,7 @@ class FFmpegFixupM3u8PP(FFmpegPostProcessor):
             temp_filename = prepend_extension(filename, 'temp')
 
             options = ['-c', 'copy', '-f', 'mp4', '-bsf:a', 'aac_adtstoasc']
-            self._downloader.to_screen('[ffmpeg] Fixing malformated aac bitstream in "%s"' % filename)
+            self._downloader.to_screen('[ffmpeg] Fixing malformed AAC bitstream in "%s"' % filename)
             self.run_ffmpeg(filename, temp_filename, options)
 
             os.remove(encodeFilename(filename))
@@ -585,7 +585,7 @@ class FFmpegSubtitlesConvertorPP(FFmpegPostProcessor):
                 dfxp_file = old_file
                 srt_file = subtitles_filename(filename, lang, 'srt')
 
-                with io.open(dfxp_file, 'rt', encoding='utf-8') as f:
+                with open(dfxp_file, 'rb') as f:
                     srt_data = dfxp2srt(f.read())
 
                 with io.open(srt_file, 'wt', encoding='utf-8') as f:
