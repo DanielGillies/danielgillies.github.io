@@ -15,10 +15,11 @@ var express = require('express');
 var mongoose = require('mongoose');
 var path = require('path');
 var fs = require('fs');
+var forceDomain = require('forcedomain')
 var app = express();	
 
-var privateKey  = fs.readFileSync('/etc/letsencrypt/live/dannoldg.com/privkey.pem', 'utf8');
-var certificate  = fs.readFileSync('/etc/letsencrypt/live/dannoldg.com/fullchain.pem', 'utf8');
+var privateKey  = fs.readFileSync('/etc/letsencrypt/live/danielgillies.dev/privkey.pem', 'utf8');
+var certificate  = fs.readFileSync('/etc/letsencrypt/live/danielgillies.dev/fullchain.pem', 'utf8');
 var credentials = {key: privateKey, cert: certificate};
 
 mongoose.connect('mongodb://localhost/boombox');
@@ -33,7 +34,8 @@ app.use(express.static('./'));
 
 // Route all http requests to https
 var httpServer = http.createServer(function (req, res) {
-    res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
+    var host = req.headers.host
+    res.writeHead(301, { "Location": "https://" + host + req.url });
     res.end();
 })
 var httpsServer = https.createServer(credentials, app);
