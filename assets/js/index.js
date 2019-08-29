@@ -10,9 +10,9 @@ if (BABYLON.Engine.isSupported() && !window.mobileAndTabletcheck()) {
         newScene.executeWhenReady(function() {
             $(SETTINGS.SELECTORS.progressBar).hide();
             $(".WIP").fadeIn(400, function() {
-                setTimeout(function() {
-                    $(".WIP").fadeOut()
-                } ,4000)
+                //setTimeout(function() {
+                 //   $(".WIP").fadeOut()
+                //} ,4000)
             });
             var hit;
             var interactable = false;
@@ -216,6 +216,9 @@ if (BABYLON.Engine.isSupported() && !window.mobileAndTabletcheck()) {
                         // case 75:
                         //     PM.setCurrentManager("AM");
                         //     break;
+		    case SETTINGS.KEYBINDS.exit:
+			window.location.href = "personal";
+			break;
                 }
             }
 

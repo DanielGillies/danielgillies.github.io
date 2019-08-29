@@ -1,5 +1,6 @@
 var KEYS = {
-	"e": 69
+	"e": 69,
+	"p": 80
 }
 
 var SETTINGS = {
@@ -20,6 +21,7 @@ var SETTINGS = {
 		"reach": 3
 	},
 	"KEYBINDS": {
-		"interact": KEYS.e
+		"interact": KEYS.e,
+		"exit": KEYS.p
 	}
 }

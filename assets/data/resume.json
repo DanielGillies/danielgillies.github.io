@@ -6,10 +6,21 @@
 	},
 	"work": [
 		{
+			"company": "AIReverie, Inc.",
+			"position": "UE4 C++ Engineer",
+			"startDate": "May 2018",
+			"endDate": "Present",
+			"description": "AI.Reverie is a simulation platform that trains AI to understand the world. https://aireverie.com",
+			"highlights": [
+				"Designed and implemented a procedural road generation system used to generate an area of 149 sq. km. of city.",
+				"Created and maintained tools to speed up the development cycle for other engineers and artists"
+			]
+		},
+		{
 			"company": "Elevate Labs",
 			"position": "Game Developer",
 			"startDate": "September 2017",
-			"endDate": "Present",
+			"endDate": "January 2018",
 			"description": "Elevate is a new type of cognitive training tool designed to build communication and analytical skills.",
 			"highlights": [
 				"Designed and built prototypes for new exercises.",
