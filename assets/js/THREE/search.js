@@ -8,7 +8,7 @@ function performSearch() {
             part: "snippet",
             type: "video",
             maxResults: 6,
-            key: "AIzaSyAioQgzf4i7pI6bsGmyvZRX4dGW2wpEttw",
+            key: "AIzaSyD0kgEk4_g0jXj8NAA-6asC43gqovZD1G8",
             q: $("#search_query").val()
         },
         function(data) {
