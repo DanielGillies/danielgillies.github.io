@@ -293,6 +293,9 @@ blockquote .name {
     .section {
         margin-bottom: 15px;
     }
+    .section-sub {
+        page-break-inside: avoid;
+    }
     .main .section:last-child {
         margin-bottom: 0;
     }
