@@ -1,19 +1,47 @@
 {
 	"basics": {
 		"name": "Danny Gillies",
-		"title": "Software Developer",
-		"email": "gillies.daniel@gmail.com"
+		"title": "Generalist & UE4 Developer",
+		"email": "gillies.daniel@gmail.com",
+		"phone": "(845) 825-1645",
+		"linkedin": "https://www.linkedin.com/in/danielgillies1/",
+		"github": "https://github.com/DanielGillies",
+		"website": "danielgillies.dev",
+		"about": "Born and raised in New York, moved to the West Coast for new experiences, and then back to the East Coast. Travelled to compete in video games and now working as a UE4 Engineer."
 	},
 	"work": [
 		{
 			"company": "AIReverie, Inc.",
-			"position": "UE4 C++ Engineer",
-			"startDate": "May 2018",
+			"position": "Lead Core Platform Engineer",
+			"startDate": "January 2021",
 			"endDate": "Present",
 			"description": "AI.Reverie is a simulation platform that trains AI to understand the world. https://aireverie.com",
 			"highlights": [
-				"Designed and implemented a procedural road generation system used to generate an area of 149 sq. km. of city.",
-				"Created and maintained tools to speed up the development cycle for other engineers and artists"
+				"Architected and implemented new perforce stream solution to fit our project structure.",
+				"Improved our implementation of Unreal Game Sync to better facilitate team, including setup of distributing precompiled editors for non-engineers.",
+				"Managed merging and organizing content and source code across a perforce depot used by a team of 15+ developers.",
+				"Created a style guide to go over best practices across the entire team and all projects, combined with adding a linter tool to UE4 to allow an easy way to check against the style guide.",
+				"Directly managed a team of 4 technical artists and engineers across Houdini and UE4 in very rapid prototyping of systems and tools for synthetic data generation."
+			]
+		},
+		{
+			"company": "AIReverie, Inc.",
+			"position": "UE4 C++ Engineer",
+			"startDate": "May 2018",
+			"endDate": "January 2021",
+			"description": "AI.Reverie is a simulation platform that trains AI to understand the world. https://aireverie.com",
+			"highlights": [
+				"Created DLC system in UE4 to download environments from S3 using authentication.",
+				"Created login/user profile system in UE4 with associated permissions for access to specific environments and selectable pawns.",
+				"Customized and set up Unreal Game Sync to allow for easy use of perforce.",
+				"Created a road generation system based on open street maps data, including intersections and AI vehicles.",
+				"Designed and implemented a full-stack system to automate capturing images in UE4 on both remote and local machines.",
+				"Packaged and distributed installable versions of our simulations to multiple clients, providing support and usage instructions. This contained a local version of the python API used to start captures.",
+				"Provided general engineering support to a team of 5 technical artists and 4 Houdini artists.",
+				"Upgrade internal UE4 to new versions released by Epic as necessary.",
+				"Modified UE4 source code to better facilitate the needs of the development team.",
+				"Created tools for technical artists to use, and taught best practices and new ways to build systems using blueprints more efficiently.",
+				"Developed the core platform for generating an extremely high quantity of synthetic data very quickly, across multiple industries."
 			]
 		},
 		{
@@ -68,7 +96,56 @@
 				"Created a full-stack web application using Node.js, Three.js, Physi,js, and WebGL to visualize tweets and audio data in a 3D world.",
 				"Developed support for Oculus Rift VR, Microsoft Kinect and Wii Balance Board.",
 				"Designed and Built server architecture to allow for tweets to be pulled into the 3D scene in real-time with specific hashtags.",
-				"Presented the project for Autodesk’s 3D Webfest 2015 (<a href='https://youtu.be/fiS3NBZRY44?t=1605'>Video</a>) - Project can be viewed here: <a href='http://vrdatalandscape.com/'>vrdatalandscape.com</a>."
+				"Presented the project for Autodesk's 3D Webfest 2015 (<a href='https://youtu.be/fiS3NBZRY44?t=1605'>Video</a>) - Project can be viewed here: <a href='http://vrdatalandscape.com/'>vrdatalandscape.com</a>."
+			]
+		}
+	],
+	"skills": [
+		{
+			"category": "Web Development",
+			"skills": [
+				"HTML",
+				"CSS",
+				"Javascript",
+				"JQuery",
+				"node.js",
+				"Babylon.js",
+				"MongoDB",
+				"Three.js",
+				"nginx",
+				"AWS"
+
+			]
+		},
+		{
+			"category": "Productivity",
+			"skills": [
+				"Perforce",
+				"Unreal Game Sync",
+				"Batch",
+				"JIRA",
+				"Git"
+			]
+		},
+		{
+			"category": "Programming Languages",
+			"skills": [
+				"C++",
+				"Python",
+				"C#",
+				"Lua",
+				"Javascript",
+				"C",
+				"Java"
+			]
+		},
+		{
+			"category": "Gaming",
+			"skills": [
+				"Unreal Engine 4",
+				"Unity",
+				"Virtual Reality",
+				"Playing!"
 			]
 		}
 	],
@@ -93,6 +170,20 @@
 			"date": "March 2013",
 			"description": "Won the PAX East open qualifier for the IGN Pro League Season 6 championships with a prize pool of $100,000.",
 			"video": "MVHEjjOtAAk?start=540"
+		}
+	],
+	"education": [
+		{
+			"school": "University of San Francisco",
+			"start": "August 2013",
+			"end": "May 2015",
+			"degree": "Computer Science"
+		},
+		{
+			"school": "Marist College",
+			"start": "August 2011",
+			"end": "May 2013",
+			"degree": "Computer Science"
 		}
 	]
 }

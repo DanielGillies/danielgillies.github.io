@@ -91,6 +91,8 @@ module.exports = function(app) {
                 var cmd = "youtube-dl https://www.youtube.com/watch?v=" + id + " --extract-audio -o " + fullpath + ".mp3 --audio-format mp3";
                 console.log(cmd);
                 exec(cmd, function(error, stdout, stderr) {
+                    if (error)
+                        console.log(error)
                     // save file info in database
                     var song = new Song({
                         file: filename,
