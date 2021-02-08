@@ -1,3 +1,5 @@
 /node_modules/
 /data/
 /assets/audio/downloaded/
+/security/
+app_local.js
