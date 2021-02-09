@@ -1,6 +1,6 @@
 import json
 
-with open("assets/data/resume.json") as f:
+with open("assets/Global/data/resume.json") as f:
     data = json.load(f)
 
 # Add head and built in stuff
@@ -19,7 +19,7 @@ html = """
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css" />
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7COpen+Sans" />
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
-    <link rel="stylesheet" type="text/css" href="assets/css/resume.css" />
+    <link rel="stylesheet" type="text/css" href="assets/2D/css/resume.css" />
     <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -140,7 +140,6 @@ html += "</section>\n"
 ########### Add closing tags and stuff
 html += """</main>
     </div>
-    <script type="text/javascript" src="assets/resume.js"></script>
 </body>
 
 </html>"""

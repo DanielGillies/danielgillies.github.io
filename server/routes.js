@@ -7,7 +7,7 @@
 
 var MAX_SONGS = 100;
 
-var downloadPath = "assets/audio/downloaded/";
+var downloadPath = "assets/3D/audio/downloaded/";
 
 var uniqid = require('uniqid');
 var mongoose = require('mongoose');
@@ -15,7 +15,7 @@ var path = require("path");
 var Song = require(path.resolve("server/models/song.js"));
 var exec = require('child_process').exec;
 var fs = require("fs");
-var resume = require("../assets/data/resume.json");
+var resume = require("../assets/Global/data/resume.json");
 
 // Store the database connection in a variable and open the connection
 var db = mongoose.connection;
@@ -27,7 +27,7 @@ function checkNumSongs() {
         if (songs.length > MAX_SONGS) {
             var query = Song.find({}, null, { limit: 1, sort: { 'timestamp': 1 } });
             query.exec(function(err, songs) {
-                fs.unlink("assets/audio/downloaded/" + songs[0].file + ".mp3", function(err) {
+                fs.unlink("assets/3D/audio/downloaded/" + songs[0].file + ".mp3", function(err) {
                     if (err) return err;
                 });
                 Song.remove({ id: songs[0].id }, function(err) {
