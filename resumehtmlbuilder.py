@@ -34,7 +34,7 @@ html = """
 
 <body>
 <div class="btn dl-btn download">
-    <a href="resume.pdf">Download PDF</a>
+    <a href="javascript: w=window; w.print();">Save as PDF</a>
 </div>
 <div class="main-wrap">
 """
