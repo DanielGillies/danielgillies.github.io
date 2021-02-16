@@ -41,7 +41,7 @@
 				"Upgrade internal UE4 to new versions released by Epic as necessary.",
 				"Modified UE4 source code to better facilitate the needs of the development team.",
 				"Created tools for technical artists to use, and taught best practices and new ways to build systems using blueprints more efficiently.",
-				"Developed the core platform for generating an extremely high quantity of synthetic data very quickly, across multiple industries."
+				"Developed the core platform for generating millions of images and video frames of synthetic data very quickly, across multiple industries."
 			]
 		},
 		{
@@ -156,20 +156,6 @@
 			"date": "May 2015",
 			"description": "Built a <a href='http://vrdatalandscape.com/'>WebGL application</a> to visualize twitter and audio data in an artistic manner. The project was put on display at Autodesk's 3D Webfest.",
 			"video": "fiS3NBZRY44?start=1605"
-		},
-		{
-			"award": "Electronic Sports World Cup",
-			"organization": "ESWC",
-			"date": "October 2014",
-			"description": "Qualified to represent North America in an international LAN event in Paris, France for the title of world champion.",
-			"video": "ZRWWfhL9Fso?start=450"
-		},
-		{
-			"award": "1st Place, PAX East 2014",
-			"organization": "Ubisoft",
-			"date": "March 2013",
-			"description": "Won the PAX East open qualifier for the IGN Pro League Season 6 championships with a prize pool of $100,000.",
-			"video": "MVHEjjOtAAk?start=540"
 		}
 	],
 	"education": [
