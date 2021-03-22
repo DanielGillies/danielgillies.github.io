@@ -35,7 +35,7 @@
 				"Created login/user profile system in UE4 with associated permissions for access to specific environments and selectable pawns.",
 				"Customized and set up Unreal Game Sync to allow for easy use of perforce.",
 				"Created a road generation system based on open street maps data, including intersections and AI vehicles.",
-				"Designed and implemented a full-stack system to automate capturing images in UE4 on both remote and local machines.",
+				"Designed and implemented a REST api with a python scriptable front end to automate capturing images in UE4 on both remote and local machines.",
 				"Packaged and distributed installable versions of our simulations to multiple clients, providing support and usage instructions. This contained a local version of the python API used to start captures.",
 				"Provided general engineering support to a team of 5 technical artists and 4 Houdini artists.",
 				"Upgrade internal UE4 to new versions released by Epic as necessary.",
