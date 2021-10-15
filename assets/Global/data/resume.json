@@ -11,17 +11,31 @@
 	},
 	"work": [
 		{
+			"company": "Bit Fry Game Studios, Inc.",
+			"position": "Developer Operations and Engine Tooling Engineer",
+			"startDate": "June 2021",
+			"endDate": "Present",
+			"description": "Bit Fry Games Studio is an independent developer and publisher of video games, focused on their first franchise called Ultimate Rivals, a multi-sport arcade-action sports platform.",
+			"highlights": [
+				"Setup Unreal Game Sync (UGS) for a team of over 40 engineers, artists, and designers.",
+				"Implemented an automated build process for UE4 Editor Binaries to be distributed amongst the development and marketing teams using Jenkins and UE4 BuildGraph.",
+				"Re-organized perforce stream structure to allow for more efficient onboarding of new employees, and adjustments to support built-in UE4 tools and systems.",
+				"Currently exploring a deferred download system to allow the user (on mobile) to download just initial required files, and then downloading the rest of the content on first launch, improving initial download times by about 90%."
+			]
+		},
+		{
 			"company": "AIReverie, Inc.",
 			"position": "Lead Core Platform Engineer",
 			"startDate": "January 2021",
-			"endDate": "Present",
+			"endDate": "June 2021",
 			"description": "AI.Reverie is a simulation platform that trains AI to understand the world. https://aireverie.com",
 			"highlights": [
 				"Architected and implemented new perforce stream solution to fit our project structure.",
 				"Improved our implementation of Unreal Game Sync to better facilitate team, including setup of distributing precompiled editors for non-engineers.",
 				"Managed merging and organizing content and source code across a perforce depot used by a team of 15+ developers.",
 				"Created a style guide to go over best practices across the entire team and all projects, combined with adding a linter tool to UE4 to allow an easy way to check against the style guide.",
-				"Directly managed a team of 4 technical artists and engineers across Houdini and UE4 in very rapid prototyping of systems and tools for synthetic data generation."
+				"Directly managed a team of 4 technical artists and engineers across Houdini and UE4 in very rapid prototyping of systems and tools for synthetic data generation.",
+				"Led development of synthetic data platform that resulted in an acquisition of the company."
 			]
 		},
 		{
@@ -122,6 +136,7 @@
 			"skills": [
 				"Perforce",
 				"Unreal Game Sync",
+				"Jenkins",
 				"Batch",
 				"JIRA",
 				"Git"
@@ -134,9 +149,7 @@
 				"Python",
 				"C#",
 				"Lua",
-				"Javascript",
-				"C",
-				"Java"
+				"Javascript"
 			]
 		},
 		{
@@ -154,7 +167,7 @@
 			"award": "3D Webfest Recognized Project",
 			"organization": "Autodesk",
 			"date": "May 2015",
-			"description": "Built a <a href='http://vrdatalandscape.com/'>WebGL application</a> to visualize twitter and audio data in an artistic manner. The project was put on display at Autodesk's 3D Webfest.",
+			"description": "Built a WebGL application to visualize twitter and audio data in an artistic manner. The project was put on display at Autodesk's 3D Webfest.",
 			"video": "fiS3NBZRY44?start=1605"
 		}
 	],
@@ -169,7 +182,7 @@
 			"school": "Marist College",
 			"start": "August 2011",
 			"end": "May 2013",
-			"degree": "Computer Science"
+			"degree": "Computer Science/Game Development"
 		}
 	]
 }
