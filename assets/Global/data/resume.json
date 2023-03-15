@@ -1,26 +1,42 @@
 {
 	"basics": {
 		"name": "Danny Gillies",
-		"title": "Generalist & UE4 Developer",
+		"title": "Generalist & Unreal Engine Developer",
 		"email": "gillies.daniel@gmail.com",
 		"phone": "(845) 825-1645",
 		"linkedin": "https://www.linkedin.com/in/danielgillies1/",
 		"github": "https://github.com/DanielGillies",
 		"website": "danielgillies.dev",
-		"about": "Born and raised in New York, moved to the West Coast for new experiences, and then back to the East Coast. Travelled to compete in video games and now working as a UE4 Engineer."
+		"about": "Born and raised in New York, moved to the West Coast for new experiences, and then back to the East Coast. Currently living in Durham, NC. Travelled to compete in video games and now working as a UE4 Engineer."
 	},
 	"work": [
+		{
+			"company": "Treehouse Games",
+			"position": "Senior Tools Engineer",
+			"startDate": "January 2022",
+			"endDate": "Present",
+			"description": "Treehouse is a game studio dedicated to collaborative games that help players share memorable experiences and deepen their friendships.",
+			"highlights": [
+				"Setup Unreal Game Sync (UGS) for a team of over 15 engineers, artists, and designers.",
+				"Implemented an automated build process for UE Editor Binaries to be distributed amongst the development and production teams using Jenkins and UE BuildGraph.",
+				"Facilitated the upgrade of our internal engine version from 4.26 to 5.0",
+				"Designed and created multiplayer gameplay experiences that take place across multiple game servers.",
+				"Created a custom node-based graph editor for our quest system to streamline quest development and reduce the chance of mistakes while editing data assets.",
+				"Developed a plan for release management and internal playtesting using perforce branching and feature toggles.",
+				"Managed external contractors for audio and ensured their engineering needs were met so they could work effectively."
+			]
+		},
 		{
 			"company": "Bit Fry Game Studios, Inc.",
 			"position": "Developer Operations and Engine Tooling Engineer",
 			"startDate": "June 2021",
-			"endDate": "Present",
+			"endDate": "November 2021 (Lay-offs)",
 			"description": "Bit Fry Games Studio is an independent developer and publisher of video games, focused on their first franchise called Ultimate Rivals, a multi-sport arcade-action sports platform.",
 			"highlights": [
 				"Setup Unreal Game Sync (UGS) for a team of over 40 engineers, artists, and designers.",
 				"Implemented an automated build process for UE4 Editor Binaries to be distributed amongst the development and marketing teams using Jenkins and UE4 BuildGraph.",
 				"Re-organized perforce stream structure to allow for more efficient onboarding of new employees, and adjustments to support built-in UE4 tools and systems.",
-				"Currently exploring a deferred download system to allow the user (on mobile) to download just initial required files, and then downloading the rest of the content on first launch, improving initial download times by about 90%."
+				"Implemented a deferred download system to allow the user (on mobile) to download just initial required files, and then downloading the rest of the content on first launch, improving initial download times by about 90%."
 			]
 		},
 		{
@@ -116,22 +132,6 @@
 	],
 	"skills": [
 		{
-			"category": "Web Development",
-			"skills": [
-				"HTML",
-				"CSS",
-				"Javascript",
-				"JQuery",
-				"node.js",
-				"Babylon.js",
-				"MongoDB",
-				"Three.js",
-				"nginx",
-				"AWS"
-
-			]
-		},
-		{
 			"category": "Productivity",
 			"skills": [
 				"Perforce",
@@ -155,10 +155,26 @@
 		{
 			"category": "Gaming",
 			"skills": [
-				"Unreal Engine 4",
+				"Unreal Engine",
 				"Unity",
 				"Virtual Reality",
 				"Playing!"
+			]
+		},
+		{
+			"category": "Web Development",
+			"skills": [
+				"HTML",
+				"CSS",
+				"Javascript",
+				"JQuery",
+				"node.js",
+				"Babylon.js",
+				"MongoDB",
+				"Three.js",
+				"nginx",
+				"AWS"
+
 			]
 		}
 	],
