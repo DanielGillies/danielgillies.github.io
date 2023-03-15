@@ -115,19 +115,6 @@
 				"Designed a workflow to build minified source files, compress images/videos, build docker images, and deploy to AWS.",
 				"Featured on Shopify for my implementation of their \"Add to Cart Button\"."
 			]
-		},
-		{
-			"company": "Kinetech Arts / Kineviz Studios",
-			"position": "Software Engineering Intern",
-			"startDate": "February 2015",
-			"endDate": "June 2015",
-			"description": "Kineviz is a data visualization company that uses interactive demos and art to help display data in a more meaningful way.",
-			"highlights": [
-				"Created a full-stack web application using Node.js, Three.js, Physi,js, and WebGL to visualize tweets and audio data in a 3D world.",
-				"Developed support for Oculus Rift VR, Microsoft Kinect and Wii Balance Board.",
-				"Designed and Built server architecture to allow for tweets to be pulled into the 3D scene in real-time with specific hashtags.",
-				"Presented the project for Autodesk's 3D Webfest 2015 (<a href='https://youtu.be/fiS3NBZRY44?t=1605'>Video</a>) - Project can be viewed here: <a href='http://vrdatalandscape.com/'>vrdatalandscape.com</a>."
-			]
 		}
 	],
 	"skills": [
@@ -164,17 +151,11 @@
 		{
 			"category": "Web Development",
 			"skills": [
-				"HTML",
-				"CSS",
-				"Javascript",
-				"JQuery",
 				"node.js",
 				"Babylon.js",
 				"MongoDB",
 				"Three.js",
-				"nginx",
 				"AWS"
-
 			]
 		}
 	],
