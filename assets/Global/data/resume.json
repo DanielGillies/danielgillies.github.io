@@ -11,10 +11,24 @@
 	},
 	"work": [
 		{
+			"company": "Game Science",
+			"position": "Senior Platform Engineer",
+			"startDate": "September 2023",
+			"endDate": "Present",
+			"description": "A Prytania Media-owned organization offering technical and operational solutions to video game studios.",
+			"highlights": [
+				"Added an authentication layer to Unreal Game Sync to allow using a publicly hosted UGS Metadata Server while still securing data.",
+				"Updated the Unreal Game Sync Metadata Server to require user authentication.",
+				"Managed and deployed AWS resources using Terraform to support TeamCity and UGS.",
+				"Set up automated builds of the Editor and Game using TeamCity."
+				
+			]
+		},
+		{
 			"company": "Treehouse Games",
 			"position": "Senior Tools Engineer",
 			"startDate": "January 2022",
-			"endDate": "Present",
+			"endDate": "July 2023",
 			"description": "Treehouse is a game studio dedicated to collaborative games that help players share memorable experiences and deepen their friendships.",
 			"highlights": [
 				"Setup Unreal Game Sync (UGS) for a team of over 15 engineers, artists, and designers.",
