@@ -133,14 +133,16 @@
 	],
 	"skills": [
 		{
-			"category": "Productivity",
+			"category": "Technologies",
 			"skills": [
 				"Perforce",
+				"Git",
 				"Unreal Game Sync",
 				"Jenkins",
-				"Batch",
+				"TeamCity",
 				"JIRA",
-				"Git"
+				"Terraform",
+				"AWS"
 			]
 		},
 		{
@@ -160,16 +162,6 @@
 				"Unity",
 				"Virtual Reality",
 				"Playing!"
-			]
-		},
-		{
-			"category": "Web Development",
-			"skills": [
-				"node.js",
-				"Babylon.js",
-				"MongoDB",
-				"Three.js",
-				"AWS"
 			]
 		}
 	],
