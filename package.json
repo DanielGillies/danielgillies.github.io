@@ -22,7 +22,7 @@
   "dependencies": {
     "ejs": "^2.5.6",
     "express": "^4.17.3",
-    "forcedomain": "^1.0.1",
+    "forcedomain": "^2.2.11",
     "mongoose": "^5.7.5",
     "nodemailer": "^4.0.1",
     "routes": "^2.1.0",
