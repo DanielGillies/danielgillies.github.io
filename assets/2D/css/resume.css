@@ -250,9 +250,17 @@ blockquote .name {
 }
 
 @media print {
+    body {
+        font-family: Helvetica !important;
+    }
+
     * {
         -webkit-transition: none !important;
         transition: none !important;
+    }
+
+    .profile {
+        font-family: Helvetica !important;
     }
 
     #profiles {
@@ -344,6 +352,11 @@ blockquote .name {
     blockquote {
         border-color: #999999;
     }
+
+    blockquote .name {
+        font-family: Helvetica !important;
+    }
+
     * {
         /*Avoid printing the color at the start of the transition (Chrome issue).*/
         -webkit-transition: none !important;
@@ -356,5 +369,13 @@ blockquote .name {
 
     .download {
         display: none;
+    }
+
+    .list-set li {
+        font-family: Helvetica !important;
+    }
+
+    .list-lines li {
+        font-family: Helvetica !important;
     }
 }
