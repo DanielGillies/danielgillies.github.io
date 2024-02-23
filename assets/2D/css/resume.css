@@ -339,10 +339,12 @@ blockquote .name {
     p {
         color: #333333;
         margin: 2px;
+        font-family: Helvetica !important;
     }
     li {
         color: #444444;
         margin: 2px;
+        font-family: Helvetica !important;
     }
     .list-set.keywords li {
         background-color: transparent;
@@ -376,6 +378,10 @@ blockquote .name {
     }
 
     .list-lines li {
+        font-family: Helvetica !important;
+    }
+    
+    blockquote {
         font-family: Helvetica !important;
     }
 }
