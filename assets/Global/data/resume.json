@@ -11,6 +11,18 @@
 	},
 	"work": [
 		{
+			"company": "Turtle Rock Studios",
+			"position": "Tools/Automation Engineer",
+			"startDate": "May 2024",
+			"endDate": "Present",
+			"description": "We build award-winning games based on the ideas that get us excited about games as players.",
+			"highlights": [
+				"Extended Unreal Automation pipeline to support sending results to JIRA's X-Ray, giving QA easy access to automation results.",
+				"Created singleplayer and multiplayer test automations to reduce QA workload by over 8 hours/week.",
+				"Developing AI controlled player to navigate levels and complete gameplay tasks, as well as generate performance reports for engine team."
+			]
+		},
+		{
 			"company": "Game Science",
 			"position": "Senior Platform Engineer",
 			"startDate": "September 2023",
@@ -22,7 +34,6 @@
 				"Updated the Unreal Game Sync Metadata Server to require user authentication.",
 				"Managed and deployed AWS resources using Terraform to support TeamCity and UGS.",
 				"Set up automated builds of the Editor and Game using TeamCity."
-				
 			]
 		},
 		{
