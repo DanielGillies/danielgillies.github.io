@@ -21,7 +21,7 @@
   "homepage": "https://github.com/DanielGillies/danielgillies.github.io#readme",
   "dependencies": {
     "ejs": "^2.5.6",
-    "express": "^4.17.3",
+    "express": "^4.19.2",
     "forcedomain": "^2.2.11",
     "mongoose": "^5.7.5",
     "nodemailer": "^4.0.1",
