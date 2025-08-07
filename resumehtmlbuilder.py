@@ -44,7 +44,6 @@ html += f"""<header class="header">
                 <h1>{data['basics']['name']}</h1>
                 <h3 class="label">{data['basics']['title']}</h3>
                 <ul id="contact" class="contact-list list-lines">
-                    <li class="contact-header">{data['basics']['phone']}</li>
                     <li class="contact-header">{data['basics']['email']}</li>
                     <li class="contact-header"><a href="//{data['basics']['website']}">{data['basics']['website']}</a></li>
                 </ul>
